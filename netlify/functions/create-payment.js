@@ -12,7 +12,7 @@ const ZAPIER_WEBHOOKS = {
   't3c9404b5d417e43e5ff7dc5cb7ae340069795be': process.env.ZAPIER_PACK_MANTENCION,
   'v4fc43f48cb0fa1d5fd75929c8d5b8c86eb5848f': process.env.ZAPIER_PLAN_PRO,
   'o1a8ee03c1da73ce7273992af333cb7fb9b05356': process.env.ZAPIER_PACK_CONTRATACION,
-  'i97f46c536ea1cc3f5d65b025f5b3af9ebaff9a8': process.env.ZAPIER_PACK_EVALUACION,
+  'na811dc9c556b4b25d7f9692dfef8857f2ef2e6c': process.env.ZAPIER_PACK_DESVINCULACION,
 };
 
 const PLAN_NAMES = {
@@ -20,7 +20,7 @@ const PLAN_NAMES = {
   't3c9404b5d417e43e5ff7dc5cb7ae340069795be': 'Pack Mantención Mensual',
   'v4fc43f48cb0fa1d5fd75929c8d5b8c86eb5848f': 'Plan Pro',
   'o1a8ee03c1da73ce7273992af333cb7fb9b05356': 'Pack Contratación',
-  'i97f46c536ea1cc3f5d65b025f5b3af9ebaff9a8': 'Pack Evaluación de Desempeño',
+  'na811dc9c556b4b25d7f9692dfef8857f2ef2e6c': 'Pack Desvinculación',
 };
 
 function signParams(params) {
