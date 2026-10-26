@@ -1585,7 +1585,7 @@
           <li data-i18n="mkt-p1-f4">Setup de redes sociales (2 plataformas)</li>
           <li data-i18n="mkt-p1-f5">Guía de contenido para 1 mes</li>
         </ul>
-        <a href="https://www.flow.cl/btn.php?token=sf91127fd124de7e6421f45317cc66f302b6dc53" class="plan-cta plan-cta-secondary" target="_blank" rel="noopener" data-i18n="btn-contratar">Contratar</a>
+        <a href="#" onclick="payWithFlow('sf91127fd124de7e6421f45317cc66f302b6dc53');return false;" class="plan-cta plan-cta-secondary" data-i18n="btn-contratar">Contratar</a>
         <a href="https://calendly.com/vortexcor2026/30min" class="plan-doubt" target="_blank" rel="noopener" data-i18n="plan-doubt">Tengo dudas con el plan →</a>
       </article>
 
@@ -1601,7 +1601,7 @@
           <li data-i18n="mkt-p2-f4">Reunión de revisión mensual con recomendaciones</li>
           <li data-i18n="mkt-p2-f5">Gestión de 2 plataformas</li>
         </ul>
-        <a href="https://www.flow.cl/btn.php?token=t3c9404b5d417e43e5ff7dc5cb7ae340069795be" class="plan-cta plan-cta-primary" target="_blank" rel="noopener" data-i18n="btn-contratar">Contratar</a>
+        <a href="#" onclick="payWithFlow('t3c9404b5d417e43e5ff7dc5cb7ae340069795be');return false;" class="plan-cta plan-cta-primary" data-i18n="btn-contratar">Contratar</a>
         <a href="https://calendly.com/vortexcor2026/30min" class="plan-doubt" target="_blank" rel="noopener" data-i18n="plan-doubt">Tengo dudas con el plan →</a>
       </article>
 
@@ -1618,7 +1618,7 @@
           <li data-i18n="mkt-p3-f5">2 reuniones mensuales</li>
           <li data-i18n="mkt-p3-f6">Construcción de reporte de monitoreo de métricas</li>
         </ul>
-        <a href="https://www.flow.cl/btn.php?token=v4fc43f48cb0fa1d5fd75929c8d5b8c86eb5848f" class="plan-cta plan-cta-secondary" target="_blank" rel="noopener" data-i18n="btn-contratar">Contratar</a>
+        <a href="#" onclick="payWithFlow('v4fc43f48cb0fa1d5fd75929c8d5b8c86eb5848f');return false;" class="plan-cta plan-cta-secondary" data-i18n="btn-contratar">Contratar</a>
         <a href="https://calendly.com/vortexcor2026/30min" class="plan-doubt" target="_blank" rel="noopener" data-i18n="plan-doubt">Tengo dudas con el plan →</a>
       </article>
     </div>
@@ -1652,7 +1652,7 @@
             <strong id="addon-english-total-val">$610.000</strong>
           </div>
         </div>
-        <a href="https://www.flow.cl/btn.php?token=o1a8ee03c1da73ce7273992af333cb7fb9b05356" class="plan-cta plan-cta-secondary" target="_blank" rel="noopener" data-i18n="plan-hire">Contratar</a>
+        <a href="#" onclick="payWithFlow('o1a8ee03c1da73ce7273992af333cb7fb9b05356');return false;" class="plan-cta plan-cta-secondary" data-i18n="plan-hire">Contratar</a>
         <a href="https://calendly.com/vortexcor2026/30min" class="plan-doubt" target="_blank" rel="noopener" data-i18n="plan-doubt">Tengo dudas con el plan →</a>
       </article>
 
@@ -1668,7 +1668,7 @@
           <li data-i18n="rrhh-p2-f4">Sesión de feedback (30 min)</li>
           <li data-i18n="rrhh-p2-f5">Evaluación 360° disponible para equipos</li>
         </ul>
-        <a href="https://www.flow.cl/btn.php?token=i97f46c536ea1cc3f5d65b025f5b3af9ebaff9a8" class="plan-cta plan-cta-primary" target="_blank" rel="noopener" data-i18n="plan-hire">Contratar</a>
+        <a href="#" onclick="payWithFlow('i97f46c536ea1cc3f5d65b025f5b3af9ebaff9a8');return false;" class="plan-cta plan-cta-primary" data-i18n="plan-hire">Contratar</a>
         <a href="https://calendly.com/vortexcor2026/30min" class="plan-doubt" target="_blank" rel="noopener" data-i18n="plan-doubt">Tengo dudas con el plan →</a>
       </article>
 
@@ -1683,7 +1683,7 @@
           <li data-i18n="rrhh-p3-f3">Apoyo psicológico al trabajador</li>
           <li data-i18n="rrhh-p3-f4">Informe final para la empresa</li>
         </ul>
-        <a href="https://www.flow.cl/btn.php?token=na811dc9c556b4b25d7f9692dfef8857f2ef2e6c" class="plan-cta plan-cta-secondary" target="_blank" rel="noopener" data-i18n="plan-hire">Contratar</a>
+        <a href="#" onclick="payWithFlow('na811dc9c556b4b25d7f9692dfef8857f2ef2e6c');return false;" class="plan-cta plan-cta-secondary" data-i18n="plan-hire">Contratar</a>
         <a href="https://calendly.com/vortexcor2026/30min" class="plan-doubt" target="_blank" rel="noopener" data-i18n="plan-doubt">Tengo dudas con el plan →</a>
       </article>
 
@@ -2877,6 +2877,24 @@
 
   function armaPayNow() {
     window.open('https://calendly.com/vortexcor2026/30min', '_blank', 'noopener');
+  }
+
+  async function payWithFlow(token) {
+    try {
+      const res = await fetch('/.netlify/functions/create-payment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token })
+      });
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        window.open('https://www.flow.cl/btn.php?token=' + token, '_blank', 'noopener');
+      }
+    } catch (e) {
+      window.open('https://www.flow.cl/btn.php?token=' + token, '_blank', 'noopener');
+    }
   }
 
   // Override toggleLang to also re-render arma section on language switch
