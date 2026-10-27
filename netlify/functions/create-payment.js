@@ -108,6 +108,7 @@ exports.handler = async (event) => {
       email: email || '',
       urlConfirmation: `${SITE_URL}/.netlify/functions/create-payment/confirm`,
       urlReturn: `${SITE_URL}/gracias`,
+      urlCancel: `${SITE_URL}/pago-fallido`,
       currency: 'CLP',
       paymentMethod: 9,
     };
