@@ -115,6 +115,7 @@ exports.handler = async (event) => {
 
     try {
       const result = await postToFlow('/payment/create', params);
+      console.log('Flow response:', JSON.stringify(result));
       if (result.url && result.token) {
         return {
           statusCode: 200,
@@ -122,9 +123,10 @@ exports.handler = async (event) => {
           body: JSON.stringify({ url: `${result.url}?token=${result.token}` })
         };
       }
-      return { statusCode: 500, headers, body: JSON.stringify({ error: 'Error Flow', detail: result }) };
+      return { statusCode: 200, headers, body: JSON.stringify({ error: result.message || result.code || 'Error Flow', detail: result }) };
     } catch (e) {
-      return { statusCode: 500, headers, body: JSON.stringify({ error: e.message }) };
+      console.error('Flow error:', e.message);
+      return { statusCode: 200, headers, body: JSON.stringify({ error: e.message }) };
     }
   }
 
