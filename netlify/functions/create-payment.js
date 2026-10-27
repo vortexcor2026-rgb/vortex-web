@@ -47,6 +47,7 @@ function postToFlow(path, params) {
       hostname: 'www.flow.cl',
       path: `/api${path}`,
       method: 'POST',
+      timeout: 8000,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
         'Content-Length': Buffer.byteLength(body)
@@ -54,8 +55,9 @@ function postToFlow(path, params) {
     }, (res) => {
       let data = '';
       res.on('data', chunk => data += chunk);
-      res.on('end', () => { try { resolve(JSON.parse(data)); } catch(e) { reject(e); } });
+      res.on('end', () => { try { resolve(JSON.parse(data)); } catch(e) { reject(new Error('Invalid JSON from Flow: ' + data)); } });
     });
+    req.on('timeout', () => { req.destroy(); reject(new Error('Flow request timeout')); });
     req.on('error', reject);
     req.write(body);
     req.end();
