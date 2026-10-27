@@ -2924,21 +2924,28 @@
       document.getElementById('checkout-spinner').style.display = 'inline-block';
 
       try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 12000);
         const res = await fetch('/.netlify/functions/create-payment', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ token, name, email })
+          body: JSON.stringify({ token, name, email }),
+          signal: controller.signal
         });
+        clearTimeout(timeoutId);
         const data = await res.json();
         modal.style.display = 'none';
         if (data.url) {
           window.location.href = data.url;
         } else {
-          window.open('https://www.flow.cl/btn.php?token=' + token, '_blank', 'noopener');
+          errEl.textContent = data.error || 'Error al conectar con el sistema de pago.';
+          btn.disabled = false;
+          btn.textContent = translations[LANG]?.['modal-submit'] || 'Ir a pagar';
+          document.getElementById('checkout-spinner').style.display = 'none';
         }
       } catch (err) {
         modal.style.display = 'none';
-        window.open('https://www.flow.cl/btn.php?token=' + token, '_blank', 'noopener');
+        window.location.href = '/pago-fallido';
       } finally {
         btn.disabled = false;
         btn.textContent = 'Ir a pagar';
