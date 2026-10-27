@@ -30,6 +30,15 @@ const PLAN_AMOUNTS = {
   'na811dc9c556b4b25d7f9692dfef8857f2ef2e6c': 290000,
 };
 
+// Códigos cortos para commerceOrder (Flow acepta máximo 45 caracteres)
+const PLAN_CODES = {
+  'sf91127fd124de7e6421f45317cc66f302b6dc53': 'INI',
+  't3c9404b5d417e43e5ff7dc5cb7ae340069795be': 'MAN',
+  'v4fc43f48cb0fa1d5fd75929c8d5b8c86eb5848f': 'PRO',
+  'o1a8ee03c1da73ce7273992af333cb7fb9b05356': 'CON',
+  'na811dc9c556b4b25d7f9692dfef8857f2ef2e6c': 'DES',
+};
+
 function signParams(params) {
   const keys = Object.keys(params).sort();
   let toSign = '';
@@ -102,11 +111,8 @@ exports.handler = async (event) => {
       return { statusCode: 400, headers, body: JSON.stringify({ error: 'Token inválido' }) };
     }
 
-    const orderId = `${token}-${Date.now()}`;
-
-    // Guardar nombre+email temporalmente por orderId para usarlo en /confirm
-    global._leadStore = global._leadStore || {};
-    global._leadStore[orderId] = { name: name || '', email: email || '' };
+    // Ej: "INI-1793121301228" (17 caracteres)
+    const orderId = `${PLAN_CODES[token]}-${Date.now()}`;
 
     const params = {
       commerceOrder: orderId,
@@ -118,6 +124,9 @@ exports.handler = async (event) => {
       urlCancel: `${SITE_URL}/pago-fallido`,
       currency: 'CLP',
       paymentMethod: 9,
+      // Flow devuelve este campo en getStatus; así /confirm recupera plan, nombre y email
+      // aunque corra en otra instancia de la función (la memoria global no se comparte)
+      optional: JSON.stringify({ plan: token, name: name || '', email: email || '' }),
     };
 
     try {
@@ -159,25 +168,26 @@ exports.handler = async (event) => {
 
       if (paymentData.status === 2) {
         const orderId = paymentData.commerceOrder;
-        const planToken = orderId.split('-')[0];
-        const zapierUrl = ZAPIER_WEBHOOKS[planToken];
 
-        // Recuperar nombre guardado al crear el pago
-        const lead = (global._leadStore || {})[orderId] || {};
+        let extra = paymentData.optional || {};
+        if (typeof extra === 'string') {
+          try { extra = JSON.parse(extra); } catch (e) { extra = {}; }
+        }
+
+        const orderCode = orderId.split('-')[0];
+        const planToken = extra.plan || Object.keys(PLAN_CODES).find(t => PLAN_CODES[t] === orderCode);
+        const zapierUrl = ZAPIER_WEBHOOKS[planToken];
 
         if (zapierUrl) {
           await notifyZapier(zapierUrl, {
-            name: lead.name || '',
-            email: lead.email || paymentData.payer || '',
+            name: extra.name || '',
+            email: extra.email || paymentData.payer || '',
             plan: PLAN_NAMES[planToken] || planToken,
             amount: paymentData.amount,
             order: orderId,
             date: new Date().toISOString(),
           });
         }
-
-        // Limpiar memoria
-        if (global._leadStore) delete global._leadStore[orderId];
       }
     } catch (e) {
       console.error('confirm error', e);
