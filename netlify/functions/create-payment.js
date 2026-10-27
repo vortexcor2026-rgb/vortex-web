@@ -20,6 +20,8 @@ const PLAN_NAMES = {
   'v4fc43f48cb0fa1d5fd75929c8d5b8c86eb5848f': 'Plan Pro',
   'o1a8ee03c1da73ce7273992af333cb7fb9b05356': 'Pack Contratación',
   'na811dc9c556b4b25d7f9692dfef8857f2ef2e6c': 'Pack Desvinculación',
+  'i97f46c536ea1cc3f5d65b025f5b3af9ebaff9a8': 'Evaluación de Desempeño',
+  'p84a12b3c9d7e2f1a6b5c4d3e2f1a6b5c4d3e2f1': 'Pack Perfiles de Cargo',
 };
 
 const PLAN_AMOUNTS = {
@@ -28,6 +30,8 @@ const PLAN_AMOUNTS = {
   'v4fc43f48cb0fa1d5fd75929c8d5b8c86eb5848f': 590000,
   'o1a8ee03c1da73ce7273992af333cb7fb9b05356': 490000,
   'na811dc9c556b4b25d7f9692dfef8857f2ef2e6c': 290000,
+  'i97f46c536ea1cc3f5d65b025f5b3af9ebaff9a8': 590000,
+  'p84a12b3c9d7e2f1a6b5c4d3e2f1a6b5c4d3e2f1': 135000,
 };
 
 // Códigos cortos para commerceOrder (Flow acepta máximo 45 caracteres)
