@@ -5,14 +5,8 @@ const FLOW_API_KEY = process.env.FLOW_API_KEY;
 const FLOW_SECRET_KEY = process.env.FLOW_SECRET_KEY;
 const FLOW_API_URL = 'https://www.flow.cl/api';
 const SITE_URL = 'https://vortexcor.com';
-
-const ZAPIER_WEBHOOKS = {
-  'sf91127fd124de7e6421f45317cc66f302b6dc53': process.env.ZAPIER_PACK_INICIO,
-  't3c9404b5d417e43e5ff7dc5cb7ae340069795be': process.env.ZAPIER_PACK_MANTENCION,
-  'v4fc43f48cb0fa1d5fd75929c8d5b8c86eb5848f': process.env.ZAPIER_PLAN_PRO,
-  'o1a8ee03c1da73ce7273992af333cb7fb9b05356': process.env.ZAPIER_PACK_CONTRATACION,
-  'na811dc9c556b4b25d7f9692dfef8857f2ef2e6c': process.env.ZAPIER_PACK_DESVINCULACION,
-};
+const RESEND_API_KEY = process.env.RESEND_API_KEY;
+const NOTIFY_EMAIL = 'marce.zolezzi@gmail.com';
 
 const PLAN_NAMES = {
   'sf91127fd124de7e6421f45317cc66f302b6dc53': 'Pack Inicio',
@@ -77,18 +71,43 @@ function postToFlow(path, params) {
   });
 }
 
-function notifyZapier(url, payload) {
-  const body = JSON.stringify(payload);
+function sendResendEmail(payload) {
+  const { name, email, plan, amount, order, date } = payload;
+  const clpAmount = Number(amount).toLocaleString('es-CL');
+  const emailBody = JSON.stringify({
+    from: 'Vortex Co <notificaciones@vortexcor.com>',
+    to: [NOTIFY_EMAIL],
+    subject: `Nuevo pago: ${plan}`,
+    html: `
+      <h2>Nuevo pago recibido</h2>
+      <table style="border-collapse:collapse;width:100%;max-width:500px">
+        <tr><td style="padding:8px;border:1px solid #ddd"><strong>Plan</strong></td><td style="padding:8px;border:1px solid #ddd">${plan}</td></tr>
+        <tr><td style="padding:8px;border:1px solid #ddd"><strong>Cliente</strong></td><td style="padding:8px;border:1px solid #ddd">${name || '(no indicado)'}</td></tr>
+        <tr><td style="padding:8px;border:1px solid #ddd"><strong>Email</strong></td><td style="padding:8px;border:1px solid #ddd">${email || '(no indicado)'}</td></tr>
+        <tr><td style="padding:8px;border:1px solid #ddd"><strong>Monto</strong></td><td style="padding:8px;border:1px solid #ddd">$${clpAmount} CLP</td></tr>
+        <tr><td style="padding:8px;border:1px solid #ddd"><strong>Orden</strong></td><td style="padding:8px;border:1px solid #ddd">${order}</td></tr>
+        <tr><td style="padding:8px;border:1px solid #ddd"><strong>Fecha</strong></td><td style="padding:8px;border:1px solid #ddd">${new Date(date).toLocaleString('es-CL')}</td></tr>
+      </table>
+    `,
+  });
+
   return new Promise((resolve) => {
-    const u = new URL(url);
     const req = https.request({
-      hostname: u.hostname,
-      path: u.pathname,
+      hostname: 'api.resend.com',
+      path: '/emails',
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body) }
-    }, resolve);
-    req.on('error', () => resolve());
-    req.write(body);
+      headers: {
+        'Authorization': `Bearer ${RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+        'Content-Length': Buffer.byteLength(emailBody),
+      }
+    }, (res) => {
+      let data = '';
+      res.on('data', c => data += c);
+      res.on('end', () => { console.log('Resend response:', res.statusCode, data); resolve(); });
+    });
+    req.on('error', (e) => { console.error('Resend error:', e); resolve(); });
+    req.write(emailBody);
     req.end();
   });
 }
@@ -180,18 +199,14 @@ exports.handler = async (event) => {
 
         const orderCode = orderId.split('-')[0];
         const planToken = extra.plan || Object.keys(PLAN_CODES).find(t => PLAN_CODES[t] === orderCode);
-        const zapierUrl = ZAPIER_WEBHOOKS[planToken];
-
-        if (zapierUrl) {
-          await notifyZapier(zapierUrl, {
-            name: extra.name || '',
-            email: extra.email || paymentData.payer || '',
-            plan: PLAN_NAMES[planToken] || planToken,
-            amount: paymentData.amount,
-            order: orderId,
-            date: new Date().toISOString(),
-          });
-        }
+        await sendResendEmail({
+          name: extra.name || '',
+          email: extra.email || paymentData.payer || '',
+          plan: PLAN_NAMES[planToken] || planToken,
+          amount: paymentData.amount,
+          order: orderId,
+          date: new Date().toISOString(),
+        });
       }
     } catch (e) {
       console.error('confirm error', e);
