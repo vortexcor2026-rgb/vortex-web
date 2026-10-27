@@ -2406,6 +2406,13 @@
       'rrhh-p4-f3': 'Technical and soft competencies',
       'rrhh-p4-f4': 'Mandatory requirements',
       'rrhh-p4-f5': 'Job posting copy',
+      'modal-title': 'One step before paying',
+      'modal-desc': 'We need your details to send you the welcome email and coordinate your start.',
+      'modal-name': 'Name',
+      'modal-email': 'Email',
+      'modal-optin': 'I agree to receive communications from Vortex Co. about services, news and offers. I can unsubscribe at any time.',
+      'modal-cancel': 'Cancel',
+      'modal-submit': 'Go to payment',
     },
     pt: {
       'logo-tag': 'Marketing e talento',
@@ -2989,32 +2996,37 @@
 <!-- ── Pre-checkout modal ── -->
 <div id="checkout-modal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.55);align-items:center;justify-content:center;padding:1rem;">
   <div style="background:#fff;border-radius:12px;padding:2rem 2rem 1.75rem;max-width:420px;width:100%;box-shadow:0 8px 40px rgba(0,0,0,.18);">
-    <h3 style="margin:0 0 .35rem;font-size:1.2rem;color:#0b0b0b;">Un paso antes de pagar</h3>
-    <p style="margin:0 0 1.25rem;font-size:.93rem;color:#555;">Necesitamos tus datos para enviarte la bienvenida y coordinar el inicio.</p>
+    <h3 data-i18n="modal-title" style="margin:0 0 .35rem;font-size:1.2rem;color:#0b0b0b;">Un paso antes de pagar</h3>
+    <p data-i18n="modal-desc" style="margin:0 0 1.25rem;font-size:.93rem;color:#555;">Necesitamos tus datos para enviarte la bienvenida y coordinar el inicio.</p>
     <form id="checkout-form" novalidate>
       <label style="display:block;margin-bottom:.85rem;">
-        <span style="font-size:.85rem;font-weight:600;color:#0b0b0b;display:block;margin-bottom:.3rem;">Nombre</span>
+        <span data-i18n="modal-name" style="font-size:.85rem;font-weight:600;color:#0b0b0b;display:block;margin-bottom:.3rem;">Nombre</span>
         <input id="checkout-name" type="text" placeholder="Tu nombre completo" autocomplete="name"
           style="width:100%;box-sizing:border-box;padding:.6rem .8rem;border:1.5px solid #ddd;border-radius:7px;font-size:.97rem;outline:none;transition:border .2s;"
-          onfocus="this.style.borderColor='#6d3fd4'" onblur="this.style.borderColor='#ddd'">
+          onfocus="this.style.borderColor='#5aab6e'" onblur="this.style.borderColor='#ddd'">
       </label>
       <label style="display:block;margin-bottom:1.1rem;">
-        <span style="font-size:.85rem;font-weight:600;color:#0b0b0b;display:block;margin-bottom:.3rem;">Email</span>
+        <span data-i18n="modal-email" style="font-size:.85rem;font-weight:600;color:#0b0b0b;display:block;margin-bottom:.3rem;">Email</span>
         <input id="checkout-email" type="email" placeholder="tu@email.com" autocomplete="email"
           style="width:100%;box-sizing:border-box;padding:.6rem .8rem;border:1.5px solid #ddd;border-radius:7px;font-size:.97rem;outline:none;transition:border .2s;"
-          onfocus="this.style.borderColor='#6d3fd4'" onblur="this.style.borderColor='#ddd'">
+          onfocus="this.style.borderColor='#5aab6e'" onblur="this.style.borderColor='#ddd'">
+      </label>
+      <label style="display:flex;align-items:flex-start;gap:.5rem;margin-bottom:1rem;cursor:pointer;">
+        <input id="checkout-optin" type="checkbox" checked
+          style="margin-top:2px;accent-color:#5aab6e;width:15px;height:15px;flex-shrink:0;cursor:pointer;">
+        <span data-i18n="modal-optin" style="font-size:.82rem;color:#777;line-height:1.4;">Acepto recibir comunicaciones de Vortex Co. con información sobre servicios, novedades y ofertas. Puedo darme de baja en cualquier momento.</span>
       </label>
       <p id="checkout-error" style="color:#d94040;font-size:.85rem;margin:-.5rem 0 .75rem;min-height:1.1em;"></p>
       <div style="display:flex;gap:.75rem;justify-content:flex-end;">
         <button id="checkout-cancel" type="button"
           style="padding:.55rem 1.2rem;border:1.5px solid #ddd;border-radius:7px;background:#fff;color:#555;font-size:.93rem;cursor:pointer;">
-          Cancelar
+          <span data-i18n="modal-cancel">Cancelar</span>
         </button>
         <button id="checkout-submit" type="submit"
-          style="padding:.55rem 1.5rem;border:none;border-radius:7px;background:#6d3fd4;color:#fff;font-size:.95rem;font-weight:600;cursor:pointer;transition:background .2s;display:flex;align-items:center;gap:.5rem;"
-          onmouseover="this.style.background='#5a30b5'" onmouseout="this.style.background='#6d3fd4'">
+          style="padding:.55rem 1.5rem;border:none;border-radius:7px;background:#5aab6e;color:#fff;font-size:.95rem;font-weight:600;cursor:pointer;transition:background .2s;display:flex;align-items:center;gap:.5rem;"
+          onmouseover="this.style.background='#3d8c52'" onmouseout="this.style.background='#5aab6e'">
           <span id="checkout-spinner" style="display:none;width:14px;height:14px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0;"></span>
-          Ir a pagar
+          <span data-i18n="modal-submit">Ir a pagar</span>
         </button>
       </div>
     </form>
