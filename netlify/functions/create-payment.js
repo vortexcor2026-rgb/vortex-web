@@ -90,6 +90,11 @@ exports.handler = async (event) => {
     return { statusCode: 200, headers };
   }
 
+  // GET /ping — health check
+  if (event.httpMethod === 'GET') {
+    return { statusCode: 200, headers, body: JSON.stringify({ ok: true, apiKey: FLOW_API_KEY ? 'set' : 'MISSING', secretKey: FLOW_SECRET_KEY ? 'set' : 'MISSING' }) };
+  }
+
   // POST / — crear pago
   if (event.httpMethod === 'POST' && !event.path.includes('confirm')) {
     const { token, name, email } = JSON.parse(event.body || '{}');
