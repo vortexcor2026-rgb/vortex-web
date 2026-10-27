@@ -90,17 +90,22 @@ exports.handler = async (event) => {
 
   // POST / — crear pago
   if (event.httpMethod === 'POST' && !event.path.includes('confirm')) {
-    const { token } = JSON.parse(event.body || '{}');
+    const { token, name, email } = JSON.parse(event.body || '{}');
     if (!token || !PLAN_NAMES[token]) {
       return { statusCode: 400, headers, body: JSON.stringify({ error: 'Token inválido' }) };
     }
 
     const orderId = `${token}-${Date.now()}`;
+
+    // Guardar nombre+email temporalmente por orderId para usarlo en /confirm
+    global._leadStore = global._leadStore || {};
+    global._leadStore[orderId] = { name: name || '', email: email || '' };
+
     const params = {
       commerceOrder: orderId,
       subject: PLAN_NAMES[token],
       amount: PLAN_AMOUNTS[token],
-      email: '',
+      email: email || '',
       urlConfirmation: `${SITE_URL}/.netlify/functions/create-payment/confirm`,
       urlReturn: `${SITE_URL}/gracias`,
       currency: 'CLP',
@@ -143,17 +148,26 @@ exports.handler = async (event) => {
       });
 
       if (paymentData.status === 2) {
-        const planToken = paymentData.commerceOrder.split('-')[0];
+        const orderId = paymentData.commerceOrder;
+        const planToken = orderId.split('-')[0];
         const zapierUrl = ZAPIER_WEBHOOKS[planToken];
+
+        // Recuperar nombre guardado al crear el pago
+        const lead = (global._leadStore || {})[orderId] || {};
+
         if (zapierUrl) {
           await notifyZapier(zapierUrl, {
-            email: paymentData.payer,
+            name: lead.name || '',
+            email: lead.email || paymentData.payer || '',
             plan: PLAN_NAMES[planToken] || planToken,
             amount: paymentData.amount,
-            order: paymentData.commerceOrder,
+            order: orderId,
             date: new Date().toISOString(),
           });
         }
+
+        // Limpiar memoria
+        if (global._leadStore) delete global._leadStore[orderId];
       }
     } catch (e) {
       console.error('confirm error', e);

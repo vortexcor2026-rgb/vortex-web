@@ -1344,6 +1344,7 @@
     :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 
     /* ── ENTRADA hero ── */
+    @keyframes spin { to { transform: rotate(360deg); } }
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(24px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -2879,23 +2880,65 @@
     window.open('https://calendly.com/vortexcor2026/30min', '_blank', 'noopener');
   }
 
-  async function payWithFlow(token) {
-    try {
-      const res = await fetch('/.netlify/functions/create-payment', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ token })
-      });
-      const data = await res.json();
-      if (data.url) {
-        window.location.href = data.url;
-      } else {
-        window.open('https://www.flow.cl/btn.php?token=' + token, '_blank', 'noopener');
-      }
-    } catch (e) {
-      window.open('https://www.flow.cl/btn.php?token=' + token, '_blank', 'noopener');
-    }
+  // ── Pre-checkout modal ──
+  function payWithFlow(token) {
+    const modal = document.getElementById('checkout-modal');
+    modal.dataset.token = token;
+    document.getElementById('checkout-name').value = '';
+    document.getElementById('checkout-email').value = '';
+    document.getElementById('checkout-error').textContent = '';
+    modal.style.display = 'flex';
+    document.getElementById('checkout-name').focus();
   }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('checkout-cancel').addEventListener('click', () => {
+      document.getElementById('checkout-modal').style.display = 'none';
+    });
+    document.getElementById('checkout-modal').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('checkout-modal')) {
+        document.getElementById('checkout-modal').style.display = 'none';
+      }
+    });
+    document.getElementById('checkout-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const modal = document.getElementById('checkout-modal');
+      const token = modal.dataset.token;
+      const name = document.getElementById('checkout-name').value.trim();
+      const email = document.getElementById('checkout-email').value.trim();
+      const errEl = document.getElementById('checkout-error');
+      const btn = document.getElementById('checkout-submit');
+
+      if (!name || !email) { errEl.textContent = 'Por favor completa todos los campos.'; return; }
+
+      btn.disabled = true;
+      btn.textContent = 'Un momento…';
+      errEl.textContent = '';
+      document.getElementById('checkout-spinner').style.display = 'inline-block';
+
+      try {
+        const res = await fetch('/.netlify/functions/create-payment', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token, name, email })
+        });
+        const data = await res.json();
+        modal.style.display = 'none';
+        if (data.url) {
+          window.location.href = data.url;
+        } else {
+          window.open('https://www.flow.cl/btn.php?token=' + token, '_blank', 'noopener');
+        }
+      } catch (err) {
+        modal.style.display = 'none';
+        window.open('https://www.flow.cl/btn.php?token=' + token, '_blank', 'noopener');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Ir a pagar';
+        document.getElementById('checkout-spinner').style.display = 'none';
+      }
+    });
+  });
 
   // Override toggleLang to also re-render arma section on language switch
   function toggleLang() {
@@ -2942,5 +2985,40 @@
     }
   });
 </script>
+
+<!-- ── Pre-checkout modal ── -->
+<div id="checkout-modal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.55);align-items:center;justify-content:center;padding:1rem;">
+  <div style="background:#fff;border-radius:12px;padding:2rem 2rem 1.75rem;max-width:420px;width:100%;box-shadow:0 8px 40px rgba(0,0,0,.18);">
+    <h3 style="margin:0 0 .35rem;font-size:1.2rem;color:#0b0b0b;">Un paso antes de pagar</h3>
+    <p style="margin:0 0 1.25rem;font-size:.93rem;color:#555;">Necesitamos tus datos para enviarte la bienvenida y coordinar el inicio.</p>
+    <form id="checkout-form" novalidate>
+      <label style="display:block;margin-bottom:.85rem;">
+        <span style="font-size:.85rem;font-weight:600;color:#0b0b0b;display:block;margin-bottom:.3rem;">Nombre</span>
+        <input id="checkout-name" type="text" placeholder="Tu nombre completo" autocomplete="name"
+          style="width:100%;box-sizing:border-box;padding:.6rem .8rem;border:1.5px solid #ddd;border-radius:7px;font-size:.97rem;outline:none;transition:border .2s;"
+          onfocus="this.style.borderColor='#6d3fd4'" onblur="this.style.borderColor='#ddd'">
+      </label>
+      <label style="display:block;margin-bottom:1.1rem;">
+        <span style="font-size:.85rem;font-weight:600;color:#0b0b0b;display:block;margin-bottom:.3rem;">Email</span>
+        <input id="checkout-email" type="email" placeholder="tu@email.com" autocomplete="email"
+          style="width:100%;box-sizing:border-box;padding:.6rem .8rem;border:1.5px solid #ddd;border-radius:7px;font-size:.97rem;outline:none;transition:border .2s;"
+          onfocus="this.style.borderColor='#6d3fd4'" onblur="this.style.borderColor='#ddd'">
+      </label>
+      <p id="checkout-error" style="color:#d94040;font-size:.85rem;margin:-.5rem 0 .75rem;min-height:1.1em;"></p>
+      <div style="display:flex;gap:.75rem;justify-content:flex-end;">
+        <button id="checkout-cancel" type="button"
+          style="padding:.55rem 1.2rem;border:1.5px solid #ddd;border-radius:7px;background:#fff;color:#555;font-size:.93rem;cursor:pointer;">
+          Cancelar
+        </button>
+        <button id="checkout-submit" type="submit"
+          style="padding:.55rem 1.5rem;border:none;border-radius:7px;background:#6d3fd4;color:#fff;font-size:.95rem;font-weight:600;cursor:pointer;transition:background .2s;display:flex;align-items:center;gap:.5rem;"
+          onmouseover="this.style.background='#5a30b5'" onmouseout="this.style.background='#6d3fd4'">
+          <span id="checkout-spinner" style="display:none;width:14px;height:14px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0;"></span>
+          Ir a pagar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
 </body>
 </html>
