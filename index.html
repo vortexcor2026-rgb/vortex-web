@@ -2921,7 +2921,8 @@
       btn.disabled = true;
       btn.textContent = 'Un momento…';
       errEl.textContent = '';
-      document.getElementById('checkout-spinner').style.display = 'inline-block';
+      const spinner = document.getElementById('checkout-spinner');
+      if (spinner) spinner.style.display = 'inline-block';
 
       try {
         const controller = new AbortController();
@@ -2941,7 +2942,7 @@
           errEl.textContent = data.error || 'Error al conectar con el sistema de pago.';
           btn.disabled = false;
           btn.textContent = translations[LANG]?.['modal-submit'] || 'Ir a pagar';
-          document.getElementById('checkout-spinner').style.display = 'none';
+          if (spinner) spinner.style.display = 'none';
         }
       } catch (err) {
         modal.style.display = 'none';
@@ -2949,7 +2950,7 @@
       } finally {
         btn.disabled = false;
         btn.textContent = 'Ir a pagar';
-        document.getElementById('checkout-spinner').style.display = 'none';
+        if (spinner) spinner.style.display = 'none';
       }
     });
   });
