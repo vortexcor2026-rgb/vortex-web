@@ -311,9 +311,18 @@ exports.handler = async (event) => {
 
   // POST / — crear pago
   if (event.httpMethod === 'POST' && !event.path.includes('confirm')) {
-    const { token, name, email } = JSON.parse(event.body || '{}');
+    const { token, name, email, amount: bodyAmount } = JSON.parse(event.body || '{}');
     if (!token || !PLAN_NAMES[token]) {
       return { statusCode: 400, headers, body: JSON.stringify({ error: 'Token inválido' }) };
+    }
+
+    // Para CAR (Arma tu Plan) el monto es variable y viene del frontend
+    const finalAmount = (token === 'i3d1a9b1b20dfcf2232829658b9f49f3fc336bfc' && bodyAmount)
+      ? bodyAmount
+      : PLAN_AMOUNTS[token];
+
+    if (!finalAmount || finalAmount <= 0) {
+      return { statusCode: 400, headers, body: JSON.stringify({ error: 'Monto inválido' }) };
     }
 
     // Ej: "INI-1793121301228" (17 caracteres)
@@ -322,7 +331,7 @@ exports.handler = async (event) => {
     const params = {
       commerceOrder: orderId,
       subject: PLAN_NAMES[token],
-      amount: PLAN_AMOUNTS[token],
+      amount: finalAmount,
       email: email || '',
       urlConfirmation: `${SITE_URL}/.netlify/functions/create-payment/confirm`,
       urlReturn: `${SITE_URL}/gracias`,

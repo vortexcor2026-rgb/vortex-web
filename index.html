@@ -2234,8 +2234,8 @@
       'arma-summary-title': 'Tu plan',
       'arma-empty': 'Selecciona servicios para ver el resumen',
       'arma-total': 'Total',
-      'arma-pay': 'Agendar y coordinar pago',
-      'arma-note': 'Agendaremos una reunión para coordinar los detalles y el pago',
+      'arma-pay': 'Comprar',
+      'arma-note': 'Pago seguro vía Flow · Recibirás confirmación por email',
       'addon-en-name': 'Add-on inglés',
       'addon-en-desc': 'Entrevista hablada + prueba de nivel escrita. Ideal para cargos que requieren buen nivel de inglés.',
       'addon-en-price': '+ $120.000',
@@ -2357,8 +2357,8 @@
       'arma-summary-title': 'Your plan',
       'arma-empty': 'Select services to see your summary',
       'arma-total': 'Total',
-      'arma-pay': 'Schedule & coordinate payment',
-      'arma-note': 'We will schedule a call to coordinate the details and payment',
+      'arma-pay': 'Buy now',
+      'arma-note': 'Secure payment via Flow · You will receive a confirmation email',
       'addon-en-name': 'Add-on: English Interview &amp; Test',
       'addon-en-desc': 'We assess the candidate in English: spoken interview + written proficiency test. Ideal for roles requiring real English skills.',
       'addon-en-price': '+ USD 140',
@@ -2534,8 +2534,8 @@
       'arma-summary-title': 'Seu plano',
       'arma-empty': 'Selecione serviços para ver o resumo',
       'arma-total': 'Total',
-      'arma-pay': 'Agendar e coordenar pagamento',
-      'arma-note': 'Agendaremos uma reunião para coordenar os detalhes e o pagamento',
+      'arma-pay': 'Comprar',
+      'arma-note': 'Pagamento seguro via Flow · Você receberá uma confirmação por email',
       'addon-en-name': 'Add-on: Entrevista &amp; Teste de inglês',
       'addon-en-desc': 'Avaliamos o candidato em inglês: entrevista falada + teste de proficiência escrita. Ideal para vagas que exigem inglês real.',
       'addon-en-price': '+ $120.000',
@@ -2881,10 +2881,18 @@
     let totalUsd = LANG === 'en' ? active.reduce((sum, s) => sum + (s.priceUsd || 0) * armaQty[s.id], 0) : null;
     totalEl.textContent = fmtPrice(total, totalUsd);
     payBtn.disabled = false;
+    window._armaTotal = total;
   }
 
   function armaPayNow() {
-    window.open('https://calendly.com/vortexcor2026/30min', '_blank', 'noopener');
+    const modal = document.getElementById('checkout-modal');
+    modal.dataset.token = 'i3d1a9b1b20dfcf2232829658b9f49f3fc336bfc';
+    modal.dataset.amount = window._armaTotal || 0;
+    document.getElementById('checkout-name').value = '';
+    document.getElementById('checkout-email').value = '';
+    document.getElementById('checkout-error').textContent = '';
+    modal.style.display = 'flex';
+    document.getElementById('checkout-name').focus();
   }
 
   // ── Pre-checkout modal ──
@@ -2927,10 +2935,11 @@
       try {
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 12000);
+        const amount = modal.dataset.amount ? parseInt(modal.dataset.amount) : undefined;
         const res = await fetch('/.netlify/functions/create-payment', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ token, name, email }),
+          body: JSON.stringify({ token, name, email, ...(amount ? { amount } : {}) }),
           signal: controller.signal
         });
         clearTimeout(timeoutId);
