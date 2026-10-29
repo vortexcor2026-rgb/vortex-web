@@ -15,7 +15,8 @@ const PLAN_NAMES = {
   'o1a8ee03c1da73ce7273992af333cb7fb9b05356': 'Pack Contratación',
   'na811dc9c556b4b25d7f9692dfef8857f2ef2e6c': 'Pack Desvinculación',
   'i97f46c536ea1cc3f5d65b025f5b3af9ebaff9a8': 'Evaluación de Desempeño',
-  'p84a12b3c9d7e2f1a6b5c4d3e2f1a6b5c4d3e2f1': 'Pack Perfiles de Cargo',
+  'r32645820f813ef56810efcc6210b668ee703917': 'Pack Perfiles de Cargo',
+  'i3d1a9b1b20dfcf2232829658b9f49f3fc336bfc': 'Arma tu Plan',
 };
 
 const PLAN_AMOUNTS = {
@@ -25,7 +26,8 @@ const PLAN_AMOUNTS = {
   'o1a8ee03c1da73ce7273992af333cb7fb9b05356': 490000,
   'na811dc9c556b4b25d7f9692dfef8857f2ef2e6c': 290000,
   'i97f46c536ea1cc3f5d65b025f5b3af9ebaff9a8': 590000,
-  'p84a12b3c9d7e2f1a6b5c4d3e2f1a6b5c4d3e2f1': 1000,  // TEST - real: 135000
+  'r32645820f813ef56810efcc6210b668ee703917': 135000,
+  'i3d1a9b1b20dfcf2232829658b9f49f3fc336bfc': 0,  // precio variable según items
 };
 
 // Códigos cortos para commerceOrder (Flow acepta máximo 45 caracteres)
@@ -36,7 +38,8 @@ const PLAN_CODES = {
   'o1a8ee03c1da73ce7273992af333cb7fb9b05356': 'CON',
   'na811dc9c556b4b25d7f9692dfef8857f2ef2e6c': 'DES',
   'i97f46c536ea1cc3f5d65b025f5b3af9ebaff9a8': 'EVA',
-  'p84a12b3c9d7e2f1a6b5c4d3e2f1a6b5c4d3e2f1': 'PER',
+  'r32645820f813ef56810efcc6210b668ee703917': 'PER',
+  'i3d1a9b1b20dfcf2232829658b9f49f3fc336bfc': 'CAR',
 };
 
 function signParams(params) {
@@ -181,6 +184,20 @@ function getBuyerEmail(planCode, name, clpAmount) {
 <p><strong>4.</strong> Cierre y entrega de informe.</p>
 <p>Si tienes alguna duda, puedes responder directamente a este correo.</p>
 <p>Nos vemos pronto,</p>${FIRMA}</div>`;
+  }
+
+  if (planCode === 'CAR') {
+    return `<div style="${style}">${hola}
+<p>Recibimos tu compra. Gracias por confiar en Vortex.</p>
+<p>En las próximas 24 horas recibirás un correo con todos los pasos a seguir según los productos que adquiriste.</p>
+<p>Si tienes alguna duda, puedes responder directamente a este correo.</p>
+<p>Nos vemos pronto,</p>
+<div style="border-top:2px solid #2d6a4f;padding-top:14px;margin-top:20px;">
+  <p style="margin:0;font-size:15px;font-weight:bold;color:#1b1b1b;">Equipo Vortex</p>
+  <p style="margin:4px 0 0;font-size:12px;color:#2d6a4f;letter-spacing:1.5px;text-transform:uppercase;">Vortex Co.</p>
+  <p style="margin:6px 0 0;font-size:12px;color:#888;font-style:italic;">Nada se escapa del vortex.</p>
+</div>
+</div>`;
   }
 
   // Marketing plans (INI, PRO, MAN)
