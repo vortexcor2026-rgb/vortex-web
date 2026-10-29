@@ -357,5 +357,20 @@ exports.handler = async (event) => {
     return { statusCode: 200, body: 'OK' };
   }
 
+  // GET /test-email — verifica que Resend funciona
+  if (event.httpMethod === 'GET' && event.path.includes('test-email')) {
+    try {
+      await resendPost({
+        from: 'Vortex Co <notificaciones@vortexcor.com>',
+        to: [BUSINESS_EMAIL],
+        subject: 'TEST - Resend funcionando',
+        html: '<p>Si recibes esto, Resend está configurado correctamente en Netlify.</p>',
+      });
+      return { statusCode: 200, headers, body: JSON.stringify({ ok: true, msg: 'Email enviado a ' + BUSINESS_EMAIL }) };
+    } catch(e) {
+      return { statusCode: 500, headers, body: JSON.stringify({ error: e.message }) };
+    }
+  }
+
   return { statusCode: 404, body: 'Not found' };
 };
