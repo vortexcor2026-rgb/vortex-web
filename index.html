@@ -2882,6 +2882,11 @@
     totalEl.textContent = fmtPrice(total, totalUsd);
     payBtn.disabled = false;
     window._armaTotal = total;
+    window._armaItems = active.map(s => ({
+      name: LANG === 'en' ? s.nameEn : LANG === 'pt' ? s.namePt : s.nameEs,
+      qty: armaQty[s.id],
+      price: s.price,
+    }));
   }
 
   function armaPayNow() {
@@ -2939,7 +2944,7 @@
         const res = await fetch('/.netlify/functions/create-payment', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ token, name, email, ...(amount ? { amount } : {}) }),
+          body: JSON.stringify({ token, name, email, ...(amount ? { amount } : {}), ...(window._armaItems && token === 'i3d1a9b1b20dfcf2232829658b9f49f3fc336bfc' ? { items: window._armaItems } : {}) }),
           signal: controller.signal
         });
         clearTimeout(timeoutId);
