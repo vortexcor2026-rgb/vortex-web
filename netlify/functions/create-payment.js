@@ -96,8 +96,112 @@ function resendPost(emailJson) {
   });
 }
 
+const FIRMA = `
+<div style="border-top:2px solid #2d6a4f;padding-top:14px;margin-top:20px;">
+  <p style="margin:0;font-size:15px;font-weight:bold;color:#1b1b1b;">Carolina Zolezzi</p>
+  <p style="margin:4px 0 0;font-size:12px;color:#2d6a4f;letter-spacing:1.5px;text-transform:uppercase;">Vortex Co. &middot; Recursos Humanos</p>
+  <p style="margin:6px 0 0;font-size:12px;color:#888;font-style:italic;">Nada se escapa del vortex.</p>
+</div>`;
+
+const FIRMA_MKT = `
+<div style="border-top:2px solid #2d6a4f;padding-top:14px;margin-top:20px;">
+  <p style="margin:0;font-size:15px;font-weight:bold;color:#1b1b1b;">Marcela Zolezzi</p>
+  <p style="margin:4px 0 0;font-size:12px;color:#2d6a4f;letter-spacing:1.5px;text-transform:uppercase;">Vortex Co. &middot; Marketing Estratégico</p>
+  <p style="margin:6px 0 0;font-size:12px;color:#888;font-style:italic;">Nada se escapa del vortex.</p>
+</div>`;
+
+function getBuyerEmail(planCode, name, clpAmount) {
+  const style = 'font-family:Arial,sans-serif;font-size:15px;line-height:1.7;color:#222;max-width:600px;';
+  const linkStyle = 'color:#2d6a4f;';
+  const hrStyle = 'border:none;border-top:1px solid #eee;margin:24px 0;';
+  const hola = `<p>Hola ${name || ''},</p>`;
+
+  if (planCode === 'CON') {
+    return `<div style="${style}">${hola}
+<p>Gracias por confiar en Vortex, haremos el mejor perfil para tu nueva contratación.</p>
+<p>Para comenzar, necesitamos que completes estos dos pasos:</p>
+<p>1. <a href="https://docs.google.com/forms/d/e/1FAIpQLSffoGXQiYVsQQgCt1N6aY2i9zn_MDVTjaow1aXPyudW6Ls3Gw/viewform" style="${linkStyle}">Completa el formulario de contratación</a></p>
+<p>2. <a href="https://calendly.com/vortexcor2026/new-meeting" style="${linkStyle}">Agenda nuestra primera reunión</a></p>
+<hr style="${hrStyle}">
+<p>Proceso de selección:</p>
+<p><strong>1.</strong> Definición del perfil y publicación: aprox. una semana.</p>
+<p><strong>2.</strong> Período de postulaciones: tres semanas.</p>
+<p><strong>3.</strong> Evaluación de candidatos: antecedentes y pruebas.</p>
+<p><strong>4.</strong> Entrevistas con candidatos preseleccionados.</p>
+<p><strong>5.</strong> Carta oferta.</p>
+<p><strong>6.</strong> Cierre e incorporación.</p>
+<p>Si el candidato no cumple en los primeros tres meses, te ayudamos a encontrar un reemplazo sin costo adicional.</p>
+<p>Si tienes alguna duda, puedes responder directamente a este correo.</p>
+<p>Nos vemos pronto,</p>${FIRMA}</div>`;
+  }
+
+  if (planCode === 'PER') {
+    return `<div style="${style}">${hola}
+<p>Gracias por confiar en Vortex. Tu pack incluye <strong>3 perfiles de cargo</strong> y los tendrás listos en aproximadamente una semana.</p>
+<p>Para comenzar, necesitamos que completes un formulario por cada perfil. Recuerda que tienes 3:</p>
+<p>1. <a href="https://docs.google.com/forms/d/e/1FAIpQLSffoGXQiYVsQQgCt1N6aY2i9zn_MDVTjaow1aXPyudW6Ls3Gw/viewform" style="${linkStyle}">Completa el formulario — Perfil 1</a></p>
+<p>2. <a href="https://docs.google.com/forms/d/e/1FAIpQLSffoGXQiYVsQQgCt1N6aY2i9zn_MDVTjaow1aXPyudW6Ls3Gw/viewform" style="${linkStyle}">Completa el formulario — Perfil 2</a></p>
+<p>3. <a href="https://docs.google.com/forms/d/e/1FAIpQLSffoGXQiYVsQQgCt1N6aY2i9zn_MDVTjaow1aXPyudW6Ls3Gw/viewform" style="${linkStyle}">Completa el formulario — Perfil 3</a></p>
+<p>2. <a href="https://calendly.com/vortexcor2026/new-meeting" style="${linkStyle}">Agenda una reunión para hablar sobre tus perfiles</a></p>
+<hr style="${hrStyle}">
+<p>Lo que sigue:</p>
+<p><strong>1.</strong> Completas los 3 formularios con los detalles de cada cargo.</p>
+<p><strong>2.</strong> Agendamos una reunión para alinearnos y resolver dudas.</p>
+<p><strong>3.</strong> En aproximadamente una semana recibirás los 3 perfiles de cargo listos.</p>
+<p>Si tienes alguna duda, puedes responder directamente a este correo.</p>
+<p>Nos vemos pronto,</p>${FIRMA}</div>`;
+  }
+
+  if (planCode === 'EVA') {
+    return `<div style="${style}">${hola}
+<p>Gracias por confiar en Vortex. Estamos listos para comenzar con tu proceso de Evaluación de Desempeño.</p>
+<p>Para comenzar, necesitamos que completes estos dos pasos:</p>
+<p>1. <a href="https://docs.google.com/forms/d/e/1FAIpQLSffoGXQiYVsQQgCt1N6aY2i9zn_MDVTjaow1aXPyudW6Ls3Gw/viewform" style="${linkStyle}">Completa el formulario de evaluación</a></p>
+<p>2. <a href="https://calendly.com/vortexcor2026/new-meeting" style="${linkStyle}">Agenda nuestra primera reunión</a></p>
+<hr style="${hrStyle}">
+<p>Lo que sigue:</p>
+<p><strong>1.</strong> Reunión de kick-off para entender el equipo y los objetivos.</p>
+<p><strong>2.</strong> Diseño del proceso y herramientas de evaluación.</p>
+<p><strong>3.</strong> Aplicación de evaluaciones al equipo.</p>
+<p><strong>4.</strong> Informe de resultados y plan de acción.</p>
+<p>Si tienes alguna duda, puedes responder directamente a este correo.</p>
+<p>Nos vemos pronto,</p>${FIRMA}</div>`;
+  }
+
+  if (planCode === 'DES') {
+    return `<div style="${style}">${hola}
+<p>Gracias por confiar en Vortex. Acompañaremos este proceso con profesionalismo y cuidado.</p>
+<p>Para comenzar, necesitamos que completes estos dos pasos:</p>
+<p>1. <a href="https://docs.google.com/forms/d/e/1FAIpQLSffoGXQiYVsQQgCt1N6aY2i9zn_MDVTjaow1aXPyudW6Ls3Gw/viewform" style="${linkStyle}">Completa el formulario de desvinculación</a></p>
+<p>2. <a href="https://calendly.com/vortexcor2026/new-meeting" style="${linkStyle}">Agenda nuestra primera reunión</a></p>
+<hr style="${hrStyle}">
+<p>Lo que sigue:</p>
+<p><strong>1.</strong> Reunión inicial para entender el contexto y definir el proceso.</p>
+<p><strong>2.</strong> Preparación de documentación y comunicación.</p>
+<p><strong>3.</strong> Acompañamiento en la entrevista de desvinculación.</p>
+<p><strong>4.</strong> Cierre y entrega de informe.</p>
+<p>Si tienes alguna duda, puedes responder directamente a este correo.</p>
+<p>Nos vemos pronto,</p>${FIRMA}</div>`;
+  }
+
+  // Marketing plans (INI, PRO, MAN)
+  return `<div style="${style}">${hola}
+<p>Gracias por confiar en Vortex. Estamos listos para comenzar a trabajar en tu marketing.</p>
+<p>Para comenzar, necesitamos que completes estos dos pasos:</p>
+<p>1. <a href="https://docs.google.com/forms/d/e/1FAIpQLSffoGXQiYVsQQgCt1N6aY2i9zn_MDVTjaow1aXPyudW6Ls3Gw/viewform" style="${linkStyle}">Completa nuestro formulario de onboarding</a></p>
+<p>2. <a href="https://calendly.com/vortexcor2026/new-meeting" style="${linkStyle}">Agenda nuestra primera reunión</a></p>
+<hr style="${hrStyle}">
+<p>¿Cómo será nuestro proceso de trabajo?</p>
+<p><strong>01.</strong> Estrategia y desarrollo de marca: después de nuestra primera reunión, trabajaremos en la propuesta de marca.</p>
+<p><strong>02.</strong> Presentación y ajustes: reunión de 30 minutos para presentar la propuesta y revisar ajustes.</p>
+<p><strong>03.</strong> Desarrollo digital y materiales: web, materiales y configuración de plataformas. Aproximadamente una semana.</p>
+<p><strong>04.</strong> Entrega final y planificación del primer mes: reunión de cierre y calendario de contenidos del primer mes.</p>
+<p>Si tienes alguna duda, puedes responder directamente a este correo.</p>
+<p>Nos vemos pronto,</p>${FIRMA_MKT}</div>`;
+}
+
 async function sendResendEmail(payload) {
-  const { name, email, plan, amount, order, date } = payload;
+  const { name, email, plan, amount, order, date, planCode } = payload;
   const clpAmount = Number(amount).toLocaleString('es-CL');
   const fechaStr = new Date(date).toLocaleString('es-CL');
 
@@ -125,14 +229,7 @@ async function sendResendEmail(payload) {
       from: 'Vortex Co <notificaciones@vortexcor.com>',
       to: [email],
       subject: `Gracias por tu compra - ${plan}`,
-      html: `
-        <h2>Hola ${name || ''}!</h2>
-        <p>Recibimos tu pago por <strong>${plan}</strong> ($${clpAmount} CLP). Muchas gracias.</p>
-        <p>En las próximas 24 horas te enviaremos un correo con todos los detalles de tu plan y los próximos pasos.</p>
-        <p>Si tienes alguna pregunta, responde a este correo.</p>
-        <br>
-        <p>El equipo de Vortex Co</p>
-      `,
+      html: getBuyerEmail(planCode, name, clpAmount),
     });
   }
 }
@@ -231,6 +328,7 @@ exports.handler = async (event) => {
           name: extra.name || '',
           email: extra.email || paymentData.payer || '',
           plan: PLAN_NAMES[planToken] || planToken,
+          planCode: PLAN_CODES[planToken] || orderCode,
           amount: paymentData.amount,
           order: orderId,
           date: new Date().toISOString(),
