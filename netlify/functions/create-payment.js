@@ -239,8 +239,11 @@ async function sendResendEmail(payload) {
   let itemsHtml = '';
   if (planCode === 'CAR' && Array.isArray(items) && items.length > 0) {
     const itemRows = items.map(it => {
-      const subtotal = Number(it.price * it.qty).toLocaleString('es-CL');
-      return `<tr><td style="padding:6px 8px;border:1px solid #ddd">${it.name}</td><td style="padding:6px 8px;border:1px solid #ddd;text-align:center">${it.qty}</td><td style="padding:6px 8px;border:1px solid #ddd;text-align:right">$${subtotal}</td></tr>`;
+      const name = it.name || it.id || '';
+      const qty = it.qty || it.q || 1;
+      const price = it.price || it.p || 0;
+      const subtotal = Number(price * qty).toLocaleString('es-CL');
+      return `<tr><td style="padding:6px 8px;border:1px solid #ddd">${name}</td><td style="padding:6px 8px;border:1px solid #ddd;text-align:center">${qty}</td><td style="padding:6px 8px;border:1px solid #ddd;text-align:right">$${subtotal}</td></tr>`;
     }).join('');
     itemsHtml = `
       <tr><td colspan="2" style="padding:8px;border:1px solid #ddd;background:#f5f5f5"><strong>Ítems seleccionados</strong></td><td style="padding:8px;border:1px solid #ddd;background:#f5f5f5"></td></tr>
@@ -369,7 +372,7 @@ exports.handler = async (event) => {
       paymentMethod: 9,
       // Flow devuelve este campo en getStatus; así /confirm recupera plan, nombre y email
       // aunque corra en otra instancia de la función (la memoria global no se comparte)
-      optional: JSON.stringify({ plan: token, name: name || '', email: email || '', items: bodyItems || [] }),
+      optional: JSON.stringify({ plan: token, name: name || '', email: email || '', items: (bodyItems || []).map(it => ({ id: it.name.slice(0,20), q: it.qty, p: it.price })) }),
     };
 
     try {
