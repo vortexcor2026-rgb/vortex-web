@@ -142,7 +142,7 @@ function getBuyerEmail(planCode, name, clpAmount) {
 <p>1. <a href="https://docs.google.com/forms/d/e/1FAIpQLSffoGXQiYVsQQgCt1N6aY2i9zn_MDVTjaow1aXPyudW6Ls3Gw/viewform" style="${linkStyle}">Completa el formulario — Perfil 1</a></p>
 <p>2. <a href="https://docs.google.com/forms/d/e/1FAIpQLSffoGXQiYVsQQgCt1N6aY2i9zn_MDVTjaow1aXPyudW6Ls3Gw/viewform" style="${linkStyle}">Completa el formulario — Perfil 2</a></p>
 <p>3. <a href="https://docs.google.com/forms/d/e/1FAIpQLSffoGXQiYVsQQgCt1N6aY2i9zn_MDVTjaow1aXPyudW6Ls3Gw/viewform" style="${linkStyle}">Completa el formulario — Perfil 3</a></p>
-<p>2. <a href="https://calendly.com/vortexcor2026/new-meeting" style="${linkStyle}">Agenda una reunión para hablar sobre tus perfiles</a></p>
+<p>4. <a href="https://docs.google.com/forms/d/1RGCTGP1J9psnUh8avMKI6qoMXzPeOYFRi7sV1RDxJ3A/viewform" style="${linkStyle}">Agenda una reunión para hablar sobre tus perfiles</a></p>
 <hr style="${hrStyle}">
 <p>Lo que sigue:</p>
 <p><strong>1.</strong> Completas los 3 formularios con los detalles de cada cargo.</p>
@@ -156,14 +156,13 @@ function getBuyerEmail(planCode, name, clpAmount) {
     return `<div style="${style}">${hola}
 <p>Gracias por confiar en Vortex. Estamos listos para comenzar con tu proceso de Evaluación de Desempeño.</p>
 <p>Para comenzar, necesitamos que completes estos dos pasos:</p>
-<p>1. <a href="https://docs.google.com/forms/d/e/1FAIpQLSffoGXQiYVsQQgCt1N6aY2i9zn_MDVTjaow1aXPyudW6Ls3Gw/viewform" style="${linkStyle}">Completa el formulario de evaluación</a></p>
-<p>2. <a href="https://calendly.com/vortexcor2026/new-meeting" style="${linkStyle}">Agenda nuestra primera reunión</a></p>
+<p>1. <a href="https://docs.google.com/forms/d/e/1FAIpQLSfY6GZE-oSFCY2swwX2ytf-mqanjuh8LSaFEAoKS_UzAjnaQA/viewform" style="${linkStyle}">Completa nuestro formulario de evaluación</a></p>
+<p>2. <a href="https://docs.google.com/forms/d/1yYSuZM4770IyFTsFEc1zs64wfqfJXUMCwAzgMY0fFs4/viewform" style="${linkStyle}">Agenda nuestra primera reunión</a></p>
 <hr style="${hrStyle}">
-<p>Lo que sigue:</p>
-<p><strong>1.</strong> Reunión de kick-off para entender el equipo y los objetivos.</p>
-<p><strong>2.</strong> Diseño del proceso y herramientas de evaluación.</p>
-<p><strong>3.</strong> Aplicación de evaluaciones al equipo.</p>
-<p><strong>4.</strong> Informe de resultados y plan de acción.</p>
+<p>Próximos pasos:</p>
+<p><strong>1.</strong> Reunión de análisis: revisaremos el equipo, los objetivos y construiremos el proceso de evaluación.</p>
+<p><strong>2.</strong> Tendrás los resultados en aproximadamente una semana.</p>
+<p><strong>3.</strong> Puedes revisarlos y podemos hacer ajustes si son necesarios.</p>
 <p>Si tienes alguna duda, puedes responder directamente a este correo.</p>
 <p>Nos vemos pronto,</p>${FIRMA}</div>`;
   }
