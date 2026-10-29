@@ -138,11 +138,9 @@ function getBuyerEmail(planCode, name, clpAmount) {
   if (planCode === 'PER') {
     return `<div style="${style}">${hola}
 <p>Gracias por confiar en Vortex. Tu pack incluye <strong>3 perfiles de cargo</strong> y los tendrás listos en aproximadamente una semana.</p>
-<p>Para comenzar, necesitamos que completes un formulario por cada perfil. Recuerda que tienes 3:</p>
-<p>1. <a href="https://docs.google.com/forms/d/e/1FAIpQLSffoGXQiYVsQQgCt1N6aY2i9zn_MDVTjaow1aXPyudW6Ls3Gw/viewform" style="${linkStyle}">Completa el formulario — Perfil 1</a></p>
-<p>2. <a href="https://docs.google.com/forms/d/e/1FAIpQLSffoGXQiYVsQQgCt1N6aY2i9zn_MDVTjaow1aXPyudW6Ls3Gw/viewform" style="${linkStyle}">Completa el formulario — Perfil 2</a></p>
-<p>3. <a href="https://docs.google.com/forms/d/e/1FAIpQLSffoGXQiYVsQQgCt1N6aY2i9zn_MDVTjaow1aXPyudW6Ls3Gw/viewform" style="${linkStyle}">Completa el formulario — Perfil 3</a></p>
-<p>4. <a href="https://docs.google.com/forms/d/1RGCTGP1J9psnUh8avMKI6qoMXzPeOYFRi7sV1RDxJ3A/viewform" style="${linkStyle}">Agenda una reunión para hablar sobre tus perfiles</a></p>
+<p>Para comenzar, necesitamos que completes estos dos pasos:</p>
+<p>1. <a href="https://docs.google.com/forms/d/e/1FAIpQLSffoGXQiYVsQQgCt1N6aY2i9zn_MDVTjaow1aXPyudW6Ls3Gw/viewform" style="${linkStyle}">Completa el formulario de perfiles de cargo</a> (incluye los 3 perfiles)</p>
+<p>2. <a href="https://docs.google.com/forms/d/1RGCTGP1J9psnUh8avMKI6qoMXzPeOYFRi7sV1RDxJ3A/viewform" style="${linkStyle}">Agenda una reunión para hablar sobre tus perfiles</a></p>
 <hr style="${hrStyle}">
 <p>Lo que sigue:</p>
 <p><strong>1.</strong> Completas los 3 formularios con los detalles de cada cargo.</p>
