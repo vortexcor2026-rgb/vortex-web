@@ -6,7 +6,7 @@ const FLOW_SECRET_KEY = process.env.FLOW_SECRET_KEY;
 const FLOW_API_URL = 'https://www.flow.cl/api';
 const SITE_URL = 'https://vortexcor.com';
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
-const NOTIFY_EMAIL = 'marce.zolezzi@gmail.com';
+const BUSINESS_EMAIL = 'vortexcor2026@gmail.com';
 
 const PLAN_NAMES = {
   'sf91127fd124de7e6421f45317cc66f302b6dc53': 'Pack Inicio',
@@ -73,26 +73,8 @@ function postToFlow(path, params) {
   });
 }
 
-function sendResendEmail(payload) {
-  const { name, email, plan, amount, order, date } = payload;
-  const clpAmount = Number(amount).toLocaleString('es-CL');
-  const emailBody = JSON.stringify({
-    from: 'Vortex Co <notificaciones@vortexcor.com>',
-    to: [NOTIFY_EMAIL],
-    subject: `Nuevo pago: ${plan}`,
-    html: `
-      <h2>Nuevo pago recibido</h2>
-      <table style="border-collapse:collapse;width:100%;max-width:500px">
-        <tr><td style="padding:8px;border:1px solid #ddd"><strong>Plan</strong></td><td style="padding:8px;border:1px solid #ddd">${plan}</td></tr>
-        <tr><td style="padding:8px;border:1px solid #ddd"><strong>Cliente</strong></td><td style="padding:8px;border:1px solid #ddd">${name || '(no indicado)'}</td></tr>
-        <tr><td style="padding:8px;border:1px solid #ddd"><strong>Email</strong></td><td style="padding:8px;border:1px solid #ddd">${email || '(no indicado)'}</td></tr>
-        <tr><td style="padding:8px;border:1px solid #ddd"><strong>Monto</strong></td><td style="padding:8px;border:1px solid #ddd">$${clpAmount} CLP</td></tr>
-        <tr><td style="padding:8px;border:1px solid #ddd"><strong>Orden</strong></td><td style="padding:8px;border:1px solid #ddd">${order}</td></tr>
-        <tr><td style="padding:8px;border:1px solid #ddd"><strong>Fecha</strong></td><td style="padding:8px;border:1px solid #ddd">${new Date(date).toLocaleString('es-CL')}</td></tr>
-      </table>
-    `,
-  });
-
+function resendPost(emailJson) {
+  const emailBody = JSON.stringify(emailJson);
   return new Promise((resolve) => {
     const req = https.request({
       hostname: 'api.resend.com',
@@ -112,6 +94,47 @@ function sendResendEmail(payload) {
     req.write(emailBody);
     req.end();
   });
+}
+
+async function sendResendEmail(payload) {
+  const { name, email, plan, amount, order, date } = payload;
+  const clpAmount = Number(amount).toLocaleString('es-CL');
+  const fechaStr = new Date(date).toLocaleString('es-CL');
+
+  // Email interno a Vortex
+  await resendPost({
+    from: 'Vortex Co <notificaciones@vortexcor.com>',
+    to: [BUSINESS_EMAIL],
+    subject: `VENTA: ${plan} - ${name || 'Cliente'}`,
+    html: `
+      <h2>Nueva venta recibida</h2>
+      <table style="border-collapse:collapse;width:100%;max-width:500px">
+        <tr><td style="padding:8px;border:1px solid #ddd"><strong>Plan</strong></td><td style="padding:8px;border:1px solid #ddd">${plan}</td></tr>
+        <tr><td style="padding:8px;border:1px solid #ddd"><strong>Cliente</strong></td><td style="padding:8px;border:1px solid #ddd">${name || '(no indicado)'}</td></tr>
+        <tr><td style="padding:8px;border:1px solid #ddd"><strong>Email</strong></td><td style="padding:8px;border:1px solid #ddd">${email || '(no indicado)'}</td></tr>
+        <tr><td style="padding:8px;border:1px solid #ddd"><strong>Monto</strong></td><td style="padding:8px;border:1px solid #ddd">$${clpAmount} CLP</td></tr>
+        <tr><td style="padding:8px;border:1px solid #ddd"><strong>Orden</strong></td><td style="padding:8px;border:1px solid #ddd">${order}</td></tr>
+        <tr><td style="padding:8px;border:1px solid #ddd"><strong>Fecha</strong></td><td style="padding:8px;border:1px solid #ddd">${fechaStr}</td></tr>
+      </table>
+    `,
+  });
+
+  // Email de confirmación al comprador (solo si tiene email)
+  if (email) {
+    await resendPost({
+      from: 'Vortex Co <notificaciones@vortexcor.com>',
+      to: [email],
+      subject: `Gracias por tu compra - ${plan}`,
+      html: `
+        <h2>Hola ${name || ''}!</h2>
+        <p>Recibimos tu pago por <strong>${plan}</strong> ($${clpAmount} CLP). Muchas gracias.</p>
+        <p>En las próximas 24 horas te enviaremos un correo con todos los detalles de tu plan y los próximos pasos.</p>
+        <p>Si tienes alguna pregunta, responde a este correo.</p>
+        <br>
+        <p>El equipo de Vortex Co</p>
+      `,
+    });
+  }
 }
 
 exports.handler = async (event) => {
