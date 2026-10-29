@@ -25,7 +25,7 @@ const PLAN_AMOUNTS = {
   'o1a8ee03c1da73ce7273992af333cb7fb9b05356': 490000,
   'na811dc9c556b4b25d7f9692dfef8857f2ef2e6c': 290000,
   'i97f46c536ea1cc3f5d65b025f5b3af9ebaff9a8': 590000,
-  'p84a12b3c9d7e2f1a6b5c4d3e2f1a6b5c4d3e2f1': 1000,
+  'p84a12b3c9d7e2f1a6b5c4d3e2f1a6b5c4d3e2f1': 1000,  // TEST - real: 135000
 };
 
 // Códigos cortos para commerceOrder (Flow acepta máximo 45 caracteres)
