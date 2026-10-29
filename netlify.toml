@@ -3,6 +3,16 @@
   functions = "netlify/functions"
 
 [[redirects]]
+  from = "/gracias"
+  to = "/gracias.html"
+  status = 200
+
+[[redirects]]
+  from = "/pago-fallido"
+  to = "/pago-fallido.html"
+  status = 200
+
+[[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
   status = 200
