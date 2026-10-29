@@ -196,8 +196,10 @@ exports.handler = async (event) => {
 
   // POST /confirm — Flow confirma pago
   if (event.httpMethod === 'POST' && event.path.includes('confirm')) {
+    console.log('CONFIRM HIT - method:', event.httpMethod, 'body:', event.body);
     const body = new URLSearchParams(event.body || '');
     const flowToken = body.get('token');
+    console.log('CONFIRM flowToken:', flowToken);
     if (!flowToken) return { statusCode: 400, body: 'Missing token' };
 
     const params = { token: flowToken };
@@ -214,6 +216,7 @@ exports.handler = async (event) => {
         }).on('error', reject);
       });
 
+      console.log('CONFIRM paymentData status:', paymentData.status, 'order:', paymentData.commerceOrder);
       if (paymentData.status === 2) {
         const orderId = paymentData.commerceOrder;
 
