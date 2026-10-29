@@ -261,8 +261,52 @@ exports.handler = async (event) => {
   }
 
   // GET /ping — health check
-  if (event.httpMethod === 'GET') {
+  if (event.httpMethod === 'GET' && !event.path.includes('status') && !event.path.includes('test-email')) {
     return { statusCode: 200, headers, body: JSON.stringify({ ok: true, apiKey: FLOW_API_KEY ? 'set' : 'MISSING', secretKey: FLOW_SECRET_KEY ? 'set' : 'MISSING' }) };
+  }
+
+  // GET /status?token=xxx — consulta estado de pago para gracias.html
+  if (event.httpMethod === 'GET' && event.path.includes('status')) {
+    const flowToken = event.queryStringParameters && event.queryStringParameters.token;
+    if (!flowToken) return { statusCode: 400, headers, body: JSON.stringify({ error: 'Missing token' }) };
+
+    const params = { token: flowToken, apiKey: FLOW_API_KEY };
+    params.s = signParams(params);
+    const query = new URLSearchParams(params).toString();
+
+    try {
+      const paymentData = await new Promise((resolve, reject) => {
+        https.get(`${FLOW_API_URL}/payment/getStatus?${query}`, (res) => {
+          let data = '';
+          res.on('data', c => data += c);
+          res.on('end', () => { try { resolve(JSON.parse(data)); } catch(e) { reject(e); } });
+        }).on('error', reject);
+      });
+
+      // Si pago exitoso (status=2), mandar email a vortex
+      if (paymentData.status === 2) {
+        const orderId = paymentData.commerceOrder;
+        let extra = paymentData.optional || {};
+        if (typeof extra === 'string') { try { extra = JSON.parse(extra); } catch(e) { extra = {}; } }
+        const orderCode = orderId ? orderId.split('-')[0] : '';
+        const planToken = extra.plan || Object.keys(PLAN_CODES).find(t => PLAN_CODES[t] === orderCode);
+
+        await sendResendEmail({
+          name: extra.name || '',
+          email: extra.email || paymentData.payer || '',
+          plan: PLAN_NAMES[planToken] || orderCode,
+          planCode: PLAN_CODES[planToken] || orderCode,
+          amount: paymentData.amount,
+          order: orderId,
+          date: new Date().toISOString(),
+        });
+      }
+
+      return { statusCode: 200, headers, body: JSON.stringify({ status: paymentData.status }) };
+    } catch(e) {
+      console.error('status error', e);
+      return { statusCode: 500, headers, body: JSON.stringify({ error: e.message }) };
+    }
   }
 
   // POST / — crear pago

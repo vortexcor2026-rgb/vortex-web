@@ -239,5 +239,23 @@
     © 2025 Vortex Co. — Strategic Marketing & HR
   </footer>
 
+  <script>
+    (async () => {
+      const params = new URLSearchParams(window.location.search);
+      const token = params.get('token');
+      if (!token) return; // acceso directo, mostrar página normal
+
+      try {
+        const res = await fetch(`/.netlify/functions/create-payment/status?token=${token}`);
+        const data = await res.json();
+        // status 2 = exitoso, cualquier otro = fallido
+        if (data.status !== 2) {
+          window.location.href = '/pago-fallido';
+        }
+      } catch(e) {
+        console.error('status check error', e);
+      }
+    })();
+  </script>
 </body>
 </html>
