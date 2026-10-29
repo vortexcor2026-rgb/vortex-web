@@ -152,15 +152,17 @@ function getBuyerEmail(planCode, name, clpAmount) {
 
   if (planCode === 'EVA') {
     return `<div style="${style}">${hola}
-<p>Gracias por confiar en Vortex. Estamos listos para comenzar con tu proceso de Evaluación de Desempeño.</p>
+<p>Gracias por confiar en Vortex. Estamos listos para acompañarte en el proceso de Evaluación de Desempeño de tu equipo.</p>
 <p>Para comenzar, necesitamos que completes estos dos pasos:</p>
 <p>1. <a href="https://docs.google.com/forms/d/e/1FAIpQLSfY6GZE-oSFCY2swwX2ytf-mqanjuh8LSaFEAoKS_UzAjnaQA/viewform" style="${linkStyle}">Completa nuestro formulario de evaluación</a></p>
 <p>2. <a href="https://docs.google.com/forms/d/1yYSuZM4770IyFTsFEc1zs64wfqfJXUMCwAzgMY0fFs4/viewform" style="${linkStyle}">Agenda nuestra primera reunión</a></p>
 <hr style="${hrStyle}">
-<p>Próximos pasos:</p>
-<p><strong>1.</strong> Reunión de análisis: revisaremos el equipo, los objetivos y construiremos el proceso de evaluación.</p>
-<p><strong>2.</strong> Tendrás los resultados en aproximadamente una semana.</p>
-<p><strong>3.</strong> Puedes revisarlos y podemos hacer ajustes si son necesarios.</p>
+<p>¿Cómo será el proceso?</p>
+<p><strong>1.</strong> Reunión inicial contigo: definiremos qué evaluar en cada persona y en el equipo como conjunto.</p>
+<p><strong>2.</strong> Enviamos un test a cada integrante del equipo para que lo completen.</p>
+<p><strong>3.</strong> Realizamos una reunión grupal y una entrevista individual de 30 minutos con cada persona.</p>
+<p><strong>4.</strong> Con toda esa información, preparamos la evaluación final con resultados y recomendaciones.</p>
+<p>El proceso puede tomar hasta 2 semanas dependiendo de la disponibilidad del equipo.</p>
 <p>Si tienes alguna duda, puedes responder directamente a este correo.</p>
 <p>Nos vemos pronto,</p>${FIRMA}</div>`;
   }
