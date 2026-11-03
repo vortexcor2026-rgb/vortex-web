@@ -320,17 +320,18 @@ exports.handler = async (event) => {
         let extra = paymentData.optional || {};
         if (typeof extra === 'string') { try { extra = JSON.parse(extra); } catch(e) { extra = {}; } }
         const orderCode = orderId ? orderId.split('-')[0] : '';
-        const planToken = extra.plan || Object.keys(PLAN_CODES).find(t => PLAN_CODES[t] === orderCode);
+        const planSuffix = extra.plan || extra.nm; // legacy full token or new short suffix
+        const planToken = Object.keys(PLAN_NAMES).find(t => t === planSuffix || t.endsWith(planSuffix || '')) || Object.keys(PLAN_CODES).find(t => PLAN_CODES[t] === orderCode);
 
         await sendResendEmail({
-          name: extra.name || '',
-          email: extra.email || paymentData.payer || '',
+          name: extra.name || extra.nm || '',
+          email: extra.email || extra.em || paymentData.payer || '',
           plan: PLAN_NAMES[planToken] || orderCode,
           planCode: PLAN_CODES[planToken] || orderCode,
           amount: paymentData.amount,
           order: orderId,
           date: new Date().toISOString(),
-          items: extra.items || [],
+          items: [],
         });
       }
 
@@ -372,7 +373,7 @@ exports.handler = async (event) => {
       paymentMethod: 9,
       // Flow devuelve este campo en getStatus; así /confirm recupera plan, nombre y email
       // aunque corra en otra instancia de la función (la memoria global no se comparte)
-      optional: JSON.stringify({ plan: token, name: name || '', email: email || '', items: (bodyItems || []).map(it => ({ id: it.name.slice(0,20), q: it.qty, p: it.price })) }),
+      optional: JSON.stringify({ plan: token.slice(-8), nm: (name || '').slice(0,20), em: (email || '').slice(0,30) }),
     };
 
     try {
@@ -424,10 +425,11 @@ exports.handler = async (event) => {
         }
 
         const orderCode = orderId.split('-')[0];
-        const planToken = extra.plan || Object.keys(PLAN_CODES).find(t => PLAN_CODES[t] === orderCode);
+        const planSuffix2 = extra.plan || extra.nm;
+        const planToken = Object.keys(PLAN_NAMES).find(t => t === planSuffix2 || t.endsWith(planSuffix2 || '')) || Object.keys(PLAN_CODES).find(t => PLAN_CODES[t] === orderCode);
         await sendResendEmail({
-          name: extra.name || '',
-          email: extra.email || paymentData.payer || '',
+          name: extra.name || extra.nm || '',
+          email: extra.email || extra.em || paymentData.payer || '',
           plan: PLAN_NAMES[planToken] || planToken,
           planCode: PLAN_CODES[planToken] || orderCode,
           amount: paymentData.amount,
