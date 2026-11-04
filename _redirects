@@ -1,3 +1,1 @@
-/gracias  /gracias.html  200
-/pago-fallido  /pago-fallido.html  200
 /api/*  /.netlify/functions/:splat  200
