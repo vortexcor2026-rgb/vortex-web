@@ -1582,8 +1582,8 @@
         <ul class="plan-features">
           <li data-i18n="mkt-p1-f1">Diagnóstico de marca y posicionamiento</li>
           <li data-i18n="mkt-p1-f2">Identidad visual básica</li>
-          <li data-i18n="mkt-p1-f3">Configuración Google Business Profile</li>
-          <li data-i18n="mkt-p1-f4">Setup de redes sociales (2 plataformas)</li>
+          <li data-i18n="mkt-p1-f3">Creación de página web</li>
+          <li data-i18n="mkt-p1-f4">Creación de 2 plataformas para ads con 1 campaña cada una</li>
           <li data-i18n="mkt-p1-f5">Guía de contenido para 1 mes</li>
         </ul>
         <a href="#" onclick="payWithFlow('sf91127fd124de7e6421f45317cc66f302b6dc53');return false;" class="plan-cta plan-cta-secondary" data-i18n="btn-contratar">Contratar</a>
@@ -2135,7 +2135,7 @@
       'mkt-p1-name': 'Pack Inicio', 'mkt-p1-price': '$790.000', 'plan-once': 'pago único',
       'mkt-p1-desc': 'Para empresas que parten desde cero o necesitan una base sólida de presencia digital.',
       'mkt-p1-f1': 'Diagnóstico de marca y posicionamiento', 'mkt-p1-f2': 'Identidad visual básica',
-      'mkt-p1-f3': 'Configuración Google Business Profile', 'mkt-p1-f4': 'Setup de redes sociales (2 plataformas)',
+      'mkt-p1-f3': 'Creación de página web', 'mkt-p1-f4': 'Creación de 2 plataformas para ads con 1 campaña cada una',
       'mkt-p1-f5': 'Guía de contenido para 1 mes',
       'mkt-p2-name': 'Mantención Mensual', 'mkt-p2-price': '$1.000', 'plan-popular': 'Más elegido', 'plan-mes': '/mes',
       'mkt-p2-desc': 'Para empresas que ya tienen presencia y necesitan consistencia y crecimiento mes a mes.',
@@ -2277,7 +2277,7 @@
       'mkt-p1-name': 'Starter Pack', 'mkt-p1-price': 'USD 870', 'plan-once': 'one-time payment',
       'mkt-p1-desc': 'For companies starting from scratch or needing a solid digital presence foundation.',
       'mkt-p1-f1': 'Brand & positioning diagnosis', 'mkt-p1-f2': 'Basic visual identity',
-      'mkt-p1-f3': 'Google Business Profile setup', 'mkt-p1-f4': 'Social media setup (2 platforms)',
+      'mkt-p1-f3': 'Website creation', 'mkt-p1-f4': 'Creation of 2 ad platforms with 1 campaign each',
       'mkt-p1-f5': '1-month content guide',
       'mkt-p2-name': 'Monthly Maintenance', 'mkt-p2-price': 'USD 430', 'plan-popular': 'Most popular', 'plan-mes': '/month',
       'mkt-p2-desc': 'For companies that already have a presence and need consistency and month-over-month growth.',
@@ -2435,7 +2435,7 @@
       'mkt-p1-name': 'Pacote Inicial', 'plan-once': 'pagamento único',
       'mkt-p1-desc': 'Para empresas que estão começando do zero ou precisam de uma base sólida de presença digital.',
       'mkt-p1-f1': 'Diagnóstico de marca e posicionamento', 'mkt-p1-f2': 'Identidade visual básica',
-      'mkt-p1-f3': 'Configuração do Google Business Profile', 'mkt-p1-f4': 'Configuração de redes sociais (2 plataformas)',
+      'mkt-p1-f3': 'Criação de site', 'mkt-p1-f4': 'Criação de 2 plataformas de ads com 1 campanha cada',
       'mkt-p1-f5': 'Guia de conteúdo para 1 mês',
       'mkt-p2-name': 'Manutenção Mensal', 'plan-popular': 'Mais popular', 'plan-mes': '/mês',
       'mkt-p2-desc': 'Para empresas que já têm presença e precisam de consistência e crescimento mês a mês.',
@@ -2913,6 +2913,9 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => {
+    if (new URLSearchParams(location.search).get('pago') === 'ok') {
+      document.getElementById('pago-ok-modal').style.display = 'flex';
+    }
     document.getElementById('checkout-cancel').addEventListener('click', () => {
       document.getElementById('checkout-modal').style.display = 'none';
     });
@@ -3017,6 +3020,15 @@
 </script>
 
 <!-- ── Pre-checkout modal ── -->
+<div id="pago-ok-modal" style="display:none;position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.55);align-items:center;justify-content:center;padding:1rem;">
+  <div style="background:#fff;border-radius:12px;padding:2.5rem 2rem;max-width:420px;width:100%;box-shadow:0 8px 40px rgba(0,0,0,.18);text-align:center;">
+    <div style="font-size:2.5rem;margin-bottom:1rem;">✅</div>
+    <h3 style="margin:0 0 .5rem;font-size:1.3rem;color:#0b0b0b;">¡Pago recibido!</h3>
+    <p style="margin:0 0 1.5rem;font-size:.95rem;color:#555;">Gracias por tu compra. Te enviaremos un email de confirmación con los próximos pasos.</p>
+    <button onclick="document.getElementById('pago-ok-modal').style.display='none';history.replaceState(null,'',location.pathname);" style="background:#2d6a4f;color:#fff;border:none;border-radius:8px;padding:.75rem 2rem;font-size:1rem;cursor:pointer;">Cerrar</button>
+  </div>
+</div>
+
 <div id="checkout-modal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.55);align-items:center;justify-content:center;padding:1rem;">
   <div style="background:#fff;border-radius:12px;padding:2rem 2rem 1.75rem;max-width:420px;width:100%;box-shadow:0 8px 40px rgba(0,0,0,.18);">
     <h3 data-i18n="modal-title" style="margin:0 0 .35rem;font-size:1.2rem;color:#0b0b0b;">Un paso antes de pagar</h3>
