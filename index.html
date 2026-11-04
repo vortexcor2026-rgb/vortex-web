@@ -2883,6 +2883,7 @@
     payBtn.disabled = false;
     window._armaTotal = total;
     window._armaItems = active.map(s => ({
+      id: s.id,
       name: LANG === 'en' ? s.nameEn : LANG === 'pt' ? s.namePt : s.nameEs,
       qty: armaQty[s.id],
       price: s.price,

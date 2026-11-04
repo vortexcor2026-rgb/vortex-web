@@ -8,6 +8,19 @@ const SITE_URL = 'https://vortexcor.com';
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const BUSINESS_EMAIL = 'vortexcor2026@gmail.com';
 
+const ITEM_NAMES = {
+  'idvisual': 'Identidad visual básica',
+  'roadmap': 'Roadmap de contenido',
+  'gbp': 'Setup Google Business',
+  'copy': 'Copywriting',
+  'ads': 'Gestión de Ads',
+  'social': 'Gestión Redes Sociales',
+  'email': 'Email Marketing',
+  'seo': 'SEO',
+  'analytics': 'Analytics y Reportes',
+  'web': 'Diseño Web',
+};
+
 const PLAN_NAMES = {
   'sf91127fd124de7e6421f45317cc66f302b6dc53': 'Pack Inicio',
   't3c9404b5d417e43e5ff7dc5cb7ae340069795be': 'Pack Mantención Mensual',
@@ -324,7 +337,7 @@ exports.handler = async (event) => {
         const planToken = Object.keys(PLAN_NAMES).find(t => t === planSuffix || t.endsWith(planSuffix || '')) || Object.keys(PLAN_CODES).find(t => PLAN_CODES[t] === orderCode);
         const parsedItems = (extra.i || '').split('|').filter(Boolean).map(seg => {
           const [id, qty, price] = seg.split(':');
-          return { name: (id || '').replace(/_/g, ' '), qty: Number(qty) || 1, price: Number(price) || 0 };
+          return { name: ITEM_NAMES[id] || (id || '').replace(/_/g, ' '), qty: Number(qty) || 1, price: Number(price) || 0 };
         });
 
         await sendResendEmail({
@@ -377,7 +390,7 @@ exports.handler = async (event) => {
       paymentMethod: 9,
       // Flow devuelve este campo en getStatus; así /confirm recupera plan, nombre y email
       // aunque corra en otra instancia de la función (la memoria global no se comparte)
-      optional: JSON.stringify({ p: token.slice(-8), n: (name || '').slice(0,15), e: (email || '').slice(0,25), i: (bodyItems || []).map(it => it.name.slice(0,8).replace(/\s/g,'_') + ':' + it.qty + ':' + it.price).join('|') }),
+      optional: JSON.stringify({ p: token.slice(-8), n: (name || '').slice(0,15), e: (email || '').slice(0,25), i: (bodyItems || []).map(it => (it.id || it.name.slice(0,8).replace(/\s/g,'_')) + ':' + it.qty + ':' + it.price).join('|') }),
     };
 
     try {
@@ -433,7 +446,7 @@ exports.handler = async (event) => {
         const planToken = Object.keys(PLAN_NAMES).find(t => t === planSuffix2 || t.endsWith(planSuffix2 || '')) || Object.keys(PLAN_CODES).find(t => PLAN_CODES[t] === orderCode);
         const parsedItems2 = (extra.i || '').split('|').filter(Boolean).map(seg => {
           const [id, qty, price] = seg.split(':');
-          return { name: (id || '').replace(/_/g, ' '), qty: Number(qty) || 1, price: Number(price) || 0 };
+          return { name: ITEM_NAMES[id] || (id || '').replace(/_/g, ' '), qty: Number(qty) || 1, price: Number(price) || 0 };
         });
         await sendResendEmail({
           name: extra.name || extra.n || extra.nm || '',

@@ -5,12 +5,12 @@
 [[redirects]]
   from = "/gracias"
   to = "/gracias.html"
-  status = 200
+  status = 301
 
 [[redirects]]
   from = "/pago-fallido"
   to = "/pago-fallido.html"
-  status = 200
+  status = 301
 
 [[redirects]]
   from = "/api/*"
