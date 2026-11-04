@@ -320,18 +320,22 @@ exports.handler = async (event) => {
         let extra = paymentData.optional || {};
         if (typeof extra === 'string') { try { extra = JSON.parse(extra); } catch(e) { extra = {}; } }
         const orderCode = orderId ? orderId.split('-')[0] : '';
-        const planSuffix = extra.plan || extra.nm; // legacy full token or new short suffix
+        const planSuffix = extra.p || extra.plan || extra.nm;
         const planToken = Object.keys(PLAN_NAMES).find(t => t === planSuffix || t.endsWith(planSuffix || '')) || Object.keys(PLAN_CODES).find(t => PLAN_CODES[t] === orderCode);
+        const parsedItems = (extra.i || '').split('|').filter(Boolean).map(seg => {
+          const [id, qty, price] = seg.split(':');
+          return { name: (id || '').replace(/_/g, ' '), qty: Number(qty) || 1, price: Number(price) || 0 };
+        });
 
         await sendResendEmail({
-          name: extra.name || extra.nm || '',
-          email: extra.email || extra.em || paymentData.payer || '',
+          name: extra.name || extra.n || extra.nm || '',
+          email: extra.email || extra.e || extra.em || paymentData.payer || '',
           plan: PLAN_NAMES[planToken] || orderCode,
           planCode: PLAN_CODES[planToken] || orderCode,
           amount: paymentData.amount,
           order: orderId,
           date: new Date().toISOString(),
-          items: [],
+          items: parsedItems,
         });
       }
 
@@ -367,13 +371,13 @@ exports.handler = async (event) => {
       amount: finalAmount,
       email: email || '',
       urlConfirmation: `${SITE_URL}/.netlify/functions/create-payment/confirm`,
-      urlReturn: `${SITE_URL}/gracias.html`,
+      urlReturn: `${SITE_URL}/gracias`,
       urlCancel: `${SITE_URL}/pago-fallido`,
       currency: 'CLP',
       paymentMethod: 9,
       // Flow devuelve este campo en getStatus; así /confirm recupera plan, nombre y email
       // aunque corra en otra instancia de la función (la memoria global no se comparte)
-      optional: JSON.stringify({ plan: token.slice(-8), nm: (name || '').slice(0,20), em: (email || '').slice(0,30) }),
+      optional: JSON.stringify({ p: token.slice(-8), n: (name || '').slice(0,15), e: (email || '').slice(0,25), i: (bodyItems || []).map(it => it.name.slice(0,8).replace(/\s/g,'_') + ':' + it.qty + ':' + it.price).join('|') }),
     };
 
     try {
@@ -425,16 +429,21 @@ exports.handler = async (event) => {
         }
 
         const orderCode = orderId.split('-')[0];
-        const planSuffix2 = extra.plan || extra.nm;
+        const planSuffix2 = extra.p || extra.plan || extra.nm;
         const planToken = Object.keys(PLAN_NAMES).find(t => t === planSuffix2 || t.endsWith(planSuffix2 || '')) || Object.keys(PLAN_CODES).find(t => PLAN_CODES[t] === orderCode);
+        const parsedItems2 = (extra.i || '').split('|').filter(Boolean).map(seg => {
+          const [id, qty, price] = seg.split(':');
+          return { name: (id || '').replace(/_/g, ' '), qty: Number(qty) || 1, price: Number(price) || 0 };
+        });
         await sendResendEmail({
-          name: extra.name || extra.nm || '',
-          email: extra.email || extra.em || paymentData.payer || '',
+          name: extra.name || extra.n || extra.nm || '',
+          email: extra.email || extra.e || extra.em || paymentData.payer || '',
           plan: PLAN_NAMES[planToken] || planToken,
           planCode: PLAN_CODES[planToken] || orderCode,
           amount: paymentData.amount,
           order: orderId,
           date: new Date().toISOString(),
+          items: parsedItems2,
         });
       }
     } catch (e) {
