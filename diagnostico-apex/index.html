@@ -124,6 +124,14 @@
       .hero { padding: 56px 1.25rem 48px; }
       section { padding: 56px 1.25rem; }
     }
+    .related-services { background: var(--bg2); padding: 64px 2rem; }
+    .related-services h2 { text-align: center; font-size: 1.4rem; margin-bottom: 2rem; }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; max-width: 900px; margin: 0 auto; }
+    .related-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; text-decoration: none; color: var(--text); transition: box-shadow 0.2s, border-color 0.2s; }
+    .related-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); border-color: var(--accent); }
+    .related-card-label { font-size: 0.72rem; font-weight: 600; color: var(--accent); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .related-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; line-height: 1.3; }
+    .related-card p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; }
   </style>
 </head>
 <body>
@@ -286,6 +294,27 @@
       <div class="step"><div class="step-num">03</div><h3>Informe (3 días)</h3><p>Elaboramos el informe ejecutivo con scoring, brechas y plan de acción. Claro, visual y accionable.</p></div>
       <div class="step"><div class="step-num">04</div><h3>Presentación (90 min)</h3><p>Te presentamos los resultados, respondemos tus preguntas y definimos juntas los próximos pasos.</p></div>
     </div>
+  </div>
+</section>
+
+<section class="related-services">
+  <h2>Otros servicios de VORTEX</h2>
+  <div class="related-grid">
+    <a href="/marketing-digital/" class="related-card">
+      <div class="related-card-label">Marketing Digital</div>
+      <h3>Consultoría de marketing digital</h3>
+      <p>Estrategia, contenido, pauta digital y presencia online para tu empresa.</p>
+    </a>
+    <a href="/gestion-de-personas/" class="related-card">
+      <div class="related-card-label">Gestión de Personas</div>
+      <h3>Consultoría de RRHH y talento</h3>
+      <p>Evaluación de desempeño, perfiles de cargo y acompañamiento organizacional.</p>
+    </a>
+    <a href="/seleccion-de-talentos/" class="related-card">
+      <div class="related-card-label">Selección de Talentos</div>
+      <h3>Reclutamiento y selección de personal</h3>
+      <p>Encontramos a las personas correctas para cada cargo en tu empresa.</p>
+    </a>
   </div>
 </section>
 

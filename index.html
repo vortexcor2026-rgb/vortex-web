@@ -241,16 +241,22 @@
 
     h1 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2rem, 4vw, 3.25rem);
-      line-height: 1.08; color: var(--text);
+      font-size: clamp(1.6rem, 3.2vw, 2.5rem);
+      line-height: 1.15; color: var(--text);
       font-weight: 800;
-      margin-bottom: 1.25rem;
+      margin-bottom: 0.75rem;
       letter-spacing: -0.02em;
     }
 
     h1 em {
       font-style: normal; color: var(--accent);
     }
+
+    .hero-claim {
+      font-size: 1.25rem; font-weight: 600; color: var(--text-muted);
+      max-width: 460px; line-height: 1.4; margin-bottom: 1rem;
+    }
+    .hero-claim em { color: var(--accent); font-style: normal; }
 
     .hero-desc {
       font-size: 1.125rem; color: var(--text-muted);
@@ -1360,7 +1366,8 @@
     }
     .hero-eyebrow  { animation: fadeUp 0.6s ease both; animation-delay: 0.1s; }
     #hero h1       { animation: fadeUp 0.7s ease both; animation-delay: 0.22s; }
-    .hero-desc     { animation: fadeUp 0.7s ease both; animation-delay: 0.36s; }
+    .hero-claim    { animation: fadeUp 0.7s ease both; animation-delay: 0.32s; }
+    .hero-desc     { animation: fadeUp 0.7s ease both; animation-delay: 0.44s; }
     .hero-actions  { animation: fadeUp 0.7s ease both; animation-delay: 0.48s; }
     .hero-stats    { animation: fadeUp 0.7s ease both; animation-delay: 0.6s; }
 
@@ -1473,10 +1480,8 @@
   <div class="hero-inner">
     <div>
       <div class="hero-eyebrow" data-i18n="hero-eyebrow" data-i18n-html="true"><span style="color:var(--accent);font-weight:800;letter-spacing:0.1em;">VORTEX</span> &nbsp;Consultoría de marketing y gestión de talento</div>
-      <h1 id="hero-title">
-        <span data-i18n="hero-h1a">Tu empresa merece una</span><br>
-        <em data-i18n="hero-h1b" style="display:block; color:var(--accent);">estrategia que funcione</em>
-      </h1>
+      <h1 id="hero-title" data-i18n="hero-h1">Consultoría de marketing digital y gestión de personas para empresas en Chile</h1>
+      <p class="hero-claim" data-i18n="hero-claim" data-i18n-html="true">Tu empresa merece una <em>estrategia que funcione</em></p>
       <p class="hero-desc" data-i18n="hero-desc">
         Más de una década trabajando con multinacionales, startups y pymes. Ahora toda esa experiencia, disponible directamente para ti.
       </p>
@@ -2128,7 +2133,8 @@
       'nav-como': 'Cómo funciona', 'nav-servicios': 'Servicios', 'nav-about': 'Equipo',
       'nav-faq': 'FAQ', 'nav-agenda': 'Agendar reunión',
       'hero-eyebrow': '<span style="color:var(--accent);font-weight:800;letter-spacing:0.1em;">VORTEX</span> &nbsp;Consultoría de marketing y gestión de talento',
-      'hero-h1a': 'Tu empresa merece una', 'hero-h1b': 'estrategia que funcione',
+      'hero-h1': 'Consultoría de marketing digital y gestión de personas para empresas en Chile',
+      'hero-claim': 'Tu empresa merece una <em>estrategia que funcione</em>',
       'hero-desc': 'Más de una década trabajando con multinacionales, startups y pymes. Ahora toda esa experiencia está disponible para ti.',
       'hero-cta1': 'Ver planes', 'hero-cta2': 'Conversar primero',
       'stat1': 'clientes satisfechos', 'stat2': 'años de experiencia', 'stat3': 'áreas de servicio',
@@ -2270,7 +2276,8 @@
       'nav-como': 'How it works', 'nav-servicios': 'Services', 'nav-about': 'About us',
       'nav-faq': 'FAQ', 'nav-agenda': 'Book a meeting',
       'hero-eyebrow': '<span style="color:var(--accent);font-weight:800;letter-spacing:0.1em;">VORTEX</span> &nbsp;Marketing & people consultancy',
-      'hero-h1a': 'Marketing that drives', 'hero-h1b': 'real results',
+      'hero-h1': 'Marketing and people management consulting for businesses in Chile',
+      'hero-claim': 'Your business deserves a strategy that <em>actually works</em>',
       'hero-desc': 'Over a decade working with multinationals, startups and SMBs. All that experience, now directly available to you.',
       'hero-cta1': 'See plans', 'hero-cta2': "Let's talk first",
       'stat1': 'satisfied clients', 'stat2': 'years of experience', 'stat3': 'service areas',
@@ -2428,7 +2435,8 @@
       'nav-como': 'Como funciona', 'nav-servicios': 'Serviços', 'nav-about': 'Sobre nós',
       'nav-faq': 'FAQ', 'nav-agenda': 'Agendar reunião',
       'hero-eyebrow': '<span style="color:var(--accent);font-weight:800;letter-spacing:0.1em;">VORTEX</span> &nbsp;Consultoria de marketing e pessoas',
-      'hero-h1a': 'Sua empresa merece uma', 'hero-h1b': 'estratégia que funciona',
+      'hero-h1': 'Consultoria de marketing digital e gestão de pessoas para empresas no Chile',
+      'hero-claim': 'Sua empresa merece uma <em>estratégia que funciona</em>',
       'hero-desc': 'Mais de uma década trabalhando com multinacionais, startups e PMEs. Toda essa experiência, agora disponível diretamente para você.',
       'hero-cta1': 'Ver planos', 'hero-cta2': 'Conversar primeiro',
       'stat1': 'clientes satisfeitos', 'stat2': 'anos de experiência', 'stat3': 'áreas de serviço',
