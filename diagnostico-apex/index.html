@@ -132,6 +132,31 @@
     .related-card-label { font-size: 0.72rem; font-weight: 600; color: var(--accent); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 0.5rem; }
     .related-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; line-height: 1.3; }
     .related-card p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; }
+    .price-clp { font-size: 0.65rem; font-weight: 500; color: var(--text-muted); letter-spacing: 0.03em; margin-left: 2px; vertical-align: super; line-height: 1; }
+    .apex-example { background: var(--bg2); }
+    .apex-example-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem; }
+    @media (max-width: 768px) { .apex-example-grid { grid-template-columns: 1fr; } }
+    .apex-score-card, .apex-gaps-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.75rem; }
+    .apex-score-global { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+    .apex-score-num { font-family: 'Space Grotesk', sans-serif; font-size: 3.5rem; font-weight: 800; color: var(--accent); line-height: 1; }
+    .apex-score-label { font-size: 0.85rem; color: var(--text-muted); line-height: 1.4; }
+    .apex-score-dims { display: flex; flex-direction: column; gap: 0.75rem; }
+    .apex-dim { display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 0.75rem; }
+    .apex-dim-name { font-size: 0.8rem; color: var(--text-muted); }
+    .apex-dim-bar { background: var(--bg2); border-radius: 99px; height: 6px; width: 100px; overflow: hidden; }
+    .apex-dim-fill { height: 100%; background: var(--accent); border-radius: 99px; opacity: 0.5; }
+    .apex-dim-fill--high { opacity: 0.85; }
+    .apex-dim-val { font-size: 0.75rem; font-weight: 600; color: var(--text-muted); min-width: 20px; text-align: right; }
+    .apex-gaps-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 1rem; }
+    .apex-gaps-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.5rem; }
+    .apex-gap { font-size: 0.85rem; color: var(--text-muted); padding-left: 1rem; border-left: 3px solid; line-height: 1.4; }
+    .apex-gap--high { border-color: #e05252; }
+    .apex-gap--med { border-color: #e09852; }
+    .apex-gap--low { border-color: var(--accent); }
+    .apex-gap-tag { display: block; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 0.2rem; color: var(--text); }
+    .apex-roadmap-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.75rem; }
+    .apex-roadmap-list { padding-left: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; }
+    .apex-roadmap-list li { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
   </style>
 </head>
 <body>
@@ -267,7 +292,7 @@
       </ul>
       <div class="deliverable-price-box">
         <div class="price-label">Diagnóstico APEX completo</div>
-        <div class="price-main">$390.000</div>
+        <div class="price-main">$390.000<span class="price-clp">CLP</span></div>
         <div class="price-sub">pago único · entrega en 10 días hábiles</div>
         <ul class="price-features">
           <li>Auditoría de 5 dimensiones</li>
@@ -293,6 +318,44 @@
       <div class="step"><div class="step-num">02</div><h3>Auditoría (5 días)</h3><p>Revisamos todos tus canales digitales, contenidos, métricas disponibles y posicionamiento frente a la competencia.</p></div>
       <div class="step"><div class="step-num">03</div><h3>Informe (3 días)</h3><p>Elaboramos el informe ejecutivo con scoring, brechas y plan de acción. Claro, visual y accionable.</p></div>
       <div class="step"><div class="step-num">04</div><h3>Presentación (90 min)</h3><p>Te presentamos los resultados, respondemos tus preguntas y definimos juntas los próximos pasos.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="apex-example">
+  <div class="section-inner">
+    <div class="section-eyebrow">Ejemplo real (anonimizado)</div>
+    <h2>¿Qué aspecto tiene un resultado APEX?</h2>
+    <p class="section-sub">Este es un extracto del diagnóstico de una empresa de servicios B2B en Chile, con 12 personas y 4 años de operación.</p>
+    <div class="apex-example-grid">
+      <div class="apex-score-card">
+        <div class="apex-score-global">
+          <div class="apex-score-num">54</div>
+          <div class="apex-score-label">/ 100<br><span>Puntuación global</span></div>
+        </div>
+        <div class="apex-score-dims">
+          <div class="apex-dim"><span class="apex-dim-name">Estrategia digital</span><div class="apex-dim-bar"><div class="apex-dim-fill" style="width:40%"></div></div><span class="apex-dim-val">40</span></div>
+          <div class="apex-dim"><span class="apex-dim-name">Contenido y SEO</span><div class="apex-dim-bar"><div class="apex-dim-fill" style="width:35%"></div></div><span class="apex-dim-val">35</span></div>
+          <div class="apex-dim"><span class="apex-dim-name">Pauta y medios</span><div class="apex-dim-bar"><div class="apex-dim-fill" style="width:60%"></div></div><span class="apex-dim-val">60</span></div>
+          <div class="apex-dim"><span class="apex-dim-name">Marca y posicionamiento</span><div class="apex-dim-bar"><div class="apex-dim-fill" style="width:70%"></div></div><span class="apex-dim-val">70</span></div>
+          <div class="apex-dim"><span class="apex-dim-name">Equipo y procesos</span><div class="apex-dim-bar"><div class="apex-dim-fill apex-dim-fill--high" style="width:65%"></div></div><span class="apex-dim-val">65</span></div>
+        </div>
+      </div>
+      <div class="apex-gaps-card">
+        <h3>Brechas detectadas</h3>
+        <ul class="apex-gaps-list">
+          <li class="apex-gap apex-gap--high"><span class="apex-gap-tag">Alta prioridad</span>Sin estrategia de contenidos ni calendario editorial activo.</li>
+          <li class="apex-gap apex-gap--high"><span class="apex-gap-tag">Alta prioridad</span>Web no optimizada para SEO: sin metadatos, sin estructura H1–H3.</li>
+          <li class="apex-gap apex-gap--med"><span class="apex-gap-tag">Media prioridad</span>Google Ads activo pero sin seguimiento de conversiones configurado.</li>
+          <li class="apex-gap apex-gap--low"><span class="apex-gap-tag">Baja prioridad</span>Redes sociales inconsistentes: publicaciones esporádicas sin hilo conductor.</li>
+        </ul>
+        <h3 class="apex-roadmap-title">Extracto hoja de ruta (90 días)</h3>
+        <ol class="apex-roadmap-list">
+          <li><strong>Días 1–30:</strong> Configurar Google Search Console + GA4. Corregir metas y estructura SEO del sitio.</li>
+          <li><strong>Días 31–60:</strong> Lanzar calendario editorial mensual. 8 piezas por canal.</li>
+          <li><strong>Días 61–90:</strong> Activar seguimiento de conversiones en Ads. Revisar audiencias y ajustar presupuesto.</li>
+        </ol>
+      </div>
     </div>
   </div>
 </section>

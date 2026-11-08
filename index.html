@@ -130,7 +130,7 @@
 
     /* Dropdown servicios */
     .nav-dropdown { position: relative; }
-    .nav-dropdown > a { display: flex; align-items: center; gap: 0.3rem; cursor: pointer; }
+    .nav-dropdown > a { display: flex; align-items: center; gap: 0.3rem; cursor: pointer; line-height: inherit; }
     .nav-dropdown > a::before { content: none; }
     .nav-dropdown-arrow { width: 10px; height: 10px; fill: none; stroke: currentColor; stroke-width: 2; transition: transform 0.2s; flex-shrink: 0; }
     .nav-dropdown:hover .nav-dropdown-arrow,
@@ -632,6 +632,8 @@
       font-size: 0.82rem; font-weight: 700; color: var(--accent);
       white-space: nowrap; flex-shrink: 0;
     }
+    .addon-desc { font-size: 0.8rem; color: var(--text-muted); margin: 0.35rem 0 0 0; line-height: 1.4; }
+    .price-clp { font-size: 0.65rem; font-weight: 500; color: var(--text-muted); letter-spacing: 0.03em; margin-left: 2px; vertical-align: super; line-height: 1; }
     .addon-total {
       margin-top: 0.65rem; padding-top: 0.65rem;
       border-top: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
@@ -1623,7 +1625,7 @@
         <div class="plan-badge" style="visibility:hidden">·</div>
         <div class="plan-name" data-i18n="mkt-p1-name">Pack Inicio</div>
         <p class="plan-desc" data-i18n="mkt-p1-desc">Para empresas que parten desde cero o necesitan una base sólida de presencia digital.</p>
-        <div class="plan-price"><span class="price-num" data-i18n="mkt-p1-price">$790.000</span> <span class="price-unit" data-i18n="plan-once">pago único</span></div>
+        <div class="plan-price"><span class="price-num" data-i18n="mkt-p1-price">$790.000</span><span class="price-clp">CLP</span> <span class="price-unit" data-i18n="plan-once">pago único</span></div>
         <ul class="plan-features">
           <li data-i18n="mkt-p1-f1">Diagnóstico de marca y posicionamiento</li>
           <li data-i18n="mkt-p1-f2">Identidad visual básica</li>
@@ -1639,7 +1641,7 @@
         <div class="plan-badge" data-i18n="plan-popular">Más elegido</div>
         <div class="plan-name" data-i18n="mkt-p2-name">Mantención Mensual</div>
         <p class="plan-desc" data-i18n="mkt-p2-desc">Para empresas que ya tienen presencia y necesitan consistencia y crecimiento mes a mes.</p>
-        <div class="plan-price"><span class="price-num" data-i18n="mkt-p2-price">$390.000</span> <span class="price-unit" data-i18n="plan-mes">/mes</span></div>
+        <div class="plan-price"><span class="price-num" data-i18n="mkt-p2-price">$390.000</span><span class="price-clp">CLP</span> <span class="price-unit" data-i18n="plan-mes">/mes</span></div>
         <ul class="plan-features">
           <li data-i18n="mkt-p2-f1">8 publicaciones al mes: 4 banners + 4 videos</li>
           <li data-i18n="mkt-p2-f2">Cada pieza adaptada en 2 formatos de plataforma</li>
@@ -1655,7 +1657,7 @@
         <div class="plan-badge" style="visibility:hidden">·</div>
         <div class="plan-name" data-i18n="mkt-p3-name">Plan Pro</div>
         <p class="plan-desc" data-i18n="mkt-p3-desc">Para empresas que quieren escalar: más canales, más contenido, estrategia de crecimiento.</p>
-        <div class="plan-price"><span class="price-num" data-i18n="mkt-p3-price">$590.000</span> <span class="price-unit" data-i18n="plan-mes">/mes</span></div>
+        <div class="plan-price"><span class="price-num" data-i18n="mkt-p3-price">$590.000</span><span class="price-clp">CLP</span> <span class="price-unit" data-i18n="plan-mes">/mes</span></div>
         <ul class="plan-features">
           <li data-i18n="mkt-p3-f1">Todo lo del plan Mantención, con gestión de 3 plataformas</li>
           <li data-i18n="mkt-p3-f2">Canal adicional: CRM o SEO</li>
@@ -1678,7 +1680,7 @@
         <div class="plan-badge" style="visibility:hidden">·</div>
         <div class="plan-name" data-i18n="rrhh-p1-name">Contratación</div>
         <p class="plan-desc" data-i18n="rrhh-p1-desc">Proceso de selección completo, desde la publicación del cargo hasta la presentación de los candidatos finalistas.</p>
-        <div class="plan-price"><span class="price-num" data-i18n="rrhh-p1-price">$490.000</span> <span class="price-unit" data-i18n="rrhh-p1-unit">por proceso</span></div>
+        <div class="plan-price"><span class="price-num" data-i18n="rrhh-p1-price">$490.000</span><span class="price-clp">CLP</span> <span class="price-unit" data-i18n="rrhh-p1-unit">por proceso</span></div>
         <ul class="plan-features">
           <li data-i18n="rrhh-p1-f1">Redacción y publicación del perfil en portales</li>
           <li data-i18n="rrhh-p1-f2">Filtro, pruebas técnicas y psicológicas</li>
@@ -1693,6 +1695,7 @@
             <span class="addon-name" data-i18n="addon-en-name">Add-on inglés</span>
             <span class="addon-price" data-i18n="addon-en-price">+ $120.000</span>
           </label>
+          <p class="addon-desc" data-i18n="addon-en-desc">Entrevista hablada + prueba de nivel escrita. Ideal para cargos que requieren buen nivel de inglés.</p>
           <div class="addon-total" id="addon-english-total" style="display:none">
             <span data-i18n="addon-total-label">Total con add-on:</span>
             <strong id="addon-english-total-val">$610.000</strong>
@@ -1706,7 +1709,7 @@
         <div class="plan-badge" data-i18n="rrhh-popular">Más solicitado</div>
         <div class="plan-name" data-i18n="rrhh-p2-name">Evaluación</div>
         <p class="plan-desc" data-i18n="rrhh-p2-desc">Evaluación de desempeño individual o grupal. Ideal para tomar decisiones de promoción, desarrollo o reorganización de equipos.</p>
-        <div class="plan-price"><span class="price-num" data-i18n="rrhh-p2-price">$590.000</span> <span class="price-unit" data-i18n="rrhh-p2-unit">máx. 5 personas</span></div>
+        <div class="plan-price"><span class="price-num" data-i18n="rrhh-p2-price">$590.000</span><span class="price-clp">CLP</span> <span class="price-unit" data-i18n="rrhh-p2-unit">máx. 5 personas</span></div>
         <ul class="plan-features">
           <li data-i18n="rrhh-p2-f1">Test de competencias laborales</li>
           <li data-i18n="rrhh-p2-f2">Perfil psicológico laboral</li>
@@ -1722,7 +1725,7 @@
         <div class="plan-badge" style="visibility:hidden">·</div>
         <div class="plan-name" data-i18n="rrhh-p3-name">Desvinculación</div>
         <p class="plan-desc" data-i18n="rrhh-p3-desc">Acompañamiento en procesos de salida. Protege a tu empresa, cuida a las personas y cierra bien el ciclo.</p>
-        <div class="plan-price"><span class="price-num" data-i18n="rrhh-p3-price">$290.000</span> <span class="price-unit" data-i18n="rrhh-p3-unit">por proceso</span></div>
+        <div class="plan-price"><span class="price-num" data-i18n="rrhh-p3-price">$290.000</span><span class="price-clp">CLP</span> <span class="price-unit" data-i18n="rrhh-p3-unit">por proceso</span></div>
         <ul class="plan-features">
           <li data-i18n="rrhh-p3-f1">Orientación en el proceso de desvinculación</li>
           <li data-i18n="rrhh-p3-f2">Entrevista de salida</li>
@@ -1737,7 +1740,7 @@
         <div class="plan-badge" style="visibility:hidden">·</div>
         <div class="plan-name" data-i18n="rrhh-p4-name">Perfiles de cargo</div>
         <p class="plan-desc" data-i18n="rrhh-p4-desc">Tres niveles según la complejidad del cargo y lo que ya tienes definido.</p>
-        <div class="plan-price"><span class="price-num" data-i18n="rrhh-p4-price">$1.000</span> <span class="price-unit" data-i18n="rrhh-p4-unit">pack × 3</span></div>
+        <div class="plan-price"><span class="price-num" data-i18n="rrhh-p4-price">$1.000</span><span class="price-clp">CLP</span> <span class="price-unit" data-i18n="rrhh-p4-unit">pack × 3</span></div>
         <ul class="plan-features">
           <li data-i18n="rrhh-p4-f1"><strong>Basic</strong> USD 125 — Descripción lista para usar</li>
           <li data-i18n="rrhh-p4-f2"><strong>Professional</strong> USD 300 — Levantamiento con entrevista</li>
