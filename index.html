@@ -128,6 +128,31 @@
     }
     .nav-links a:hover { color: var(--accent); }
 
+    /* Dropdown servicios */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown > a { display: flex; align-items: center; gap: 0.3rem; cursor: pointer; }
+    .nav-dropdown > a::before { content: none; }
+    .nav-dropdown-arrow { width: 10px; height: 10px; fill: none; stroke: currentColor; stroke-width: 2; transition: transform 0.2s; flex-shrink: 0; }
+    .nav-dropdown:hover .nav-dropdown-arrow,
+    .nav-dropdown.open .nav-dropdown-arrow { transform: rotate(180deg); }
+    .nav-dropdown-menu {
+      display: none; position: absolute; top: calc(100% + 10px); left: 50%;
+      transform: translateX(-50%); background: var(--bg);
+      border: 1px solid var(--border); border-radius: var(--radius-sm);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.10); min-width: 220px;
+      padding: 0.5rem 0; z-index: 200;
+    }
+    .nav-dropdown:hover .nav-dropdown-menu,
+    .nav-dropdown.open .nav-dropdown-menu { display: block; }
+    .nav-dropdown-menu a {
+      display: block; padding: 0.6rem 1.1rem;
+      font-size: 0.875rem; font-weight: 500;
+      color: var(--text-muted); text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+    .nav-dropdown-menu a:hover { background: var(--bg2); color: var(--accent); }
+
     .nav-right { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
 
     .lang-btn {
@@ -1458,7 +1483,13 @@
 
   <ul class="nav-links" role="list">
     <li><a href="#como" data-i18n="nav-como">Cómo funciona</a></li>
-    <li><a href="#servicios" data-i18n="nav-servicios">Servicios</a></li>
+    <li class="nav-dropdown">
+      <a href="#servicios" data-i18n="nav-servicios">Servicios <svg class="nav-dropdown-arrow" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"/></svg></a>
+      <div class="nav-dropdown-menu">
+        <a href="/marketing-digital/">Marketing Digital</a>
+        <a href="/seleccion-de-talentos/">Gestión de Talentos</a>
+      </div>
+    </li>
     <li><a href="#arma" data-i18n="nav-arma">Arma tu plan</a></li>
     <li><a href="#apex">APEX</a></li>
     <li><a href="#about" data-i18n="nav-about">Equipo</a></li>
@@ -2266,7 +2297,7 @@
       'mar-s1': 'presupuesto máximo gestionado',
       'mar-s2': 'crecimiento YoY con 40% menos en pauta',
       'mar-s3': 'clientes activos alcanzados',
-      'car-role': 'Psicología Laboral &amp; Gestión de Personas',
+      'car-role': 'Psicología Laboral & Gestión de Personas',
       'car-bio': 'Psicóloga organizacional con experiencia en selección, evaluación de desempeño y acompañamiento organizacional en Chile y EE.UU. Ha trabajado con equipos multiculturales en empresas de distintos rubros, combinando rigor técnico con un enfoque humano, porque los equipos bien construidos son la base de cualquier estrategia.',
       'car-s1': 'contrataciones que se vuelven permanentes',
       'car-s2': 'candidatos evaluados',
@@ -2390,7 +2421,7 @@
       'mar-s1': 'peak budget managed',
       'mar-s2': 'YoY sales growth with 40% less spend',
       'mar-s3': 'active customers reached',
-      'car-role': 'Organizational Psychology &amp; People Management',
+      'car-role': 'Organizational Psychology & People Management',
       'car-bio': 'Organizational psychologist with experience in recruitment, performance assessment, and organizational support in Chile and the US. She has worked with multicultural teams across industries, combining technical rigor with a human approach, because well-built teams are the foundation of any strategy.',
       'car-s1': 'hires that become permanent',
       'car-s2': 'candidates assessed',
