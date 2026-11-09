@@ -120,7 +120,7 @@
       text-transform: uppercase; margin-top: 2px;
     }
 
-    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
     .nav-links a {
       text-decoration: none; color: var(--text-muted);
       font-size: 0.875rem; font-weight: 500;
@@ -278,10 +278,10 @@
     }
 
     .hero-claim {
-      font-size: 1.25rem; font-weight: 600; color: var(--text-muted);
+      font-size: 1.25rem; font-weight: 600; color: var(--accent);
       max-width: 460px; line-height: 1.4; margin-bottom: 1rem;
     }
-    .hero-claim em { color: var(--accent); font-style: normal; }
+    .hero-claim em { font-style: normal; }
 
     .hero-desc {
       font-size: 1.125rem; color: var(--text-muted);
@@ -633,7 +633,8 @@
       white-space: nowrap; flex-shrink: 0;
     }
     .addon-desc { font-size: 0.8rem; color: var(--text-muted); margin: 0.35rem 0 0 0; line-height: 1.4; }
-    .price-clp { font-size: 0.65rem; font-weight: 500; color: var(--text-muted); letter-spacing: 0.03em; margin-left: 2px; vertical-align: super; line-height: 1; }
+    .price-clp { display: none; }
+    .price-currency-note { font-size: 0.72rem; color: var(--text-muted); margin: 0.2rem 0 0 0; }
     .addon-total {
       margin-top: 0.65rem; padding-top: 0.65rem;
       border-top: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
@@ -1514,7 +1515,7 @@
     <div>
       <div class="hero-eyebrow" data-i18n="hero-eyebrow" data-i18n-html="true"><span style="color:var(--accent);font-weight:800;letter-spacing:0.1em;">VORTEX</span> &nbsp;Consultoría de marketing y gestión de talento</div>
       <h1 id="hero-title" data-i18n="hero-h1">Consultoría de marketing digital y gestión de personas para empresas en Chile</h1>
-      <p class="hero-claim" data-i18n="hero-claim" data-i18n-html="true">Tu empresa merece una <em>estrategia que funcione</em></p>
+      <p class="hero-claim" data-i18n="hero-claim">Tu empresa merece una estrategia que funcione</p>
       <p class="hero-desc" data-i18n="hero-desc">
         Más de una década trabajando con multinacionales, startups y pymes. Ahora toda esa experiencia, disponible directamente para ti.
       </p>
@@ -1626,6 +1627,7 @@
         <div class="plan-name" data-i18n="mkt-p1-name">Pack Inicio</div>
         <p class="plan-desc" data-i18n="mkt-p1-desc">Para empresas que parten desde cero o necesitan una base sólida de presencia digital.</p>
         <div class="plan-price"><span class="price-num" data-i18n="mkt-p1-price">$790.000</span><span class="price-clp" data-i18n="price-currency">CLP</span> <span class="price-unit" data-i18n="plan-once">pago único</span></div>
+        <p class="price-currency-note" data-i18n="price-currency-note"></p>
         <ul class="plan-features">
           <li data-i18n="mkt-p1-f1">Diagnóstico de marca y posicionamiento</li>
           <li data-i18n="mkt-p1-f2">Identidad visual básica</li>
@@ -1642,6 +1644,7 @@
         <div class="plan-name" data-i18n="mkt-p2-name">Mantención Mensual</div>
         <p class="plan-desc" data-i18n="mkt-p2-desc">Para empresas que ya tienen presencia y necesitan consistencia y crecimiento mes a mes.</p>
         <div class="plan-price"><span class="price-num" data-i18n="mkt-p2-price">$390.000</span><span class="price-clp" data-i18n="price-currency">CLP</span> <span class="price-unit" data-i18n="plan-mes">/mes</span></div>
+        <p class="price-currency-note" data-i18n="price-currency-note"></p>
         <ul class="plan-features">
           <li data-i18n="mkt-p2-f1">8 publicaciones al mes: 4 banners + 4 videos</li>
           <li data-i18n="mkt-p2-f2">Cada pieza adaptada en 2 formatos de plataforma</li>
@@ -1658,6 +1661,7 @@
         <div class="plan-name" data-i18n="mkt-p3-name">Plan Pro</div>
         <p class="plan-desc" data-i18n="mkt-p3-desc">Para empresas que quieren escalar: más canales, más contenido, estrategia de crecimiento.</p>
         <div class="plan-price"><span class="price-num" data-i18n="mkt-p3-price">$590.000</span><span class="price-clp" data-i18n="price-currency">CLP</span> <span class="price-unit" data-i18n="plan-mes">/mes</span></div>
+        <p class="price-currency-note" data-i18n="price-currency-note"></p>
         <ul class="plan-features">
           <li data-i18n="mkt-p3-f1">Todo lo del plan Mantención, con gestión de 3 plataformas</li>
           <li data-i18n="mkt-p3-f2">Canal adicional: CRM o SEO</li>
@@ -1681,6 +1685,7 @@
         <div class="plan-name" data-i18n="rrhh-p1-name">Contratación</div>
         <p class="plan-desc" data-i18n="rrhh-p1-desc">Proceso de selección completo, desde la publicación del cargo hasta la presentación de los candidatos finalistas.</p>
         <div class="plan-price"><span class="price-num" data-i18n="rrhh-p1-price">$490.000</span><span class="price-clp" data-i18n="price-currency">CLP</span> <span class="price-unit" data-i18n="rrhh-p1-unit">por proceso</span></div>
+        <p class="price-currency-note" data-i18n="price-currency-note"></p>
         <ul class="plan-features">
           <li data-i18n="rrhh-p1-f1">Redacción y publicación del perfil en portales</li>
           <li data-i18n="rrhh-p1-f2">Filtro, pruebas técnicas y psicológicas</li>
@@ -1710,6 +1715,7 @@
         <div class="plan-name" data-i18n="rrhh-p2-name">Evaluación</div>
         <p class="plan-desc" data-i18n="rrhh-p2-desc">Evaluación de desempeño individual o grupal. Ideal para tomar decisiones de promoción, desarrollo o reorganización de equipos.</p>
         <div class="plan-price"><span class="price-num" data-i18n="rrhh-p2-price">$590.000</span><span class="price-clp" data-i18n="price-currency">CLP</span> <span class="price-unit" data-i18n="rrhh-p2-unit">máx. 5 personas</span></div>
+        <p class="price-currency-note" data-i18n="price-currency-note"></p>
         <ul class="plan-features">
           <li data-i18n="rrhh-p2-f1">Test de competencias laborales</li>
           <li data-i18n="rrhh-p2-f2">Perfil psicológico laboral</li>
@@ -1726,6 +1732,7 @@
         <div class="plan-name" data-i18n="rrhh-p3-name">Desvinculación</div>
         <p class="plan-desc" data-i18n="rrhh-p3-desc">Acompañamiento en procesos de salida. Protege a tu empresa, cuida a las personas y cierra bien el ciclo.</p>
         <div class="plan-price"><span class="price-num" data-i18n="rrhh-p3-price">$290.000</span><span class="price-clp" data-i18n="price-currency">CLP</span> <span class="price-unit" data-i18n="rrhh-p3-unit">por proceso</span></div>
+        <p class="price-currency-note" data-i18n="price-currency-note"></p>
         <ul class="plan-features">
           <li data-i18n="rrhh-p3-f1">Orientación en el proceso de desvinculación</li>
           <li data-i18n="rrhh-p3-f2">Entrevista de salida</li>
@@ -1740,7 +1747,8 @@
         <div class="plan-badge" style="visibility:hidden">·</div>
         <div class="plan-name" data-i18n="rrhh-p4-name">Perfiles de cargo</div>
         <p class="plan-desc" data-i18n="rrhh-p4-desc">Tres niveles según la complejidad del cargo y lo que ya tienes definido.</p>
-        <div class="plan-price"><span class="price-num" data-i18n="rrhh-p4-price">$1.000</span><span class="price-clp" data-i18n="price-currency">CLP</span> <span class="price-unit" data-i18n="rrhh-p4-unit">pack × 3</span></div>
+        <div class="plan-price"><span class="price-num" data-i18n="rrhh-p4-price">$150.000</span><span class="price-clp" data-i18n="price-currency">CLP</span> <span class="price-unit" data-i18n="rrhh-p4-unit">pack × 3</span></div>
+        <p class="price-currency-note" data-i18n="price-currency-note"></p>
         <ul class="plan-features">
           <li data-i18n="rrhh-p4-f1"><strong>Básico</strong> USD 125 — Descripción lista para usar</li>
           <li data-i18n="rrhh-p4-f2"><strong>Profesional</strong> USD 300 — Levantamiento con entrevista</li>
@@ -1880,6 +1888,7 @@
           <span class="arma-total-amount" id="arma-total-amount">$0</span>
         </div>
         <button class="arma-pay-btn" id="arma-pay-btn" disabled onclick="armaPayNow()" data-i18n="arma-pay">Pagar con Flow</button>
+        <p class="price-currency-note" data-i18n="price-currency-note" style="text-align:center;margin-bottom:0.3rem;"></p>
         <p class="arma-note" data-i18n="arma-note">Pago seguro vía Flow · Recibirás confirmación por email</p>
       </div>
     </div>
@@ -2168,7 +2177,7 @@
       'nav-faq': 'FAQ', 'nav-agenda': 'Agendar reunión',
       'hero-eyebrow': '<span style="color:var(--accent);font-weight:800;letter-spacing:0.1em;">VORTEX</span> &nbsp;Consultoría de marketing y gestión de talento',
       'hero-h1': 'Consultoría de marketing digital y gestión de personas para empresas en Chile',
-      'hero-claim': 'Tu empresa merece una <em>estrategia que funcione</em>',
+      'hero-claim': 'Tu empresa merece una estrategia que funcione',
       'hero-desc': 'Más de una década trabajando con multinacionales, startups y pymes. Ahora toda esa experiencia está disponible para ti.',
       'hero-cta1': 'Ver planes', 'hero-cta2': 'Conversar primero',
       'stat1': 'clientes satisfechos', 'stat2': 'años de experiencia', 'stat3': 'áreas de servicio',
@@ -2290,13 +2299,14 @@
       'addon-en-price': '+ $120.000',
       'addon-total-label': 'Total con add-on:',
       'price-currency': 'CLP',
+      'price-currency-note': 'Precios en pesos chilenos',
       'footer-copy': '© 2025 VORTEX Consultoría · Chile',
-      'val1-h': 'Compromiso con el resultado',
-      'val1-d': 'Nos metemos de verdad en cada proyecto. Entendemos tu negocio, tus números, tus problemas, y trabajamos con lo que cada empresa necesita, no con una plantilla.',
+      'val1-h': 'Compromiso con cada proyecto',
+      'val1-d': 'Nos involucramos en cada negocio, entendemos sus objetivos y desafíos, y desarrollamos soluciones alineadas con su realidad y necesidades.',
       'val2-h': 'Inversión con criterio',
-      'val2-d': 'Cada inversión debe tener un propósito. Si no aporta valor al negocio, no la recomendamos.',
+      'val2-d': 'Priorizamos las decisiones que generan valor. Cada recurso debe responder a una necesidad y tener un objetivo claro.',
       'val3-h': 'Experiencia que se traduce en acción',
-      'val3-d': 'Mercados construidos desde cero, operaciones digitalizadas, escala a 17 países. Experiencia aplicada a cada nuevo desafío.',
+      'val3-d': 'Experiencia en la apertura de mercados, digitalización de operaciones y expansión a 17 países. Conocemos los desafíos de hacer crecer un negocio desde adentro.',
       'mar-bio': 'Más de 10 años gestionando presupuestos de hasta USD 2,6M anuales y liderando equipos en hasta 17 mercados simultáneos. Ha multiplicado ventas en empresas sin canal digital, escalado operaciones internacionales desde cero y batido récords de ventas con menos inversión: +62% YoY en Busbud con 40% menos en pauta. Experta en paid media, CRM, medición y estrategia de crecimiento B2C y B2B.',
       'mar-s1': 'presupuesto máximo gestionado',
       'mar-s2': 'crecimiento YoY con 40% menos en pauta',
@@ -2312,7 +2322,7 @@
       'nav-faq': 'FAQ', 'nav-agenda': 'Book a meeting',
       'hero-eyebrow': '<span style="color:var(--accent);font-weight:800;letter-spacing:0.1em;">VORTEX</span> &nbsp;Marketing & people consultancy',
       'hero-h1': 'Marketing and people management consulting for businesses in Chile',
-      'hero-claim': 'Your business deserves a strategy that <em>actually works</em>',
+      'hero-claim': 'Your business deserves a strategy that actually works',
       'hero-desc': 'Over a decade working with multinationals, startups and SMBs. All that experience, now directly available to you.',
       'hero-cta1': 'See plans', 'hero-cta2': "Let's talk first",
       'stat1': 'satisfied clients', 'stat2': 'years of experience', 'stat3': 'service areas',
@@ -2415,6 +2425,7 @@
       'addon-en-price': '+ $300',
       'addon-total-label': 'Total with add-on:',
       'price-currency': 'USD',
+      'price-currency-note': 'Prices in USD',
       'footer-copy': '© 2025 VORTEX Consulting · Chile',
       'val1-h': 'Your business is our business',
       'val1-d': 'Every project is approached with real knowledge of the business and its numbers. The work adapts to what each company needs, not a template.',
@@ -2469,7 +2480,7 @@
       'nav-faq': 'FAQ', 'nav-agenda': 'Agendar reunião',
       'hero-eyebrow': '<span style="color:var(--accent);font-weight:800;letter-spacing:0.1em;">VORTEX</span> &nbsp;Consultoria de marketing e pessoas',
       'hero-h1': 'Consultoria de marketing digital e gestão de pessoas para empresas no Chile',
-      'hero-claim': 'Sua empresa merece uma <em>estratégia que funciona</em>',
+      'hero-claim': 'Sua empresa merece uma estratégia que funciona',
       'hero-desc': 'Mais de uma década trabalhando com multinacionais, startups e PMEs. Toda essa experiência, agora disponível diretamente para você.',
       'hero-cta1': 'Ver planos', 'hero-cta2': 'Conversar primeiro',
       'stat1': 'clientes satisfeitos', 'stat2': 'anos de experiência', 'stat3': 'áreas de serviço',
@@ -2591,6 +2602,7 @@
       'addon-en-price': '+ $120.000',
       'addon-total-label': 'Total com add-on:',
       'price-currency': 'CLP',
+      'price-currency-note': 'Preços em pesos chilenos',
       'footer-copy': '© 2025 VORTEX Consulting · Chile',
       'val1-h': 'Sua empresa é a nossa empresa',
       'val1-d': 'Cada projeto é abordado com conhecimento real do negócio e seus números. O trabalho se adapta ao que cada empresa precisa, não a um modelo pronto.',
@@ -2670,70 +2682,70 @@
   // unit: label que aparece junto al número en el stepper
   const ARMA_SERVICES = [
     // ── CONTENIDO ──
-    { id: 'banner',   nameEs: 'Banner',                   nameEn: 'Banner',                namePt: 'Banner',                price: 35000,  priceUsd: 49,  tagEs: 'Contenido', tagEn: 'Content',    tagPt: 'Conteúdo',  type: 'qty', max: 20,
+    { id: 'banner',   nameEs: 'Banner',                   nameEn: 'Banner',                namePt: 'Banner',                price: 35000,  priceUsd: 100,  tagEs: 'Contenido', tagEn: 'Content',    tagPt: 'Conteúdo',  type: 'qty', max: 20,
       unitEs: 'banner',     unitEn: 'banner',     unitPt: 'banner',
       descEs: 'Pieza gráfica estática adaptada en 2 formatos de plataforma.',
       descEn: 'Static graphic piece adapted in 2 platform formats.',
       descPt: 'Peça gráfica estática adaptada em 2 formatos de plataforma.' },
-    { id: 'video',    nameEs: 'Video / Reel',             nameEn: 'Video / Reel',          namePt: 'Vídeo / Reel',          price: 65000,  priceUsd: 91,  tagEs: 'Contenido', tagEn: 'Content',    tagPt: 'Conteúdo',  type: 'qty', max: 20,
+    { id: 'video',    nameEs: 'Video / Reel',             nameEn: 'Video / Reel',          namePt: 'Vídeo / Reel',          price: 65000,  priceUsd: 250,  tagEs: 'Contenido', tagEn: 'Content',    tagPt: 'Conteúdo',  type: 'qty', max: 20,
       unitEs: 'video',      unitEn: 'video',      unitPt: 'vídeo',
       descEs: 'Video corto o reel editado, adaptado en 2 formatos de plataforma.',
       descEn: 'Short video or reel, adapted in 2 platform formats.',
       descPt: 'Vídeo curto ou reel editado, adaptado em 2 formatos de plataforma.' },
     // ── GESTIÓN ──
-    { id: 'plat',     nameEs: 'Gestión de plataforma',    nameEn: 'Platform management',   namePt: 'Gestão de plataforma',  price: 80000,  priceUsd: 111,  tagEs: 'Gestión',   tagEn: 'Management', tagPt: 'Gestão',    type: 'qty', max: 5,
+    { id: 'plat',     nameEs: 'Gestión de plataforma',    nameEn: 'Platform management',   namePt: 'Gestão de plataforma',  price: 80000,  priceUsd: 250,  tagEs: 'Gestión',   tagEn: 'Management', tagPt: 'Gestão',    type: 'qty', max: 5,
       unitEs: 'plataforma', unitEn: 'platform',   unitPt: 'plataforma',
       descEs: 'Publicación, respuesta a comentarios y seguimiento mensual por plataforma.',
       descEn: 'Publishing, comment management and monthly monitoring per platform.',
       descPt: 'Publicação, resposta a comentários e monitoramento mensal por plataforma.' },
-    { id: 'reporte',  nameEs: 'Reporte de métricas',      nameEn: 'Metrics report',        namePt: 'Relatório de métricas', price: 60000,  priceUsd: 85,  tagEs: 'Gestión',   tagEn: 'Management', tagPt: 'Gestão',    type: 'qty', max: 6,
+    { id: 'reporte',  nameEs: 'Reporte de métricas',      nameEn: 'Metrics report',        namePt: 'Relatório de métricas', price: 60000,  priceUsd: 180,  tagEs: 'Gestión',   tagEn: 'Management', tagPt: 'Gestão',    type: 'qty', max: 6,
       unitEs: 'mes',        unitEn: 'month',      unitPt: 'mês',
       descEs: 'Análisis mensual de KPIs con ajustes y recomendaciones.',
       descEn: 'Monthly KPI analysis with adjustments and recommendations.',
       descPt: 'Análise mensal de KPIs com ajustes e recomendações.' },
-    { id: 'reunion',  nameEs: 'Reunión de seguimiento',   nameEn: 'Follow-up meeting',     namePt: 'Reunião de acompanhamento', price: 35000, priceUsd: 49,  tagEs: 'Gestión',  tagEn: 'Management', tagPt: 'Gestão',   type: 'qty', max: 12,
+    { id: 'reunion',  nameEs: 'Reunión de seguimiento',   nameEn: 'Follow-up meeting',     namePt: 'Reunião de acompanhamento', price: 35000, priceUsd: 100,  tagEs: 'Gestión',  tagEn: 'Management', tagPt: 'Gestão',   type: 'qty', max: 12,
       unitEs: 'reunión',    unitEn: 'meeting',    unitPt: 'reunião',
       descEs: 'Videollamada de 60 min para revisar avances y alinear próximos pasos.',
       descEn: '60-min video call to review progress and align next steps.',
       descPt: 'Videochamada de 60 min para revisar avanços e alinhar próximos passos.' },
-    { id: 'pauta',    nameEs: 'Gestión de pauta digital', nameEn: 'Paid media management', namePt: 'Gestão de mídia paga',  price: 120000, priceUsd: 169, tagEs: 'Gestión',   tagEn: 'Management', tagPt: 'Gestão',    type: 'qty', max: 12,
+    { id: 'pauta',    nameEs: 'Gestión de pauta digital', nameEn: 'Paid media management', namePt: 'Gestão de mídia paga',  price: 120000, priceUsd: 350, tagEs: 'Gestión',   tagEn: 'Management', tagPt: 'Gestão',    type: 'qty', max: 12,
       unitEs: 'mes',        unitEn: 'month',      unitPt: 'mês',
       descEs: 'Gestión integral de Google Ads o Meta Ads (presupuesto publicitario separado).',
       descEn: 'Full-cycle Google Ads or Meta Ads (ad budget not included).',
       descPt: 'Gestão completa de Google Ads ou Meta Ads (orçamento publicitário separado).' },
     // ── ESTRATEGIA ──
-    { id: 'diagmarca',nameEs: 'Diagnóstico de marca',     nameEn: 'Brand diagnosis',       namePt: 'Diagnóstico de marca',  price: 150000, priceUsd: 208, tagEs: 'Estrategia',tagEn: 'Strategy',   tagPt: 'Estratégia',type: 'qty', max: 3,
+    { id: 'diagmarca',nameEs: 'Diagnóstico de marca',     nameEn: 'Brand diagnosis',       namePt: 'Diagnóstico de marca',  price: 150000, priceUsd: 450, tagEs: 'Estrategia',tagEn: 'Strategy',   tagPt: 'Estratégia',type: 'qty', max: 3,
       unitEs: 'vez',        unitEn: 'time',       unitPt: 'vez',
       descEs: 'Análisis de posicionamiento, identidad y brechas de marca.',
       descEn: 'Brand positioning, identity and gap analysis.',
       descPt: 'Análise de posicionamento, identidade e lacunas de marca.' },
-    { id: 'idvisual', nameEs: 'Identidad visual básica',  nameEn: 'Basic visual identity', namePt: 'Identidade visual básica', price: 3000, priceUsd: 403, tagEs: 'Estrategia',tagEn: 'Strategy', tagPt: 'Estratégia',type: 'qty', max: 3,
+    { id: 'idvisual', nameEs: 'Identidad visual básica',  nameEn: 'Basic visual identity', namePt: 'Identidade visual básica', price: 3000, priceUsd: 800, tagEs: 'Estrategia',tagEn: 'Strategy', tagPt: 'Estratégia',type: 'qty', max: 3,
       unitEs: 'vez',        unitEn: 'time',       unitPt: 'vez',
       descEs: 'Paleta, tipografía, logo y guía de uso básica.',
       descEn: 'Color palette, typography, logo and basic usage guide.',
       descPt: 'Paleta de cores, tipografia, logo e guia de uso básico.' },
-    { id: 'roadmap',  nameEs: 'Hoja de ruta de contenido', nameEn: 'Content roadmap',       namePt: 'Roadmap de conteúdo',   price: 3000, priceUsd: 169, tagEs: 'Estrategia',tagEn: 'Strategy',   tagPt: 'Estratégia',type: 'qty', max: 6,
+    { id: 'roadmap',  nameEs: 'Hoja de ruta de contenido', nameEn: 'Content roadmap',       namePt: 'Roadmap de conteúdo',   price: 3000, priceUsd: 350, tagEs: 'Estrategia',tagEn: 'Strategy',   tagPt: 'Estratégia',type: 'qty', max: 6,
       unitEs: 'mes',        unitEn: 'month',      unitPt: 'mês',
       descEs: 'Plan editorial trimestral con temas, formatos y calendario.',
       descEn: 'Quarterly editorial plan with topics, formats and calendar.',
       descPt: 'Plano editorial trimestral com temas, formatos e calendário.' },
-    { id: 'gbp',      nameEs: 'Setup Google Business',    nameEn: 'Google Business setup', namePt: 'Setup Google Business', price: 3000,  priceUsd: 85,  tagEs: 'Estrategia',tagEn: 'Strategy',   tagPt: 'Estratégia',type: 'qty', max: 3,
+    { id: 'gbp',      nameEs: 'Setup Google Business',    nameEn: 'Google Business setup', namePt: 'Setup Google Business', price: 3000,  priceUsd: 180,  tagEs: 'Estrategia',tagEn: 'Strategy',   tagPt: 'Estratégia',type: 'qty', max: 3,
       unitEs: 'vez',        unitEn: 'time',       unitPt: 'vez',
       descEs: 'Configuración y optimización de Google Business Profile.',
       descEn: 'Google Business Profile setup and optimization.',
       descPt: 'Configuração e otimização do Google Business Profile.' },
     // ── RRHH ITEMIZADO ──
-    { id: 'li-pub',   nameEs: 'Publicación en LinkedIn',  nameEn: 'LinkedIn Job Post',     namePt: 'Publicação no LinkedIn', price: 60000,  priceUsd: 85,  tagEs: 'RRHH Suelto', tagEn: 'HR à la carte', tagPt: 'RH Avulso', type: 'qty', max: 5,
+    { id: 'li-pub',   nameEs: 'Publicación en LinkedIn',  nameEn: 'LinkedIn Job Post',     namePt: 'Publicação no LinkedIn', price: 60000,  priceUsd: 170,  tagEs: 'RRHH Suelto', tagEn: 'HR à la carte', tagPt: 'RH Avulso', type: 'qty', max: 5,
       unitEs: 'aviso',      unitEn: 'post',       unitPt: 'aviso',
       descEs: 'Redactamos y publicamos el aviso en LinkedIn Jobs con perfil optimizado.',
       descEn: 'We write and post the job ad on LinkedIn Jobs with an optimised profile.',
       descPt: 'Redigimos e publicamos o anúncio no LinkedIn Jobs com perfil otimizado.' },
-    { id: 'sourcing', nameEs: 'Búsqueda de candidatos',   nameEn: 'Candidate Sourcing',    namePt: 'Busca de Candidatos',    price: 120000, priceUsd: 169, tagEs: 'RRHH Suelto', tagEn: 'HR à la carte', tagPt: 'RH Avulso', type: 'qty', max: 5,
+    { id: 'sourcing', nameEs: 'Búsqueda de candidatos',   nameEn: 'Candidate Sourcing',    namePt: 'Busca de Candidatos',    price: 120000, priceUsd: 350, tagEs: 'RRHH Suelto', tagEn: 'HR à la carte', tagPt: 'RH Avulso', type: 'qty', max: 5,
       unitEs: 'búsqueda',   unitEn: 'search',     unitPt: 'busca',
       descEs: 'Sourcing activo en LinkedIn y portales. Lista de perfiles sin entrevistar.',
       descEn: 'Active sourcing on LinkedIn and job boards. Shortlist without interviews.',
       descPt: 'Sourcing ativo no LinkedIn e portais. Lista de perfis sem entrevistas.' },
-    { id: 'entrev',   nameEs: 'Entrevista por candidato', nameEn: 'Interview per Candidate', namePt: 'Entrevista por Candidato', price: 80000, priceUsd: 111,  tagEs: 'RRHH Suelto', tagEn: 'HR à la carte', tagPt: 'RH Avulso', type: 'qty', max: 20,
+    { id: 'entrev',   nameEs: 'Entrevista por candidato', nameEn: 'Interview per Candidate', namePt: 'Entrevista por Candidato', price: 80000, priceUsd: 250,  tagEs: 'RRHH Suelto', tagEn: 'HR à la carte', tagPt: 'RH Avulso', type: 'qty', max: 20,
       unitEs: 'candidato',  unitEn: 'candidate',  unitPt: 'candidato',
       descEs: 'Entrevistamos a cada candidato que tú envíes. Resumen ejecutivo con recomendación.',
       descEn: 'We interview each candidate you send. Executive summary with recommendation.',
@@ -2741,12 +2753,12 @@
       addonEnPrice: 35000, addonEnPriceUsd: 49,
       addonEnNameEs: '+ Add-on: Entrevista en inglés', addonEnNameEn: '+ Add-on: English Interview', addonEnNamePt: '+ Add-on: Entrevista em inglês',
       addonEnDescEs: 'Conducimos la entrevista íntegramente en inglés. Ideal para cargos que requieren buen nivel hablado.', addonEnDescEn: 'We conduct the full interview in English. Ideal for roles requiring real spoken English.', addonEnDescPt: 'Conduzimos a entrevista integralmente em inglês. Ideal para vagas que exigem bom nível falado.' },
-    { id: 'pruebas',  nameEs: 'Pruebas y análisis',       nameEn: 'Testing & Assessment',  namePt: 'Testes e Análise',       price: 60000,  priceUsd: 85,  tagEs: 'RRHH Suelto', tagEn: 'HR à la carte', tagPt: 'RH Avulso', type: 'qty', max: 20,
+    { id: 'pruebas',  nameEs: 'Pruebas y análisis',       nameEn: 'Testing & Assessment',  namePt: 'Testes e Análise',       price: 60000,  priceUsd: 170,  tagEs: 'RRHH Suelto', tagEn: 'HR à la carte', tagPt: 'RH Avulso', type: 'qty', max: 20,
       unitEs: 'candidato',  unitEn: 'candidate',  unitPt: 'candidato',
       descEs: 'Batería de pruebas psicológicas laborales con informe por candidato.',
       descEn: 'Psychological testing battery with individual candidate report.',
       descPt: 'Bateria de testes psicológicos profissionais com relatório por candidato.' },
-    { id: 'exit',     nameEs: 'Entrevista de salida',     nameEn: 'Exit Interview',        namePt: 'Entrevista de Saída',    price: 45000,  priceUsd: 62,  tagEs: 'RRHH Suelto', tagEn: 'HR à la carte', tagPt: 'RH Avulso', type: 'qty', max: 10,
+    { id: 'exit',     nameEs: 'Entrevista de salida',     nameEn: 'Exit Interview',        namePt: 'Entrevista de Saída',    price: 45000,  priceUsd: 130,  tagEs: 'RRHH Suelto', tagEn: 'HR à la carte', tagPt: 'RH Avulso', type: 'qty', max: 10,
       unitEs: 'entrevista', unitEn: 'interview',  unitPt: 'entrevista',
       descEs: 'Conversación estructurada con el trabajador que se va. Informe para la empresa.',
       descEn: 'Structured conversation with the departing employee. Report for the company.',
@@ -2781,7 +2793,7 @@
   const armaAddon = {};
 
   function fmtCLP(n) { return '$' + n.toLocaleString('es-CL'); }
-  function fmtUSD(n) { return 'US$' + n.toLocaleString('en-US'); }
+  function fmtUSD(n) { return '$' + n.toLocaleString('en-US'); }
   function fmtPrice(clp, usd) {
     if (LANG === 'en' && usd) return fmtUSD(usd);
     return fmtCLP(clp);
