@@ -133,7 +133,7 @@
     </a>
     <div class="nav-right">
       <a href="/seleccion-de-talentos/" class="lang-switch">ES</a>
-      <a href="https://calendly.com/vortexcor2026/30min" class="nav-cta" target="_blank" rel="noopener">Book a call</a>
+      <a href="https://calendly.com/vortexcor/consulta" class="nav-cta" target="_blank" rel="noopener">Book a call</a>
     </div>
   </div>
 </nav>
@@ -144,7 +144,7 @@
     <h1>Find and hire <em>the right people</em><br>for your growing business</h1>
     <p class="hero-desc">Professional recruitment, employee assessments and HR support for growing businesses. Hire with confidence and reduce turnover from day one.</p>
     <div class="hero-ctas">
-      <a href="https://calendly.com/vortexcor2026/30min" class="btn-primary" target="_blank" rel="noopener">Start a selection process</a>
+      <a href="https://calendly.com/vortexcor/consulta" class="btn-primary" target="_blank" rel="noopener">Start a selection process</a>
       <a href="/" class="btn-ghost">See all services</a>
     </div>
   </div>
@@ -241,8 +241,21 @@
           <li>LATAM-focused sourcing and networks</li>
           <li>Cultural fit and remote work assessment</li>
           <li>Timezone and async work compatibility check</li>
-          <li style="border-top:1px dashed var(--accent);margin-top:0.75rem;padding-top:0.75rem;color:var(--accent);font-weight:600;">Add-on: English Proficiency Assessment +$300</li>
         </ul>
+        <div class="plan-addon" id="addon-english-ts" style="border-top:1px dashed var(--accent);margin-top:0.75rem;padding-top:0.75rem;">
+          <label class="addon-label" style="display:flex;align-items:flex-start;gap:0.5rem;cursor:pointer;">
+            <input type="checkbox" id="addon-english-ts-check" onchange="toggleEnglishAddonTs(this)" style="margin-top:3px;accent-color:var(--accent);">
+            <span>
+              <span class="addon-name" style="color:var(--accent);font-weight:600;">Add-on: English Proficiency Assessment</span>
+              <span class="addon-price" style="color:var(--accent);font-weight:600;"> +$300</span>
+            </span>
+          </label>
+          <p style="font-size:0.82rem;color:var(--text-muted);margin:0.4rem 0 0 1.6rem;">Verified bilingual testing for client-facing or cross-border roles.</p>
+          <div id="addon-english-ts-total" style="display:none;margin-top:0.5rem;margin-left:1.6rem;font-size:0.88rem;">
+            <span>Total with add-on:</span>
+            <strong id="addon-english-ts-total-val" style="color:var(--accent);">$1,800 USD</strong>
+          </div>
+        </div>
         <a href="https://calendly.com/vortexcor/consulta" class="pack-cta">Get started</a>
       </div>
       <div class="pack-card">
@@ -284,12 +297,25 @@
 <section class="cta-section">
   <h2>Have a role you need to fill?</h2>
   <p>Tell us the role and profile you're looking for. Within 24 hours we'll tell you how we can help and how quickly.</p>
-  <a href="https://calendly.com/vortexcor2026/30min" class="btn-white" target="_blank" rel="noopener">Start a selection process</a>
+  <a href="https://calendly.com/vortexcor/consulta" class="btn-white" target="_blank" rel="noopener">Start a selection process</a>
 </section>
 
 <footer>
   <p>© 2026 <a href="/">VORTEX Consultoría</a> · <a href="/digital-marketing/">Digital Marketing</a> · <a href="/people-management/">People Management</a> · <a href="/talent-selection/">Talent Selection</a> · <a href="/apex-diagnostic/">APEX Diagnostic</a></p>
 </footer>
+
+<script>
+  function toggleEnglishAddonTs(cb) {
+    const totalDiv = document.getElementById('addon-english-ts-total');
+    const totalVal = document.getElementById('addon-english-ts-total-val');
+    if (cb.checked) {
+      totalDiv.style.display = 'block';
+      totalVal.textContent = '$1,800 USD';
+    } else {
+      totalDiv.style.display = 'none';
+    }
+  }
+</script>
 
 </body>
 </html>
