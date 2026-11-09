@@ -784,8 +784,16 @@
       letter-spacing: 0.01em;
       transition: color 0.2s, opacity 0.2s;
       opacity: 0.85;
+      grid-column: 1 / -1;
     }
     .plan-doubt:hover { opacity: 1; text-decoration: underline; }
+    /* Wrapper para CTA + doubt link — ocupa una sola celda del subgrid */
+    .plan-actions {
+      display: flex; flex-direction: column; gap: 0;
+      margin-top: auto;
+    }
+    .plan-actions .plan-cta { margin-top: 0; }
+    .plan-actions .plan-doubt { margin-top: 0.75rem; }
 
     /* ── FEATURES ACCORDION en mobile ── */
     .plan-features-toggle {
@@ -1727,8 +1735,10 @@
           <li data-i18n="mkt-p1-f4">Creation of 2 ad platforms with 1 campaign each</li>
           <li data-i18n="mkt-p1-f5">1-month content guide</li>
         </ul>
-        <a href="#" onclick="payWithFlow('sf91127fd124de7e6421f45317cc66f302b6dc53');return false;" class="plan-cta plan-cta-secondary" data-i18n="btn-contratar">Get started</a>
-        <a href="https://calendly.com/vortexcor/consulta" class="plan-doubt" target="_blank" rel="noopener" data-i18n="plan-doubt">I have questions →</a>
+        <div class="plan-actions">
+          <a href="#" onclick="payWithFlow('sf91127fd124de7e6421f45317cc66f302b6dc53');return false;" class="plan-cta plan-cta-secondary" data-i18n="btn-contratar">Get started</a>
+          <a href="https://calendly.com/vortexcor/consulta" class="plan-doubt" target="_blank" rel="noopener" data-i18n="plan-doubt">I have questions →</a>
+        </div>
       </article>
 
       <article class="plan-card featured">
@@ -1744,8 +1754,10 @@
           <li data-i18n="mkt-p2-f4">Monthly review meeting with recommendations</li>
           <li data-i18n="mkt-p2-f5">Management of 2 platforms</li>
         </ul>
-        <a href="#" onclick="payWithFlow('t3c9404b5d417e43e5ff7dc5cb7ae340069795be');return false;" class="plan-cta plan-cta-primary" data-i18n="btn-contratar">Get started</a>
-        <a href="https://calendly.com/vortexcor/consulta" class="plan-doubt" target="_blank" rel="noopener" data-i18n="plan-doubt">I have questions →</a>
+        <div class="plan-actions">
+          <a href="#" onclick="payWithFlow('t3c9404b5d417e43e5ff7dc5cb7ae340069795be');return false;" class="plan-cta plan-cta-primary" data-i18n="btn-contratar">Get started</a>
+          <a href="https://calendly.com/vortexcor/consulta" class="plan-doubt" target="_blank" rel="noopener" data-i18n="plan-doubt">I have questions →</a>
+        </div>
       </article>
 
       <article class="plan-card">
@@ -1762,8 +1774,10 @@
           <li data-i18n="mkt-p3-f5">2 monthly meetings</li>
           <li data-i18n="mkt-p3-f6">Custom metrics monitoring report</li>
         </ul>
-        <a href="#" onclick="payWithFlow('v4fc43f48cb0fa1d5fd75929c8d5b8c86eb5848f');return false;" class="plan-cta plan-cta-secondary" data-i18n="btn-contratar">Get started</a>
-        <a href="https://calendly.com/vortexcor/consulta" class="plan-doubt" target="_blank" rel="noopener" data-i18n="plan-doubt">I have questions →</a>
+        <div class="plan-actions">
+          <a href="#" onclick="payWithFlow('v4fc43f48cb0fa1d5fd75929c8d5b8c86eb5848f');return false;" class="plan-cta plan-cta-secondary" data-i18n="btn-contratar">Get started</a>
+          <a href="https://calendly.com/vortexcor/consulta" class="plan-doubt" target="_blank" rel="noopener" data-i18n="plan-doubt">I have questions →</a>
+        </div>
       </article>
     </div>
     <div style="margin-top:1.5rem;">
@@ -1788,8 +1802,10 @@
           <li data-i18n="rrhh-p1-f4">Finalist candidate shortlist</li>
           <li data-i18n="rrhh-p1-f5">Executive report per candidate</li>
         </ul>
-        <a href="https://calendly.com/vortexcor/consulta" class="plan-cta plan-cta-secondary" data-i18n="plan-hire">Get started</a>
-        <a href="https://calendly.com/vortexcor/consulta" class="plan-doubt" target="_blank" rel="noopener" data-i18n="plan-doubt">I have questions →</a>
+        <div class="plan-actions">
+          <a href="https://calendly.com/vortexcor/consulta" class="plan-cta plan-cta-secondary" data-i18n="plan-hire">Get started</a>
+          <a href="https://calendly.com/vortexcor/consulta" class="plan-doubt" target="_blank" rel="noopener" data-i18n="plan-doubt">I have questions →</a>
+        </div>
       </article>
 
       <article class="plan-card featured">
@@ -1817,8 +1833,10 @@
             <strong id="addon-english-en-total-val">USD 1,800</strong>
           </div>
         </div>
-        <a href="https://calendly.com/vortexcor/consulta" class="plan-cta plan-cta-primary" data-i18n="plan-hire">Get started</a>
-        <a href="https://calendly.com/vortexcor/consulta" class="plan-doubt" target="_blank" rel="noopener" data-i18n="plan-doubt">I have questions →</a>
+        <div class="plan-actions">
+          <a href="https://calendly.com/vortexcor/consulta" class="plan-cta plan-cta-primary" data-i18n="plan-hire">Get started</a>
+          <a href="https://calendly.com/vortexcor/consulta" class="plan-doubt" target="_blank" rel="noopener" data-i18n="plan-doubt">I have questions →</a>
+        </div>
       </article>
 
       <article class="plan-card">
@@ -1834,8 +1852,10 @@
           <li data-i18n="rrhh-p3-f4">Ready to post on LinkedIn, Indeed and more</li>
           <li data-i18n="rrhh-p3-f5">Delivered in Word and PDF</li>
         </ul>
-        <a href="https://calendly.com/vortexcor/consulta" class="plan-cta plan-cta-secondary" data-i18n="plan-hire">Get started</a>
-        <a href="https://calendly.com/vortexcor/consulta" class="plan-doubt" target="_blank" rel="noopener" data-i18n="plan-doubt">I have questions →</a>
+        <div class="plan-actions">
+          <a href="https://calendly.com/vortexcor/consulta" class="plan-cta plan-cta-secondary" data-i18n="plan-hire">Get started</a>
+          <a href="https://calendly.com/vortexcor/consulta" class="plan-doubt" target="_blank" rel="noopener" data-i18n="plan-doubt">I have questions →</a>
+        </div>
       </article>
 
 
@@ -2327,7 +2347,7 @@
       'apex-feat2-title': 'Failure prediction',
       'apex-feat2-desc': 'We identify breaking points before they happen: strategies that have maxed out, channels under strain, metrics that are lying to you.',
       'apex-feat3-title': 'Competitive benchmarking',
-      'apex-feat3-desc': 'We don't analyze your company in isolation. We benchmark your position against the market so you know if you're ahead, keeping pace, or losing ground.',
+      'apex-feat3-desc': "We don't analyze your company in isolation. We benchmark your position against the market so you know if you're ahead, keeping pace, or losing ground.",
       'apex-feat4-title': 'Executive roadmap',
       'apex-feat4-desc': 'The diagnosis ends with a prioritized action plan, ready for board presentation, with the highest-impact changes ordered by urgency and effort.',
       'apex-score-label': 'Marketing Maturity Score',
@@ -2345,7 +2365,7 @@
       'about-h2': 'Enterprise-level experience, now available to your business',
       'about-p1': 'VORTEX was born from a simple question: why are the best marketing and people management tools only available to large corporations?',
       'about-p2': 'Over a decade working at multinational companies, building growth strategies, leading teams and managing people in high-demand environments. Everything we learned, we now put at the service of companies of all sizes.',
-      'about-p3': 'We're not an agency. No layers, no inflated costs. The people who design the strategy are the ones who execute it, with direct knowledge of your business and a focus on measurable results.',
+      'about-p3': "We're not an agency. No layers, no inflated costs. The people who design the strategy are the ones who execute it, with direct knowledge of your business and a focus on measurable results.",
       'about-n1': 'clientes satisfechos entre pymonth, startups y multinacionales',
       'about-n2': 'años de experiencia combinada en multinacionales',
       'about-n3': 'áreas de especialidad: marketing y psicología laboral',
@@ -2354,7 +2374,7 @@
       'profile1-bio': '10+ years managing budgets of up to USD 2.6M per year and leading teams across 17 simultaneous markets. She has multiplied sales for companies with no digital channel, scaled international operations from scratch, and broken sales records with less spend. Expert in paid media, CRM, measurement and B2C/B2B growth strategy.',
       'profile2-name': 'Co-founder, HR', 'profile2-title': 'Organizational Psychology & Talent & HR',
       'profile2-bio': 'Organizational psychologist with experience in recruitment, performance assessment and organizational development. Specialized in processes that combine technical rigor with a human-centered approach, because well-built teams are the foundation of any strategy.',
-      'dudas-label': '¿Tienes dudas?', 'dudas-h2': 'Let's talk before you decide',
+      'dudas-label': '¿Tienes dudas?', 'dudas-h2': "Let's talk before you decide",
       'dudas-desc': 'A free 30-minute meeting. No commitment. We will explain exactly how we can help you and what to expect from the process.',
       'dudas-cta1': 'Book a meeting gratuita', 'dudas-cta2': 'Tengo más dudas primero',
       'faq-label': 'Preguntas frecuentes', 'faq-h2': 'What people ask us most',
