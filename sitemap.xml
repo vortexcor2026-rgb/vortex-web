@@ -21,9 +21,21 @@
   </url>
   <url>
     <loc>https://vortexcor.com/marketing-digital/</loc>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://vortexcor.com/marketing-digital/"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://vortexcor.com/digital-marketing/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vortexcor.com/marketing-digital/"/>
     <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vortexcor.com/digital-marketing/</loc>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://vortexcor.com/marketing-digital/"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://vortexcor.com/digital-marketing/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vortexcor.com/marketing-digital/"/>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://vortexcor.com/gestion-de-personas/</loc>
@@ -33,9 +45,21 @@
   </url>
   <url>
     <loc>https://vortexcor.com/seleccion-de-talentos/</loc>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://vortexcor.com/seleccion-de-talentos/"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://vortexcor.com/talent-selection/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vortexcor.com/seleccion-de-talentos/"/>
     <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vortexcor.com/talent-selection/</loc>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://vortexcor.com/seleccion-de-talentos/"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://vortexcor.com/talent-selection/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vortexcor.com/seleccion-de-talentos/"/>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://vortexcor.com/diagnostico-apex/</loc>

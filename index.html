@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Consultoría de Marketing Digital y RRHH en Chile | VORTEX</title>
-  <meta name="description" content="Consultoría de marketing digital y recursos humanos para pymes en Chile. Más de 30 clientes satisfechos. Agenda una reunión gratis.">
+  <title>Consultora de Marketing Digital y RRHH en Chile | VORTEX</title>
+  <meta name="description" content="Marketing digital, selección de personal y gestión de personas para pymes y empresas en Chile. Experiencia en multinacionales. Agenda una reunión gratis.">
   <meta name="keywords" content="consultoría marketing pymes chile, marketing digital santiago, RRHH pymes chile, presencia digital empresa, diagnóstico marketing empresa">
   <meta name="author" content="VORTEX Consultoría">
   <meta name="robots" content="index, follow">
@@ -28,20 +28,103 @@
   <meta name="twitter:description" content="Marketing basado en datos y gestión de talento. Más de 30 clientes en pymes, startups y multinacionales.">
   <meta name="twitter:image" content="https://vortexcor.com/og-image.png">
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "VORTEX Consultoría",
-    "description": "Consultoría de marketing y recursos humanos para empresas en Chile",
-    "url": "https://vortexcor.com",
-    "email": "contacto@vortexcor.com",
-    "areaServed": {"@type": "Country", "name": "Chile"},
-    "serviceType": ["Marketing Digital", "Consultoría RRHH", "Diagnóstico Empresarial", "Gestión de Talento"],
-    "priceRange": "$$",
-    "address": {"@type": "PostalAddress", "addressLocality": "Santiago", "addressCountry": "CL"},
-    "sameAs": ["https://www.instagram.com/somosvortexcor"]
-  }
-  </script>
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://vortexcor.com/#org",
+      "name": "VORTEX Consultoría",
+      "url": "https://vortexcor.com/",
+      "logo": "https://vortexcor.com/logo.png",
+      "image": "https://vortexcor.com/logo.png",
+      "description": "Consultora de marketing digital y recursos humanos para pymes, startups y empresas en Chile, fundada por dos consultoras con más de una década de experiencia en multinacionales.",
+      "email": "contacto@vortexcor.com",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Santiago",
+        "addressRegion": "Región Metropolitana",
+        "addressCountry": "CL"
+      },
+      "areaServed": { "@type": "Country", "name": "Chile" },
+      "knowsLanguage": ["es", "en"],
+      "founder": [
+        { "@id": "https://vortexcor.com/#marcela" },
+        { "@id": "https://vortexcor.com/#carolina" }
+      ],
+      "sameAs": [
+        "https://www.instagram.com/somosvortexcor"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Servicios VORTEX",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@id": "https://vortexcor.com/marketing-digital/#service" } },
+          { "@type": "Offer", "itemOffered": { "@id": "https://vortexcor.com/seleccion-de-talentos/#service" } },
+          { "@type": "Offer", "itemOffered": { "@id": "https://vortexcor.com/gestion-de-personas/#service" } },
+          { "@type": "Offer", "itemOffered": { "@id": "https://vortexcor.com/diagnostico-apex/#service" } }
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://vortexcor.com/#website",
+      "url": "https://vortexcor.com/",
+      "name": "VORTEX",
+      "inLanguage": "es-CL",
+      "publisher": { "@id": "https://vortexcor.com/#org" }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://vortexcor.com/#marcela",
+      "name": "Marcela Zolezzi",
+      "jobTitle": "Cofundadora, Paid Media & Growth Strategy",
+      "worksFor": { "@id": "https://vortexcor.com/#org" },
+      "knowsAbout": ["Google Ads", "Meta Ads", "Paid Media", "Growth Marketing", "Estrategia de Marketing Digital"]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://vortexcor.com/#carolina",
+      "name": "Carolina Zolezzi",
+      "jobTitle": "Cofundadora, Psicóloga Laboral",
+      "worksFor": { "@id": "https://vortexcor.com/#org" },
+      "knowsAbout": ["Psicología Laboral", "Reclutamiento y Selección", "Evaluación de Desempeño", "Gestión de Personas"]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://vortexcor.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Trabajan con empresas de cualquier rubro?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Sí. Nuestra metodología es adaptable a cualquier industria. Hemos trabajado con retail, servicios, tecnología, gastronomía y más. Lo que importa es que tengas ganas de crecer y datos con los que trabajar." }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué pasa si no tengo datos ni métricas?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Es más común de lo que crees. En ese caso, parte del trabajo inicial es instalar los sistemas de medición básicos. No medir no significa que no haya oportunidades, significa que primero hay que hacer visible lo que está pasando." }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Los planes mensuales tienen permanencia mínima?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Los planes mensuales no tienen permanencia mínima: puedes pausar o cancelar cuando quieras. Dicho eso, recomendamos mantener al menos 3 meses para ver resultados reales, porque el marketing toma tiempo en madurar." }
+        },
+        {
+          "@type": "Question",
+          "name": "¿APEX es para qué tipo de empresa?",
+          "acceptedAnswer": { "@type": "Answer", "text": "APEX está diseñado para empresas medianas y grandes que ya tienen operaciones de marketing pero sienten que podrían estar haciéndolo mejor. También es útil en cambios de gerencia o cuando se quiere entrar a un nuevo mercado." }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Los servicios de RRHH son independientes de los de marketing?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Sí, puedes contratar cualquier servicio de forma independiente. Pero si necesitas marketing y gestión de talento a la vez, trabajamos en conjunto para que las estrategias estén alineadas y el equipo contratado sepa ejecutar lo que se planifica." }
+        }
+      ]
+    }
+  ]
+}
+</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap&font-display=swap" rel="stylesheet">
