@@ -28,6 +28,26 @@
   status = 200
 
 [[redirects]]
+  from = "/digital-marketing"
+  to = "/digital-marketing/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/talent-selection"
+  to = "/talent-selection/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/people-management"
+  to = "/people-management/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/apex-diagnostic"
+  to = "/apex-diagnostic/index.html"
+  status = 200
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200

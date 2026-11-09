@@ -45,6 +45,9 @@
     .nav-logo { text-decoration: none; display: flex; align-items: center; }
     .nav-cta { background: var(--accent); color: #fff; border: none; border-radius: 8px; padding: 8px 18px; font-size: 0.85rem; font-weight: 600; cursor: pointer; text-decoration: none; font-family: inherit; }
     .nav-cta:hover { background: var(--accent-hi); }
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
+    .lang-switch { font-size: 0.8rem; font-weight: 600; color: var(--text-muted); text-decoration: none; border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; }
+    .lang-switch:hover { border-color: var(--accent); color: var(--accent); }
 
     .hero { background: var(--bg2); padding: 80px 2rem 64px; text-align: center; }
     .hero-inner { max-width: var(--max); margin: 0 auto; }
@@ -139,7 +142,10 @@
         <text x="46" y="42" font-family="'Space Grotesk',Arial,sans-serif" font-weight="800" font-size="36" letter-spacing="3" fill="#5aab6e">VORTEX</text>
       </svg>
     </a>
-    <a href="https://calendly.com/vortexcor2026/30min" class="nav-cta" target="_blank" rel="noopener">Agendar reunión</a>
+    <div class="nav-right">
+      <a href="/people-management/" class="lang-switch">EN</a>
+      <a href="https://calendly.com/vortexcor2026/30min" class="nav-cta" target="_blank" rel="noopener">Agendar reunión</a>
+    </div>
   </div>
 </nav>
 
