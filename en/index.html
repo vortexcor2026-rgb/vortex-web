@@ -450,7 +450,7 @@
       animation: slow-spin 18s linear infinite;
     }
 
-    @keyframonth slow-spin {
+    @keyframes slow-spin {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
     }
@@ -486,7 +486,7 @@
       letter-spacing: 0.06em;
     }
     .ticker-claim::after { color: rgba(90,171,110,0.4); }
-    @keyframonth ticker {
+    @keyframes ticker {
       from { transform: translateX(0); }
       to   { transform: translateX(-50%); }
     }
@@ -811,7 +811,7 @@
         animation: fadeIn 0.2s ease;
       }
       .plan-features.visible { display: block; }
-      @keyframonth fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+      @keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
     }
 
     /* ── ARMA TU PLAN ── */
@@ -1478,8 +1478,8 @@
     :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 
     /* ── ENTRADA hero ── */
-    @keyframonth spin { to { transform: rotate(360deg); } }
-    @keyframonth fadeUp {
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes fadeUp {
       from { opacity: 0; transform: translateY(24px); }
       to   { opacity: 1; transform: translateY(0); }
     }
@@ -1644,7 +1644,7 @@
 <!-- TICKER -->
 <div class="ticker-strip" aria-hidden="true">
   <div class="ticker-track">
-    <div class="ticker-item ticker-claim">Nada se escapa del VORTEX</div>
+    <div class="ticker-item ticker-claim">Nothing escapes the VORTEX</div>
     <div class="ticker-item">Digital Marketing</div>
     <div class="ticker-item">People Management</div>
     <div class="ticker-item">APEX Diagnostic</div>
@@ -1656,7 +1656,7 @@
     <div class="ticker-item">Growth Marketing</div>
     <div class="ticker-item">SMBs · Startups · Companies</div>
     <!-- duplicate for seamless loop -->
-    <div class="ticker-item ticker-claim">Nada se escapa del VORTEX</div>
+    <div class="ticker-item ticker-claim">Nothing escapes the VORTEX</div>
     <div class="ticker-item">Digital Marketing</div>
     <div class="ticker-item">People Management</div>
     <div class="ticker-item">APEX Diagnostic</div>
