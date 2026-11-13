@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Marketing Audit & Maturity Assessment | APEX Diagnostic by VORTEX</title>
-  <meta name="description" content="Marketing audit and maturity assessment for growing businesses. Identify your marketing gaps and get a prioritized 90-day action plan with APEX by VORTEX.">
+  <meta name="description" content="APEX Diagnostic: measure your marketing maturity across 5 dimensions, detect failure points before they happen, and get an executive-ready roadmap.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://vortexcor.com/apex-diagnostic/">
   <link rel="alternate" hreflang="es-CL" href="https://vortexcor.com/diagnostico-apex/">
@@ -13,19 +13,32 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'%3E%3Ccircle cx='18' cy='18' r='18' fill='%235aab6e'/%3E%3Ctext x='18' y='24' text-anchor='middle' font-family='Arial' font-weight='bold' font-size='16' fill='white'%3EV%3C/text%3E%3C/svg%3E">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://vortexcor.com/apex-diagnostic/">
-  <meta property="og:title" content="Marketing Audit & Maturity Assessment | APEX by VORTEX">
-  <meta property="og:description" content="Marketing audit and maturity assessment for growing businesses. Identify your gaps and get a prioritized 90-day action plan.">
+  <meta property="og:title" content="APEX Diagnostic: Marketing Audit | VORTEX">
+  <meta property="og:description" content="APEX Diagnostic: full marketing audit. Measure your digital maturity, identify gaps, and get an action plan.">
   <meta property="og:image" content="https://vortexcor.com/og-image.png">
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "APEX Marketing Diagnostic",
-    "provider": {"@type": "Organization", "name": "VORTEX Consultoría", "url": "https://vortexcor.com"},
-    "areaServed": "Worldwide",
-    "description": "Marketing audit and maturity assessment for growing businesses. Identify your gaps and get a prioritized 90-day action plan.",
-    "url": "https://vortexcor.com/apex-diagnostic/"
-  }
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://vortexcor.com/apex-diagnostic/#service",
+      "name": "APEX Diagnostic",
+      "serviceType": "Marketing audit and maturity assessment",
+      "description": "Marketing maturity assessment across 5 dimensions (strategy, digital presence, content, acquisition, data & metrics), with competitive benchmarking and a prioritized executive roadmap.",
+      "provider": { "@type": "Organization", "name": "VORTEX Consultoría", "url": "https://vortexcor.com" },
+      "areaServed": "Worldwide",
+      "url": "https://vortexcor.com/apex-diagnostic/"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://vortexcor.com/en/" },
+        { "@type": "ListItem", "position": 2, "name": "APEX Diagnostic", "item": "https://vortexcor.com/apex-diagnostic/" }
+      ]
+    }
+  ]
+}
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,83 +50,99 @@
       --accent: #5aab6e; --accent-dim: rgba(90,171,110,0.10); --accent-hi: #3d8c52;
       --text: #1a1f18; --text-muted: rgba(26,31,24,0.52); --text-dim: rgba(26,31,24,0.32);
       --radius: 14px; --max: 1100px;
-      --high: #e05252; --med: #e09852;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; font-size: 16px; }
     body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.6; -webkit-font-smoothing: antialiased; }
     h1,h2,h3,h4 { font-family: 'Space Grotesk', sans-serif; }
+
     nav { position: sticky; top: 0; z-index: 100; height: 56px; background: rgba(255,255,255,0.92); backdrop-filter: blur(24px); border-bottom: 1px solid var(--border-light); }
     .nav-inner { display: flex; align-items: center; justify-content: space-between; max-width: var(--max); margin: 0 auto; padding: 0 2rem; height: 100%; }
     .nav-logo { text-decoration: none; display: flex; align-items: center; }
-    .nav-right { display: flex; align-items: center; gap: 1rem; }
     .nav-cta { background: var(--accent); color: #fff; border: none; border-radius: 8px; padding: 8px 18px; font-size: 0.85rem; font-weight: 600; cursor: pointer; text-decoration: none; font-family: inherit; }
     .nav-cta:hover { background: var(--accent-hi); }
-    .lang-switch { font-size: 0.8rem; font-weight: 600; color: var(--text-muted); text-decoration: none; border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; }
-    .lang-switch:hover { border-color: var(--accent); color: var(--accent); }
+
     .hero { background: var(--bg2); padding: 80px 2rem 64px; text-align: center; }
     .hero-inner { max-width: var(--max); margin: 0 auto; }
     .eyebrow { display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); background: var(--accent-dim); padding: 4px 14px; border-radius: 20px; margin-bottom: 1.5rem; }
     h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; line-height: 1.15; margin-bottom: 1.25rem; }
     h1 em { color: var(--accent); font-style: normal; }
-    .hero-desc { font-size: 1.1rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 2rem; }
+    .hero-desc { font-size: 1.1rem; color: var(--text-muted); max-width: 620px; margin: 0 auto 2rem; }
     .hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
     .btn-primary { background: var(--accent); color: #fff; padding: 14px 28px; border-radius: 10px; font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: background 0.15s; }
     .btn-primary:hover { background: var(--accent-hi); }
-    .btn-ghost { background: transparent; color: var(--text); border: 1.5px solid var(--border); padding: 13px 24px; border-radius: 10px; font-weight: 500; font-size: 0.95rem; text-decoration: none; }
+    .btn-ghost { background: transparent; color: var(--text); border: 1.5px solid var(--border); padding: 13px 24px; border-radius: 10px; font-weight: 500; font-size: 0.95rem; text-decoration: none; transition: border-color 0.15s; }
     .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
     section { padding: 72px 2rem; }
     .section-inner { max-width: var(--max); margin: 0 auto; }
     .section-eyebrow { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
     h2 { font-size: clamp(1.6rem, 3.5vw, 2.2rem); font-weight: 800; line-height: 1.2; margin-bottom: 1rem; }
     .section-sub { font-size: 1.05rem; color: var(--text-muted); max-width: 600px; margin-bottom: 3rem; }
-    .dims-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; }
+
+    .dimensions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
     .dim-card { background: var(--bg2); border-radius: var(--radius); padding: 1.75rem; border: 1px solid var(--border-light); }
-    .dim-num { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 800; color: rgba(90,171,110,0.75); line-height: 1; margin-bottom: 0.5rem; }
-    .dim-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .dim-card p { font-size: 0.9rem; color: var(--text-muted); }
+    .dim-num { font-family: 'Space Grotesk', sans-serif; font-size: 0.75rem; font-weight: 700; color: var(--accent); letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+    .dim-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.6rem; }
+    .dim-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+
+    .forwhom { background: var(--bg2); }
+    .forwhom-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
+    .forwhom-item { background: var(--bg); border-radius: var(--radius); padding: 1.5rem; border: 1px solid var(--border-light); display: flex; gap: 1rem; align-items: flex-start; }
+    .forwhom-icon { width: 40px; height: 40px; background: var(--accent-dim); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .forwhom-icon svg { width: 20px; height: 20px; stroke: var(--accent); fill: none; stroke-width: 2; stroke-linecap: round; }
+    .forwhom-item h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .forwhom-item p { font-size: 0.88rem; color: var(--text-muted); }
+
+    .deliverables { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center; }
+    .deliverable-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+    .deliverable-list li { display: flex; gap: 1rem; align-items: flex-start; }
+    .del-icon { width: 36px; height: 36px; background: var(--accent-dim); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+    .del-icon svg { width: 18px; height: 18px; stroke: var(--accent); fill: none; stroke-width: 2; stroke-linecap: round; }
+    .del-text strong { font-size: 0.95rem; font-weight: 700; display: block; margin-bottom: 2px; }
+    .del-text span { font-size: 0.88rem; color: var(--text-muted); }
+    .deliverable-price-box { background: var(--bg2); border-radius: var(--radius); padding: 2.5rem; border: 1.5px solid var(--accent); text-align: center; }
+    .price-label { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+    .price-sub { font-size: 0.9rem; color: var(--text-muted); margin-top: 0.4rem; margin-bottom: 1.5rem; }
+    .price-features { list-style: none; text-align: left; display: flex; flex-direction: column; gap: 8px; margin-bottom: 2rem; }
+    .price-features li { font-size: 0.88rem; padding-left: 1.25rem; position: relative; }
+    .price-features li::before { content: '✓'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+
+    .btn-full { display: block; text-align: center; background: var(--accent); color: #fff; padding: 14px; border-radius: 10px; font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: background 0.15s; }
+    .btn-full:hover { background: var(--accent-hi); }
+
     .process { background: var(--bg2); }
-    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
     .step { background: var(--bg); border-radius: var(--radius); padding: 1.75rem; border: 1px solid var(--border-light); }
     .step-num { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 800; color: rgba(90,171,110,0.45); line-height: 1; margin-bottom: 0.75rem; }
     .step h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
     .step p { font-size: 0.9rem; color: var(--text-muted); }
-    .price-section { text-align: center; padding: 72px 2rem; background: var(--bg2); }
-    .price-main { font-family: 'Space Grotesk', sans-serif; font-size: 3rem; font-weight: 800; color: var(--accent); margin: 1rem 0 0.5rem; }
-    .price-desc { font-size: 1rem; color: var(--text-muted); margin-bottom: 2rem; max-width: 400px; margin-left: auto; margin-right: auto; }
-    .price-includes { list-style: none; display: inline-flex; flex-direction: column; gap: 10px; text-align: left; margin-bottom: 2.5rem; }
-    .price-includes li { font-size: 0.95rem; padding-left: 1.25rem; position: relative; }
-    .price-includes li::before { content: '✓'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
-    /* APEX example section */
-    .apex-example { background: var(--bg); }
-    .apex-example-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
-    @media (max-width: 700px) { .apex-example-grid { grid-template-columns: 1fr; } }
-    .apex-score-card, .apex-gaps-card { background: var(--bg2); border-radius: var(--radius); padding: 1.75rem; border: 1px solid var(--border-light); }
-    .apex-score-global { text-align: center; margin-bottom: 1.5rem; }
-    .apex-score-num { font-family: 'Space Grotesk', sans-serif; font-size: 3rem; font-weight: 800; color: var(--accent); line-height: 1; }
-    .apex-score-label { font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; }
-    .apex-dim { margin-bottom: 0.9rem; }
-    .apex-dim-label { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 4px; }
-    .apex-dim-bar { height: 6px; background: var(--border); border-radius: 99px; overflow: hidden; }
-    .apex-dim-fill { height: 100%; border-radius: 99px; background: var(--accent); }
-    .apex-gaps-title { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; }
-    .apex-gap { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 0.9rem; padding-bottom: 0.9rem; border-bottom: 1px solid var(--border-light); }
-    .apex-gap:last-of-type { border-bottom: none; margin-bottom: 1.25rem; }
-    .apex-gap-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
-    .apex-gap-dot.high { background: var(--high); }
-    .apex-gap-dot.med { background: var(--med); }
-    .apex-gap-dot.low { background: var(--accent); }
-    .apex-gap-text h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 2px; }
-    .apex-gap-text p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
-    .apex-roadmap-title { font-size: 0.85rem; font-weight: 700; margin-bottom: 0.6rem; color: var(--text-muted); letter-spacing: 0.05em; }
-    .apex-roadmap-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
-    .apex-roadmap-list li { font-size: 0.85rem; padding-left: 1.1rem; position: relative; }
-    .apex-roadmap-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); }
-    .cta-section { background: var(--accent); color: #fff; text-align: center; padding: 72px 2rem; }
-    .cta-section h2 { color: #fff; margin-bottom: 1rem; }
-    .cta-section p { color: rgba(255,255,255,0.85); margin-bottom: 2rem; font-size: 1.05rem; max-width: 500px; margin-left: auto; margin-right: auto; }
-    .btn-white { background: #fff; color: var(--accent); padding: 14px 28px; border-radius: 10px; font-weight: 700; font-size: 0.95rem; text-decoration: none; display: inline-block; }
-    .btn-white:hover { opacity: 0.9; }
+
+    .apex-example { background: var(--bg2); }
+    .apex-example-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem; }
+    @media (max-width: 768px) { .apex-example-grid { grid-template-columns: 1fr; } }
+    .apex-score-card, .apex-gaps-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.75rem; }
+    .apex-score-global { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+    .apex-score-num { font-family: 'Space Grotesk', sans-serif; font-size: 3.5rem; font-weight: 800; color: var(--accent); line-height: 1; }
+    .apex-score-label { font-size: 0.85rem; color: var(--text-muted); line-height: 1.4; }
+    .apex-score-dims { display: flex; flex-direction: column; gap: 0.75rem; }
+    .apex-dim { display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 0.75rem; }
+    .apex-dim-name { font-size: 0.8rem; color: var(--text-muted); }
+    .apex-dim-bar { background: var(--bg2); border-radius: 99px; height: 6px; width: 100px; overflow: hidden; }
+    .apex-dim-fill { height: 100%; background: var(--accent); border-radius: 99px; opacity: 0.5; }
+    .apex-dim-fill--high { opacity: 0.85; }
+    .apex-dim-val { font-size: 0.75rem; font-weight: 600; color: var(--text-muted); min-width: 20px; text-align: right; }
+    .apex-gaps-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 1rem; }
+    .apex-gaps-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.5rem; }
+    .apex-gap { font-size: 0.85rem; color: var(--text-muted); padding-left: 1rem; border-left: 3px solid; line-height: 1.4; }
+    .apex-gap--high { border-color: #e05252; }
+    .apex-gap--med { border-color: #e09852; }
+    .apex-gap--low { border-color: var(--accent); }
+    .apex-gap-tag { display: block; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 0.2rem; color: var(--text); }
+    .apex-roadmap-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.75rem; }
+    .apex-roadmap-list { padding-left: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; }
+    .apex-roadmap-list li { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
+
     .related-services { background: var(--bg2); padding: 64px 2rem; }
     .related-services h2 { text-align: center; font-size: 1.4rem; margin-bottom: 2rem; }
     .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; max-width: 900px; margin: 0 auto; }
@@ -122,20 +151,33 @@
     .related-card-label { font-size: 0.72rem; font-weight: 600; color: var(--accent); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 0.5rem; }
     .related-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; line-height: 1.3; }
     .related-card p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; }
+
+    .cta-section { background: var(--accent); color: #fff; text-align: center; padding: 72px 2rem; }
+    .cta-section h2 { color: #fff; margin-bottom: 1rem; }
+    .cta-section p { color: rgba(255,255,255,0.85); margin-bottom: 2rem; font-size: 1.05rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .btn-white { background: #fff; color: var(--accent); padding: 14px 28px; border-radius: 10px; font-weight: 700; font-size: 0.95rem; text-decoration: none; display: inline-block; }
+    .btn-white:hover { opacity: 0.9; }
+
     footer { padding: 32px 2rem; border-top: 1px solid var(--border-light); text-align: center; }
+    .footer-social { display: flex; align-items: center; justify-content: center; gap: 0.75rem; padding-top: 1rem; }
+    .footer-social a { display: flex; align-items: center; color: var(--text-dim); opacity: 0.6; transition: opacity 0.2s; }
+    .footer-social a:hover { opacity: 1; color: var(--accent); }
+    .footer-social svg { width: 18px; height: 18px; fill: currentColor; }
     footer p { font-size: 0.85rem; color: var(--text-dim); }
     footer a { color: var(--accent); text-decoration: none; }
-    .price-clp { font-size: 0.65rem; font-weight: 500; color: var(--text-muted); letter-spacing: 0.03em; margin-left: 2px; vertical-align: super; line-height: 1; }
-    .btn-full { display: block; text-align: center; background: var(--accent); color: #fff; padding: 14px; border-radius: 10px; font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: background 0.15s; max-width: 320px; margin: 0 auto; }
-    .btn-full:hover { background: var(--accent-hi); }
-    @media (max-width: 640px) { .hero { padding: 56px 1.25rem 48px; } section { padding: 56px 1.25rem; } .price-section { padding: 56px 1.25rem; } }
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
+    .lang-switch { font-size: 0.8rem; font-weight: 600; color: var(--text-muted); text-decoration: none; border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; }
+    .lang-switch:hover { border-color: var(--accent); color: var(--accent); }
+
+    @media (max-width: 768px) { .deliverables { grid-template-columns: 1fr; } }
+    @media (max-width: 640px) { .hero { padding: 56px 1.25rem 48px; } section { padding: 56px 1.25rem; } }
   </style>
 </head>
 <body>
 
 <nav>
   <div class="nav-inner">
-    <a href="/" class="nav-logo" aria-label="Back to home">
+    <a href="/en/" class="nav-logo" aria-label="Back to home">
       <svg viewBox="0 0 200 60" height="38" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g transform="translate(6,30) rotate(-90 0 0)">
           <circle cx="0" cy="0" r="22" stroke="#5aab6e" stroke-width="2.5" fill="none" opacity="0.35" stroke-dasharray="69.1 69.1" stroke-linecap="round"/>
@@ -154,42 +196,147 @@
 
 <section class="hero">
   <div class="hero-inner">
-    <div class="eyebrow">Marketing Audit & Maturity Assessment</div>
-    <h1>Find out exactly where<br>your <em>marketing stands</em></h1>
-    <p class="hero-desc">A complete marketing maturity audit for growing businesses. We analyze 6 dimensions, identify your priority gaps and deliver a roadmap with concrete actions for the next 90 days.</p>
+    <div class="eyebrow">APEX Diagnostic · Marketing Audit</div>
+    <h1>Find out exactly where your <br><em>marketing stands</em></h1>
+    <p class="hero-desc">The APEX Diagnostic is a complete marketing audit. We measure your maturity across 5 dimensions, identify your most critical gaps, and deliver a prioritized action plan.</p>
     <div class="hero-ctas">
-      <a href="https://calendly.com/vortexcor2026/30-min-reunion-consulta-apex-clone-clone" class="btn-primary" target="_blank" rel="noopener">Request your diagnostic</a>
-      <a href="/" class="btn-ghost">See all services</a>
+      <a href="https://calendly.com/vortexcor2026/30-min-reunion-consulta-apex-clone-clone" class="btn-primary" target="_blank" rel="noopener">Request my APEX Diagnostic</a>
+      <a href="/en/" class="btn-ghost">See all services</a>
     </div>
   </div>
 </section>
 
 <section>
   <div class="section-inner">
-    <div class="section-eyebrow">6 Dimensions</div>
-    <h2>What does the APEX Diagnostic evaluate?</h2>
-    <p class="section-sub">We analyze your marketing from 6 fundamental dimensions to give you a complete and prioritized picture of where you stand and what to do next.</p>
-    <div class="dims-grid">
-      <div class="dim-card"><div class="dim-num">01</div><h3>Strategy</h3><p>Goals, positioning, target audience and planning. Is your marketing guided by a clear strategy or is it reactive?</p></div>
-      <div class="dim-card"><div class="dim-num">02</div><h3>Content and SEO</h3><p>Content production, organic positioning and digital presence. How visible are you to people searching for what you offer?</p></div>
-      <div class="dim-card"><div class="dim-num">03</div><h3>Paid advertising</h3><p>Google Ads, Meta Ads and paid channels. How well are you using paid traffic to generate real results?</p></div>
-      <div class="dim-card"><div class="dim-num">04</div><h3>Brand</h3><p>Visual identity, consistency and perception. Does your brand reflect who you are and differentiate you from the competition?</p></div>
-      <div class="dim-card"><div class="dim-num">05</div><h3>Data and metrics</h3><p>Analytics, tracking and decision-making. Are you making decisions based on data or on intuition?</p></div>
-      <div class="dim-card"><div class="dim-num">06</div><h3>Team and organization</h3><p>Internal capabilities, tools and processes. Does your team have everything it needs to execute the marketing it needs?</p></div>
+    <div class="section-eyebrow">The 5 dimensions</div>
+    <h2>An in-depth diagnostic, not a checklist</h2>
+    <p class="section-sub">We evaluate 5 key dimensions of your company's marketing. Each is measured against objective criteria and compared with best practices in the market.</p>
+    <div class="dimensions-grid">
+      <div class="dim-card">
+        <div class="dim-num">DIMENSION 01</div>
+        <h3>Strategy and positioning</h3>
+        <p>Is your value proposition clear? Is your target segment well defined? Is your positioning relevant and differentiated in your market?</p>
+      </div>
+      <div class="dim-card">
+        <div class="dim-num">DIMENSION 02</div>
+        <h3>Digital presence</h3>
+        <p>Website, social media, SEO and Google Business. Can your customers find you online? Does your digital image reflect your value proposition?</p>
+      </div>
+      <div class="dim-card">
+        <div class="dim-num">DIMENSION 03</div>
+        <h3>Content and communication</h3>
+        <p>Does your content connect with your audience? Do you have a consistent brand voice? Does your content generate conversations and conversions?</p>
+      </div>
+      <div class="dim-card">
+        <div class="dim-num">DIMENSION 04</div>
+        <h3>Acquisition and conversion</h3>
+        <p>How do you reach new customers? Do you have nurturing and follow-up processes? Do you know your acquisition cost and conversion rate?</p>
+      </div>
+      <div class="dim-card">
+        <div class="dim-num">DIMENSION 05</div>
+        <h3>Measurement and data</h3>
+        <p>Do you have Google Analytics and Search Console set up? Are you tracking the right metrics? Are decisions based on data or intuition?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="forwhom">
+  <div class="section-inner">
+    <div class="section-eyebrow">Is this for you?</div>
+    <h2>The APEX Diagnostic is ideal if…</h2>
+    <p class="section-sub">Companies at different growth stages that need clarity before investing in marketing.</p>
+    <div class="forwhom-grid">
+      <div class="forwhom-item">
+        <div class="forwhom-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+        <div>
+          <h3>You're investing in marketing without seeing results</h3>
+          <p>You have social media, maybe ads, but you don't know what's working and what isn't.</p>
+        </div>
+      </div>
+      <div class="forwhom-item">
+        <div class="forwhom-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+        <div>
+          <h3>You're about to launch a campaign and want to start right</h3>
+          <p>Before investing in ads or hiring someone, you need to know where your foundation stands.</p>
+        </div>
+      </div>
+      <div class="forwhom-item">
+        <div class="forwhom-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+        <div>
+          <h3>You just launched your company and want to get organized</h3>
+          <p>You have energy but don't know where to start. The diagnostic gives you the priorities.</p>
+        </div>
+      </div>
+      <div class="forwhom-item">
+        <div class="forwhom-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <div>
+          <h3>You're changing strategy or repositioning</h3>
+          <p>You need an objective outside perspective to understand where you are before deciding where to go.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-inner">
+    <div class="section-eyebrow">What you get</div>
+    <h2>A concrete report, not an 80-page PDF</h2>
+    <p class="section-sub">The APEX Diagnostic delivers what you actually need: clarity and an action plan.</p>
+    <div class="deliverables">
+      <ul class="deliverable-list">
+        <li>
+          <div class="del-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+          <div class="del-text"><strong>Executive report with scoring</strong><span>Score by dimension and overall score. Easy to read, hard to ignore.</span></div>
+        </li>
+        <li>
+          <div class="del-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div class="del-text"><strong>Prioritized gap map</strong><span>The 3 most critical gaps that are slowing your company's growth.</span></div>
+        </li>
+        <li>
+          <div class="del-icon"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+          <div class="del-text"><strong>Prioritized action plan</strong><span>What to do first, what can wait, and what's not worth doing. Actionable from day one.</span></div>
+        </li>
+        <li>
+          <div class="del-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div class="del-text"><strong>Results presentation session</strong><span>90-minute meeting to review the report, answer questions, and define next steps.</span></div>
+        </li>
+        <li>
+          <div class="del-icon"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+          <div class="del-text"><strong>Roadmap proposal</strong><span>Recommendations for the next 90 days, including quick wins and long-term actions.</span></div>
+        </li>
+      </ul>
+      <div class="deliverable-price-box">
+        <div class="price-label">Complete APEX Diagnostic</div>
+        <div class="price-sub">Delivered in 10 business days · pricing based on scope</div>
+        <ul class="price-features">
+          <li>5-dimension audit</li>
+          <li>Objective scoring by area</li>
+          <li>Prioritized gap map</li>
+          <li>90-day action plan</li>
+          <li>90-min presentation session</li>
+          <li>Roadmap proposal</li>
+        </ul>
+        <a href="https://calendly.com/vortexcor2026/30-min-reunion-consulta-apex-clone-clone" class="btn-full" target="_blank" rel="noopener">Request my APEX Diagnostic</a>
+        <div style="text-align:center;margin-top:1rem;">
+          <a href="/apex-diagnostic/" style="font-size:0.9rem;color:var(--accent);font-weight:600;text-decoration:none;">Learn more →</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <section class="process">
   <div class="section-inner">
-    <div class="section-eyebrow">Process</div>
-    <h2>How the APEX Diagnostic works</h2>
-    <p class="section-sub">A structured 3-week process that delivers a complete diagnosis with clear priorities and a concrete roadmap.</p>
+    <div class="section-eyebrow">How it works</div>
+    <h2>From diagnostic to action plan, in 10 days</h2>
+    <p class="section-sub">An agile process with minimal load on your team.</p>
     <div class="steps">
-      <div class="step"><div class="step-num">01</div><h3>Kickoff</h3><p>Initial meeting to understand your context, goals and what you already have. We define access and timelines.</p></div>
-      <div class="step"><div class="step-num">02</div><h3>Audit</h3><p>We analyze your 6 dimensions: interviews, platform reviews, content and metrics audit. We gather the complete picture.</p></div>
-      <div class="step"><div class="step-num">03</div><h3>Report</h3><p>Score by dimension, identified gaps and priority matrix. Everything in a visual, easy-to-read and actionable document.</p></div>
-      <div class="step"><div class="step-num">04</div><h3>Roadmap</h3><p>90-day action plan with priorities, responsible parties and success metrics. Ready to execute from day one.</p></div>
+      <div class="step"><div class="step-num">01</div><h3>Kickoff (1h)</h3><p>Initial meeting to understand your business, goals, and context. We send you a pre-session form.</p></div>
+      <div class="step"><div class="step-num">02</div><h3>Audit (5 days)</h3><p>We review all your digital channels, content, available metrics, and competitive positioning.</p></div>
+      <div class="step"><div class="step-num">03</div><h3>Report (3 days)</h3><p>We build the executive report with scoring, gaps, and action plan. Clear, visual, and actionable.</p></div>
+      <div class="step"><div class="step-num">04</div><h3>Presentation (90 min)</h3><p>We walk you through the results, answer your questions, and define next steps together.</p></div>
     </div>
   </div>
 </section>
@@ -198,82 +345,37 @@
   <div class="section-inner">
     <div class="section-eyebrow">Real example (anonymized)</div>
     <h2>What does an APEX result look like?</h2>
-    <p class="section-sub">This is an excerpt from the diagnostic of a B2B services company, 12 people and 4 years in operation.</p>
+    <p class="section-sub">An excerpt from the diagnostic of a B2B services company, 12 people and 4 years in operation.</p>
     <div class="apex-example-grid">
       <div class="apex-score-card">
         <div class="apex-score-global">
-          <div class="apex-score-num">54<span style="font-size:1.5rem;color:var(--text-muted)">/100</span></div>
-          <div class="apex-score-label">Overall marketing maturity score</div>
+          <div class="apex-score-num">54</div>
+          <div class="apex-score-label">/ 100<br><span>Overall score</span></div>
         </div>
-        <div class="apex-dim">
-          <div class="apex-dim-label"><span>Strategy</span><span>40%</span></div>
-          <div class="apex-dim-bar"><div class="apex-dim-fill" style="width:40%"></div></div>
-        </div>
-        <div class="apex-dim">
-          <div class="apex-dim-label"><span>Content and SEO</span><span>35%</span></div>
-          <div class="apex-dim-bar"><div class="apex-dim-fill" style="width:35%"></div></div>
-        </div>
-        <div class="apex-dim">
-          <div class="apex-dim-label"><span>Paid advertising</span><span>60%</span></div>
-          <div class="apex-dim-bar"><div class="apex-dim-fill" style="width:60%"></div></div>
-        </div>
-        <div class="apex-dim">
-          <div class="apex-dim-label"><span>Brand</span><span>70%</span></div>
-          <div class="apex-dim-bar"><div class="apex-dim-fill" style="width:70%"></div></div>
-        </div>
-        <div class="apex-dim">
-          <div class="apex-dim-label"><span>Data and metrics</span><span>30%</span></div>
-          <div class="apex-dim-bar"><div class="apex-dim-fill" style="width:30%"></div></div>
-        </div>
-        <div class="apex-dim">
-          <div class="apex-dim-label"><span>Team and organization</span><span>65%</span></div>
-          <div class="apex-dim-bar"><div class="apex-dim-fill" style="width:65%"></div></div>
+        <div class="apex-score-dims">
+          <div class="apex-dim"><span class="apex-dim-name">Digital strategy</span><div class="apex-dim-bar"><div class="apex-dim-fill" style="width:40%"></div></div><span class="apex-dim-val">40</span></div>
+          <div class="apex-dim"><span class="apex-dim-name">Content and SEO</span><div class="apex-dim-bar"><div class="apex-dim-fill" style="width:35%"></div></div><span class="apex-dim-val">35</span></div>
+          <div class="apex-dim"><span class="apex-dim-name">Paid media</span><div class="apex-dim-bar"><div class="apex-dim-fill" style="width:60%"></div></div><span class="apex-dim-val">60</span></div>
+          <div class="apex-dim"><span class="apex-dim-name">Brand and positioning</span><div class="apex-dim-bar"><div class="apex-dim-fill" style="width:70%"></div></div><span class="apex-dim-val">70</span></div>
+          <div class="apex-dim"><span class="apex-dim-name">Team and processes</span><div class="apex-dim-bar"><div class="apex-dim-fill apex-dim-fill--high" style="width:65%"></div></div><span class="apex-dim-val">65</span></div>
         </div>
       </div>
       <div class="apex-gaps-card">
-        <div class="apex-gaps-title">Priority gaps identified</div>
-        <div class="apex-gap">
-          <div class="apex-gap-dot high"></div>
-          <div class="apex-gap-text"><h4>No measurement system</h4><p>No conversion tracking installed. Decisions are made without data. Quick win: Google Analytics 4 + Tag Manager in 1 week.</p></div>
-        </div>
-        <div class="apex-gap">
-          <div class="apex-gap-dot high"></div>
-          <div class="apex-gap-text"><h4>Undefined target audience</h4><p>No documented ideal customer profile. Ads are running to broad audiences. Opportunity to cut cost per lead by 40%.</p></div>
-        </div>
-        <div class="apex-gap">
-          <div class="apex-gap-dot med"></div>
-          <div class="apex-gap-text"><h4>No organic content strategy</h4><p>Sporadic posts without structure. Keyword analysis shows 12 high-value opportunities without competition.</p></div>
-        </div>
-        <div class="apex-gap">
-          <div class="apex-gap-dot low"></div>
-          <div class="apex-gap-text"><h4>Inconsistent visual identity</h4><p>Outdated brand guide. 3 different logos used across channels.</p></div>
-        </div>
-        <div class="apex-roadmap-title">90-DAY ROADMAP (EXCERPT)</div>
-        <ul class="apex-roadmap-list">
-          <li>Week 1–2: Measurement setup (GA4 + Tag Manager)</li>
-          <li>Week 3–4: Ideal customer profile + ad audience review</li>
-          <li>Month 2: Keyword content calendar</li>
-          <li>Month 3: Brand guide update + cross-channel consistency</li>
+        <h3>Gaps identified</h3>
+        <ul class="apex-gaps-list">
+          <li class="apex-gap apex-gap--high"><span class="apex-gap-tag">High priority</span>No content strategy or active editorial calendar.</li>
+          <li class="apex-gap apex-gap--high"><span class="apex-gap-tag">High priority</span>Website not optimized for SEO: no meta tags, no H1–H3 structure.</li>
+          <li class="apex-gap apex-gap--med"><span class="apex-gap-tag">Medium priority</span>Google Ads running but no conversion tracking configured.</li>
+          <li class="apex-gap apex-gap--low"><span class="apex-gap-tag">Low priority</span>Inconsistent social media: sporadic posts with no editorial thread.</li>
         </ul>
+        <h3 class="apex-roadmap-title">Roadmap excerpt (90 days)</h3>
+        <ol class="apex-roadmap-list">
+          <li><strong>Days 1–30:</strong> Set up Google Search Console + GA4. Fix meta tags and SEO structure.</li>
+          <li><strong>Days 31–60:</strong> Launch monthly editorial calendar. 8 pieces per channel.</li>
+          <li><strong>Days 61–90:</strong> Activate conversion tracking in Ads. Review audiences and adjust budget.</li>
+        </ol>
       </div>
     </div>
-  </div>
-</section>
-
-<section class="price-section">
-  <div class="section-eyebrow">Investment</div>
-  <h2>One diagnostic, one clear roadmap</h2>
-  <div class="price-desc">Pricing is tailored to the size and complexity of your business. Everything included.</div>
-  <ul class="price-includes">
-    <li>Complete 6-dimension audit</li>
-    <li>Score report with identified gaps</li>
-    <li>90-day prioritized action roadmap</li>
-    <li>Results presentation meeting</li>
-    <li>30 days of post-delivery support</li>
-  </ul>
-  <a href="https://calendly.com/vortexcor2026/30-min-reunion-consulta-apex-clone-clone" class="btn-full" target="_blank" rel="noopener">Request your APEX Diagnostic</a>
-  <div style="text-align:center;margin-top:1rem;">
-    <a href="/apex-diagnostic/" style="font-size:0.9rem;color:var(--accent);font-weight:600;text-decoration:none;">Learn more →</a>
   </div>
 </section>
 
@@ -299,13 +401,18 @@
 </section>
 
 <section class="cta-section">
-  <h2>Ready to get your diagnostic?</h2>
-  <p>Book a 30-minute call. We'll show you how the process works and answer your questions.</p>
-  <a href="https://calendly.com/vortexcor2026/30-min-reunion-consulta-apex-clone-clone" class="btn-white" target="_blank" rel="noopener">Request your diagnostic</a>
+  <h2>Ready to find out where your marketing stands?</h2>
+  <p>The APEX Diagnostic gives you clarity in 10 days. No fluff, no theory — just what you need to make better decisions.</p>
+  <a href="https://calendly.com/vortexcor2026/30-min-reunion-consulta-apex-clone-clone" class="btn-white" target="_blank" rel="noopener">Request my APEX Diagnostic</a>
 </section>
 
 <footer>
-  <p>© 2026 <a href="/">VORTEX Consultoría</a> · <a href="/digital-marketing/">Digital Marketing</a> · <a href="/people-management/">People Management</a> · <a href="/talent-selection/">Talent Selection</a> · <a href="/apex-diagnostic/">APEX Diagnostic</a></p>
+  <p>© 2026 <a href="/en/">VORTEX Consultoría</a> · <a href="/digital-marketing/">Digital Marketing</a> · <a href="/people-management/">People Management</a> · <a href="/talent-selection/">Talent Selection</a> · <a href="/apex-diagnostic/">APEX Diagnostic</a></p>
+  <div class="footer-social">
+    <a href="https://www.linkedin.com/company/vortex-cor" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+    <a href="https://www.instagram.com/somosvortexcor/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></a>
+    <a href="https://www.facebook.com/profile.php?id=61596441601924" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+  </div>
 </footer>
 
 </body>
