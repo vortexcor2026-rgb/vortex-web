@@ -97,6 +97,9 @@
     .pack-cta:hover { background: var(--accent-hi); }
     .pack-cta-secondary { background: transparent; color: var(--accent); border: 1.5px solid var(--accent); }
     .pack-cta-secondary:hover { background: var(--accent); color: #fff; }
+    .plan-actions { margin-top: 1rem; }
+    .plan-doubt { display: block; text-align: center; margin-top: 0.75rem; font-size: 0.8125rem; color: var(--accent); text-decoration: none; font-weight: 500; opacity: 0.85; transition: opacity 0.2s; }
+    .plan-doubt:hover { opacity: 1; text-decoration: underline; }
     .cta-section { background: var(--accent); color: #fff; text-align: center; padding: 72px 2rem; }
     .cta-section h2 { color: #fff; margin-bottom: 1rem; }
     .cta-section p { color: rgba(255,255,255,0.85); margin-bottom: 2rem; font-size: 1.05rem; max-width: 500px; margin-left: auto; margin-right: auto; }
@@ -233,7 +236,10 @@
           <li>Finalist candidate shortlist</li>
           <li>Executive report per candidate</li>
         </ul>
-        <a href="https://calendly.com/vortexcor2026/30-min-marketing-discovery-session-clone" class="pack-cta pack-cta-secondary">Get started</a>
+        <div class="plan-actions">
+          <a href="#" onclick="payWithFlow('o1a8ee03c1da73ce7273992af333cb7fb9b05356');return false;" class="pack-cta pack-cta-secondary">Hire</a>
+          <a href="https://calendly.com/vortexcor2026/30-min-marketing-discovery-session-clone" class="plan-doubt" target="_blank" rel="noopener">Questions about this plan →</a>
+        </div>
       </div>
       <div class="pack-card featured">
         <div class="pack-badge">TRENDING</div>
@@ -260,7 +266,10 @@
             <strong id="addon-english-ts-total-val" style="color:var(--accent);">$1,800 USD</strong>
           </div>
         </div>
-        <a href="https://calendly.com/vortexcor2026/30-min-marketing-discovery-session-clone" class="pack-cta">Get started</a>
+        <div class="plan-actions">
+          <a href="#" onclick="payWithFlow('i97f46c536ea1cc3f5d65b025f5b3af9ebaff9a8');return false;" class="pack-cta">Hire</a>
+          <a href="https://calendly.com/vortexcor2026/30-min-marketing-discovery-session-clone" class="plan-doubt" target="_blank" rel="noopener">Questions about this plan →</a>
+        </div>
       </div>
       <div class="pack-card">
         <div class="pack-title">Job Profile Development</div>
@@ -271,7 +280,10 @@
           <li><strong>Professional</strong> — discovery interview, competencies, one revision round.</li>
           <li><strong>Advanced</strong> — in-depth analysis, behavioral &amp; technical competencies, performance indicators.</li>
         </ul>
-        <a href="https://calendly.com/vortexcor2026/30-min-marketing-discovery-session-clone" class="pack-cta pack-cta-secondary">Get started</a>
+        <div class="plan-actions">
+          <a href="#" onclick="payWithFlow('na811dc9c556b4b25d7f9692dfef8857f2ef2e6c');return false;" class="pack-cta pack-cta-secondary">Hire</a>
+          <a href="https://calendly.com/vortexcor2026/30-min-marketing-discovery-session-clone" class="plan-doubt" target="_blank" rel="noopener">Questions about this plan →</a>
+        </div>
       </div>
     </div>
   </div>
@@ -326,6 +338,83 @@
     }
   }
 </script>
+
+<script>
+  function payWithFlow(token) {
+    const modal = document.getElementById('checkout-modal');
+    modal.dataset.token = token;
+    document.getElementById('checkout-name').value = '';
+    document.getElementById('checkout-email').value = '';
+    document.getElementById('checkout-error').textContent = '';
+    modal.style.display = 'flex';
+    document.getElementById('checkout-name').focus();
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    if (new URLSearchParams(location.search).get('pago') === 'ok') {
+      document.getElementById('pago-ok-modal').style.display = 'flex';
+    }
+    document.getElementById('checkout-cancel').addEventListener('click', () => {
+      document.getElementById('checkout-modal').style.display = 'none';
+    });
+    document.getElementById('checkout-modal').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('checkout-modal')) document.getElementById('checkout-modal').style.display = 'none';
+    });
+    document.getElementById('checkout-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const modal = document.getElementById('checkout-modal');
+      const token = modal.dataset.token;
+      const name = document.getElementById('checkout-name').value.trim();
+      const email = document.getElementById('checkout-email').value.trim();
+      const errEl = document.getElementById('checkout-error');
+      const btn = document.getElementById('checkout-submit');
+      if (!name || !email) { errEl.textContent = 'Please fill in all fields.'; return; }
+      btn.disabled = true; btn.textContent = 'One moment…'; errEl.textContent = '';
+      try {
+        const res = await fetch('/.netlify/functions/create-payment', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token, name, email })
+        });
+        const data = await res.json();
+        modal.style.display = 'none';
+        if (data.url) { window.location.href = data.url; }
+        else { errEl.textContent = data.error || 'Error connecting to payment system.'; btn.disabled = false; btn.textContent = 'Proceed to payment'; }
+      } catch (err) {
+        errEl.textContent = 'Connection error. Please try again.'; btn.disabled = false; btn.textContent = 'Proceed to payment';
+      }
+    });
+  });
+</script>
+
+<div id="pago-ok-modal" style="display:none;position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.55);align-items:center;justify-content:center;padding:1rem;">
+  <div style="background:#fff;border-radius:12px;padding:2.5rem 2rem;max-width:420px;width:100%;box-shadow:0 8px 40px rgba(0,0,0,.18);text-align:center;">
+    <div style="font-size:2.5rem;margin-bottom:1rem;">✅</div>
+    <h3 style="margin:0 0 .5rem;font-size:1.3rem;">Payment received!</h3>
+    <p style="margin:0 0 1.5rem;font-size:.95rem;color:#555;">Thank you for your purchase. We'll send a confirmation email with next steps.</p>
+    <button onclick="document.getElementById('pago-ok-modal').style.display='none';history.replaceState(null,'',location.pathname);" style="background:#2d6a4f;color:#fff;border:none;border-radius:8px;padding:.75rem 2rem;font-size:1rem;cursor:pointer;">Close</button>
+  </div>
+</div>
+
+<div id="checkout-modal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.55);align-items:center;justify-content:center;padding:1rem;">
+  <div style="background:#fff;border-radius:12px;padding:2rem 2rem 1.75rem;max-width:420px;width:100%;box-shadow:0 8px 40px rgba(0,0,0,.18);">
+    <h3 style="margin:0 0 .35rem;font-size:1.2rem;color:#0b0b0b;">One step before paying</h3>
+    <p style="margin:0 0 1.25rem;font-size:.93rem;color:#555;">We need your details to send your welcome and coordinate the start.</p>
+    <form id="checkout-form" novalidate>
+      <label style="display:block;margin-bottom:.85rem;">
+        <span style="font-size:.85rem;font-weight:600;color:#0b0b0b;display:block;margin-bottom:.3rem;">Name</span>
+        <input id="checkout-name" type="text" placeholder="Your full name" autocomplete="name" style="width:100%;box-sizing:border-box;padding:.6rem .8rem;border:1.5px solid #ddd;border-radius:7px;font-size:.97rem;outline:none;" onfocus="this.style.borderColor='#5aab6e'" onblur="this.style.borderColor='#ddd'">
+      </label>
+      <label style="display:block;margin-bottom:1.1rem;">
+        <span style="font-size:.85rem;font-weight:600;color:#0b0b0b;display:block;margin-bottom:.3rem;">Email</span>
+        <input id="checkout-email" type="email" placeholder="you@email.com" autocomplete="email" style="width:100%;box-sizing:border-box;padding:.6rem .8rem;border:1.5px solid #ddd;border-radius:7px;font-size:.97rem;outline:none;" onfocus="this.style.borderColor='#5aab6e'" onblur="this.style.borderColor='#ddd'">
+      </label>
+      <p id="checkout-error" style="color:#d94040;font-size:.85rem;margin:-.5rem 0 .75rem;min-height:1.1em;"></p>
+      <div style="display:flex;gap:.75rem;justify-content:flex-end;">
+        <button id="checkout-cancel" type="button" style="padding:.55rem 1.2rem;border:1.5px solid #ddd;border-radius:7px;background:#fff;color:#555;font-size:.93rem;cursor:pointer;">Cancel</button>
+        <button id="checkout-submit" type="submit" style="padding:.55rem 1.5rem;border:none;border-radius:7px;background:#5aab6e;color:#fff;font-size:.95rem;font-weight:600;cursor:pointer;">Proceed to payment</button>
+      </div>
+    </form>
+  </div>
+</div>
 
 </body>
 </html>

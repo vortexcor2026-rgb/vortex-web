@@ -168,6 +168,11 @@
     .related-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; line-height: 1.3; }
     .related-card p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; }
     .price-clp { font-size: 0.65rem; font-weight: 500; color: var(--text-muted); letter-spacing: 0.03em; margin-left: 2px; vertical-align: super; line-height: 1; }
+    .plan-actions { margin-top: 1rem; }
+    .plan-doubt { display: block; text-align: center; margin-top: 0.75rem; font-size: 0.8125rem; color: var(--accent); text-decoration: none; font-weight: 500; opacity: 0.85; transition: opacity 0.2s; }
+    .plan-doubt:hover { opacity: 1; text-decoration: underline; }
+    .btn-ghost { display: inline-block; padding: 0.6rem 1.4rem; border: 1.5px solid var(--accent); border-radius: 8px; color: var(--accent); font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: background 0.15s, color 0.15s; }
+    .btn-ghost:hover { background: var(--accent); color: #fff; }
   </style>
 </head>
 <body>
@@ -268,7 +273,10 @@
           <li>Informe ejecutivo de resultados</li>
           <li>Propuesta de planes de desarrollo</li>
         </ul>
-        <a href="https://vortexcor.com/#servicios" class="pack-cta pack-cta-secondary">Ver más detalles</a>
+        <div class="plan-actions">
+          <a href="#" onclick="payWithFlow('o1a8ee03c1da73ce7273992af333cb7fb9b05356');return false;" class="pack-cta pack-cta-secondary">Contratar</a>
+          <a href="https://calendly.com/vortexcor2026/30-min-reunion-consulta-marketing-clone" class="plan-doubt" target="_blank" rel="noopener">Tengo dudas con el plan →</a>
+        </div>
       </div>
       <div class="pack-card featured">
         <div class="pack-name">Pack · Talento</div>
@@ -282,7 +290,10 @@
           <li>Informes de resultados en cada proceso</li>
           <li>Soporte vía WhatsApp o email</li>
         </ul>
-        <a href="https://vortexcor.com/#servicios" class="pack-cta">Ver más detalles</a>
+        <div class="plan-actions">
+          <a href="#" onclick="payWithFlow('i97f46c536ea1cc3f5d65b025f5b3af9ebaff9a8');return false;" class="pack-cta">Contratar</a>
+          <a href="https://calendly.com/vortexcor2026/30-min-reunion-consulta-marketing-clone" class="plan-doubt" target="_blank" rel="noopener">Tengo dudas con el plan →</a>
+        </div>
       </div>
       <div class="pack-card">
         <div class="pack-name">Pack · Perfiles</div>
@@ -295,8 +306,14 @@
           <li>Documentos en formato editable</li>
           <li>Revisión y validación con líderes</li>
         </ul>
-        <a href="https://vortexcor.com/#servicios" class="pack-cta pack-cta-secondary">Ver más detalles</a>
+        <div class="plan-actions">
+          <a href="#" onclick="payWithFlow('na811dc9c556b4b25d7f9692dfef8857f2ef2e6c');return false;" class="pack-cta pack-cta-secondary">Contratar</a>
+          <a href="https://calendly.com/vortexcor2026/30-min-reunion-consulta-marketing-clone" class="plan-doubt" target="_blank" rel="noopener">Tengo dudas con el plan →</a>
+        </div>
       </div>
+    </div>
+    <div style="text-align:center;margin-top:2rem;">
+      <a href="/gestion-de-personas/" class="btn-ghost">Conocer más →</a>
     </div>
   </div>
 </section>
@@ -351,6 +368,83 @@
 </div>
 
 </footer>
+
+<script>
+  function payWithFlow(token) {
+    const modal = document.getElementById('checkout-modal');
+    modal.dataset.token = token;
+    document.getElementById('checkout-name').value = '';
+    document.getElementById('checkout-email').value = '';
+    document.getElementById('checkout-error').textContent = '';
+    modal.style.display = 'flex';
+    document.getElementById('checkout-name').focus();
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    if (new URLSearchParams(location.search).get('pago') === 'ok') {
+      document.getElementById('pago-ok-modal').style.display = 'flex';
+    }
+    document.getElementById('checkout-cancel').addEventListener('click', () => {
+      document.getElementById('checkout-modal').style.display = 'none';
+    });
+    document.getElementById('checkout-modal').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('checkout-modal')) document.getElementById('checkout-modal').style.display = 'none';
+    });
+    document.getElementById('checkout-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const modal = document.getElementById('checkout-modal');
+      const token = modal.dataset.token;
+      const name = document.getElementById('checkout-name').value.trim();
+      const email = document.getElementById('checkout-email').value.trim();
+      const errEl = document.getElementById('checkout-error');
+      const btn = document.getElementById('checkout-submit');
+      if (!name || !email) { errEl.textContent = 'Por favor completa todos los campos.'; return; }
+      btn.disabled = true; btn.textContent = 'Un momento…'; errEl.textContent = '';
+      try {
+        const res = await fetch('/.netlify/functions/create-payment', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token, name, email })
+        });
+        const data = await res.json();
+        modal.style.display = 'none';
+        if (data.url) { window.location.href = data.url; }
+        else { errEl.textContent = data.error || 'Error al conectar con el sistema de pago.'; btn.disabled = false; btn.textContent = 'Ir a pagar'; }
+      } catch (err) {
+        errEl.textContent = 'Error de conexión. Intenta de nuevo.'; btn.disabled = false; btn.textContent = 'Ir a pagar';
+      }
+    });
+  });
+</script>
+
+<div id="pago-ok-modal" style="display:none;position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.55);align-items:center;justify-content:center;padding:1rem;">
+  <div style="background:#fff;border-radius:12px;padding:2.5rem 2rem;max-width:420px;width:100%;box-shadow:0 8px 40px rgba(0,0,0,.18);text-align:center;">
+    <div style="font-size:2.5rem;margin-bottom:1rem;">✅</div>
+    <h3 style="margin:0 0 .5rem;font-size:1.3rem;">¡Pago recibido!</h3>
+    <p style="margin:0 0 1.5rem;font-size:.95rem;color:#555;">Gracias por tu compra. Te enviaremos un email de confirmación con los próximos pasos.</p>
+    <button onclick="document.getElementById('pago-ok-modal').style.display='none';history.replaceState(null,'',location.pathname);" style="background:#2d6a4f;color:#fff;border:none;border-radius:8px;padding:.75rem 2rem;font-size:1rem;cursor:pointer;">Cerrar</button>
+  </div>
+</div>
+
+<div id="checkout-modal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.55);align-items:center;justify-content:center;padding:1rem;">
+  <div style="background:#fff;border-radius:12px;padding:2rem 2rem 1.75rem;max-width:420px;width:100%;box-shadow:0 8px 40px rgba(0,0,0,.18);">
+    <h3 style="margin:0 0 .35rem;font-size:1.2rem;color:#0b0b0b;">Un paso antes de pagar</h3>
+    <p style="margin:0 0 1.25rem;font-size:.93rem;color:#555;">Necesitamos tus datos para enviarte la bienvenida y coordinar el inicio.</p>
+    <form id="checkout-form" novalidate>
+      <label style="display:block;margin-bottom:.85rem;">
+        <span style="font-size:.85rem;font-weight:600;color:#0b0b0b;display:block;margin-bottom:.3rem;">Nombre</span>
+        <input id="checkout-name" type="text" placeholder="Tu nombre completo" autocomplete="name" style="width:100%;box-sizing:border-box;padding:.6rem .8rem;border:1.5px solid #ddd;border-radius:7px;font-size:.97rem;outline:none;" onfocus="this.style.borderColor='#5aab6e'" onblur="this.style.borderColor='#ddd'">
+      </label>
+      <label style="display:block;margin-bottom:1.1rem;">
+        <span style="font-size:.85rem;font-weight:600;color:#0b0b0b;display:block;margin-bottom:.3rem;">Email</span>
+        <input id="checkout-email" type="email" placeholder="tu@email.com" autocomplete="email" style="width:100%;box-sizing:border-box;padding:.6rem .8rem;border:1.5px solid #ddd;border-radius:7px;font-size:.97rem;outline:none;" onfocus="this.style.borderColor='#5aab6e'" onblur="this.style.borderColor='#ddd'">
+      </label>
+      <p id="checkout-error" style="color:#d94040;font-size:.85rem;margin:-.5rem 0 .75rem;min-height:1.1em;"></p>
+      <div style="display:flex;gap:.75rem;justify-content:flex-end;">
+        <button id="checkout-cancel" type="button" style="padding:.55rem 1.2rem;border:1.5px solid #ddd;border-radius:7px;background:#fff;color:#555;font-size:.93rem;cursor:pointer;">Cancelar</button>
+        <button id="checkout-submit" type="submit" style="padding:.55rem 1.5rem;border:none;border-radius:7px;background:#5aab6e;color:#fff;font-size:.95rem;font-weight:600;cursor:pointer;">Ir a pagar</button>
+      </div>
+    </form>
+  </div>
+</div>
 
 </body>
 </html>
