@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /.netlify/
 
 Sitemap: https://vortexcor.com/sitemap.xml

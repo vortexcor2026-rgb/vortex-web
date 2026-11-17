@@ -264,7 +264,8 @@
         { currency: CURRENCY, value: 0, items: [{ item_id: 'service-' + svc, item_name: d.title.split('|')[0].trim(), item_category: svc }] });
     }
     // Payment confirmed (Flow return page)
-    if (/^\/(en\/)?(gracias|thank-you)/.test(path)) {
+    // Flow returns buyers to /?pago=ok (urlReturn in create-payment.js); /gracias kept as fallback
+    if (/^\/(en\/)?(gracias|thank-you)/.test(path) || new URLSearchParams(location.search).get('pago') === 'ok') {
       var c = SS.get('vx_checkout') || LS.get('vx_checkout');
       var q = new URLSearchParams(location.search);
       var tid = q.get('token') || q.get('order') || q.get('commerceOrder') || ('vx-' + Date.now());
@@ -301,6 +302,14 @@
     if (e.origin.indexOf('calendly.com') === -1 || !e.data || !e.data.event) return;
     if (e.data.event === 'calendly.event_scheduled') push('schedule_meeting', Object.assign(base(), { lead_type: 'meeting_booked', meeting_type: 'embed' }));
   });
+
+  // Checkout form submitted (name + email entered, buyer sent to Flow). No personal data is pushed.
+  d.addEventListener('submit', function (e) {
+    if (!e.target || e.target.id !== 'checkout-form') return;
+    var c = SS.get('vx_checkout') || LS.get('vx_checkout');
+    push('add_payment_info', Object.assign(base(e.target), { payment_type: 'flow', service_line: c ? c.service_line : 'unknown' }),
+      c ? c.ecommerce : undefined);
+  }, true);
 
   function init() { decorateCalendly(); observeSections(); pageEvents(); }
   if (d.readyState === 'loading') d.addEventListener('DOMContentLoaded', init); else init();
