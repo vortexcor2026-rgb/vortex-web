@@ -25,9 +25,9 @@
       seePlan: 'Ver plan', note: 'Precios en pesos chilenos, IVA incluido si corresponde.', compSub: 'Para sumar a tu plan o resolver algo puntual.',
       solSub: { marketing: 'Lo que más nos piden las empresas que necesitan resultados ya.', rrhh: 'Para lo que no puede esperar en tu equipo.' } },
     en: { mkt: 'Marketing', rrhh: 'HR', sol: 'Solutions', comp: 'Add-ons', add: 'Add', added: 'Added', quote: 'Get a quote', from: 'from',
-      cart: 'Your plan', empty: 'Add services to see your summary.', total: 'Total', pay: 'Request this plan', rec: 'Recommended', urgent: 'Urgent',
+      cart: 'Your plan', empty: 'Add services to see your summary.', total: 'Total', pay: 'Pay with PayPal', rec: 'Recommended', urgent: 'Urgent',
       save: function (p, price, diff) { return 'The ' + p + ' costs ' + price + ' and includes this and more. You save ' + diff + '.'; },
-      seePlan: 'See plan', note: 'Book a short call and we send you a secure PayPal link for your selection.', compSub: 'To add to your plan or solve something specific.',
+      seePlan: 'See plan', note: 'Secure payment in USD with PayPal or card.', compSub: 'To add to your plan or solve something specific.',
       solSub: { marketing: 'What companies ask us most when they need results now.', rrhh: 'For what can’t wait in your team.' } }
   };
   function tx() { return TX[lang()]; }
@@ -249,10 +249,10 @@
     var lines = cartLines();
     if (!lines.length) return;
     if (lang() === 'en') {
-      // English site: no Flow (CLP). Book a call; we invoice the selection by PayPal.
+      // English site: PayPal in USD. Total is recalculated server-side from the catalog.
       var tot0 = totals();
-      var summary = lines.map(function (it) { return L(it.name) + (it.type === 'qty' ? ' x' + cart[it.id] : ''); }).join(', ') + ' | Total USD ' + tot0.usd.toLocaleString('en-US');
-      window.open(CALENDLY + '?a1=' + encodeURIComponent('Requested plan: ' + summary), '_blank', 'noopener');
+      var fallback = CALENDLY + '?a1=' + encodeURIComponent('Requested plan: ' + lines.map(function (it) { return L(it.name) + (it.type === 'qty' ? ' x' + cart[it.id] : ''); }).join(', ') + ' | Total USD ' + tot0.usd.toLocaleString('en-US'));
+      paypalCheckout({ kind: 'cart', items: lines.map(function (it) { return { id: it.id, qty: cart[it.id] }; }) }, fallback, document.querySelector('.vxa .arma-pay-btn'));
       return;
     }
     var tot = totals();
@@ -269,6 +269,28 @@
     modal.style.display = 'flex';
     var n = document.getElementById('checkout-name'); if (n) n.focus();
   }
+
+  // PayPal (English site). On any failure, fall back to the given URL (payment link or a call).
+  function paypalCheckout(payload, fallback, btn) {
+    var label = btn ? btn.textContent : '';
+    if (btn) { btn.disabled = true; btn.textContent = 'Redirecting to PayPal…'; }
+    var done = false, timer = setTimeout(function () { if (!done) { done = true; window.location.href = fallback; } }, 12000);
+    fetch('/.netlify/functions/paypal/create', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+      .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+      .then(function (res) {
+        if (done) return; done = true; clearTimeout(timer);
+        if (res.ok && res.j && res.j.url) { window.location.href = res.j.url; return; }
+        window.location.href = fallback;
+      })
+      .catch(function () { if (!done) { done = true; clearTimeout(timer); window.location.href = fallback; } })
+      .finally(function () { if (btn) setTimeout(function () { btn.disabled = false; btn.textContent = label; }, 4000); });
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('[data-vx-paypal-plan]');
+    if (!a) return;
+    e.preventDefault();
+    paypalCheckout({ kind: 'plan', plan: a.getAttribute('data-vx-paypal-plan') }, a.getAttribute('href') || CALENDLY, a);
+  });
 
   function init() {
     css();

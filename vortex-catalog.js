@@ -175,6 +175,35 @@
     return { total: total, lines: out };
   };
 
+  // English site plans charged in USD through PayPal (must match the prices shown on the English pages)
+  CATALOG.enPlans = {
+    starter:     { name: 'Starter Marketing Package',     usd: 1500 },
+    monthly:     { name: 'Monthly Marketing Management',  usd: 1200 },
+    growth:      { name: 'Growth Marketing Package',      usd: 1800 },
+    recruit:     { name: 'Standard Recruitment',          usd: 1500 },
+    latam:       { name: 'LATAM Talent for USA',          usd: 1500 },
+    jobdesc:     { name: 'Job Description Development',   usd: 300 },
+    kickstart:   { name: 'HR Kickstart',                  usd: 600 },
+    performance: { name: 'Performance Cycle',             usd: 1500 },
+    hrmonthly:   { name: 'HR Monthly',                    usd: 800 }
+  };
+
+  // USD total for the English "Build your plan" cart (PayPal). Same validation as priceCart.
+  CATALOG.priceCartUSD = function (lines) {
+    var total = 0, out = [];
+    if (!Array.isArray(lines) || !lines.length) throw new Error('empty');
+    lines.forEach(function (l) {
+      var it = CATALOG.items.find(function (x) { return x.id === l.id; });
+      if (!it || it.type === 'quote' || it.esOnly || !it.usd) throw new Error('bad item ' + l.id);
+      var max = it.type === 'once' ? 1 : (it.max || 20);
+      var qty = Math.floor(Number(l.qty));
+      if (!(qty >= 1 && qty <= max)) throw new Error('bad qty ' + l.id);
+      total += it.usd * qty;
+      out.push({ id: it.id, name: it.name.en, qty: qty, price: it.usd });
+    });
+    return { total: total, lines: out };
+  };
+
   if (typeof module !== 'undefined' && module.exports) module.exports = CATALOG;
   else root.VORTEX_CATALOG = CATALOG;
 })(typeof window !== 'undefined' ? window : this);

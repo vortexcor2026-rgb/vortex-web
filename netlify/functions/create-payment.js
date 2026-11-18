@@ -275,7 +275,7 @@ async function sendResendEmail(payload) {
 
   // Email interno a Vortex
   await resendPost({
-    from: 'Vortex Co <notificaciones@vortexcor.com>',
+    from: 'VORTEX Consultoría <notificaciones@vortexcor.com>',
     to: [BUSINESS_EMAIL],
     subject: `VENTA: ${plan} - ${name || 'Cliente'}`,
     html: `
@@ -295,7 +295,7 @@ async function sendResendEmail(payload) {
   // Email de confirmación al comprador (solo si tiene email)
   if (email) {
     await resendPost({
-      from: 'Vortex Co <notificaciones@vortexcor.com>',
+      from: 'VORTEX Consultoría <notificaciones@vortexcor.com>',
       to: [email],
       subject: `Gracias por tu compra - ${plan}`,
       html: getBuyerEmail(planCode, name, clpAmount),
@@ -511,7 +511,7 @@ exports.handler = async (event) => {
   if (event.httpMethod === 'GET' && event.path.includes('test-email')) {
     try {
       await resendPost({
-        from: 'Vortex Co <notificaciones@vortexcor.com>',
+        from: 'VORTEX Consultoría <notificaciones@vortexcor.com>',
         to: [BUSINESS_EMAIL],
         subject: 'TEST - Resend funcionando',
         html: '<p>Si recibes esto, Resend está configurado correctamente en Netlify.</p>',
