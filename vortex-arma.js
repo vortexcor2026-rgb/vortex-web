@@ -103,7 +103,12 @@
       '.vxa-hrow{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem}',
       '.vxa-arrows{display:none;gap:.4rem;margin-bottom:1rem}',
       '.vxa--carousel .vxa-arrows{display:flex}',
-      '.vxa-arrow{width:38px;height:38px;border-radius:50%;border:1px solid var(--vx-b);background:#fff;cursor:pointer;font-size:1.1rem;color:var(--vx-t)}',
+      '.vxa .vxa-arrow{width:40px;height:40px;padding:0;margin:0;border-radius:50%;border:1px solid var(--vx-b);background:#fff;cursor:pointer;color:var(--vx-t);display:inline-flex;align-items:center;justify-content:center;line-height:0;box-shadow:none;outline:none;transition:background .15s,border-color .15s,color .15s,opacity .15s}',
+      '.vxa .vxa-arrow svg{width:18px;height:18px;display:block}',
+      '.vxa .vxa-arrow:hover{background:var(--vx-t);border-color:var(--vx-t);color:#fff}',
+      '.vxa .vxa-arrow:focus{outline:none;box-shadow:none}',
+      '.vxa .vxa-arrow:focus-visible{outline:2px solid var(--vx-t);outline-offset:2px}',
+      '.vxa .vxa-arrow[disabled]{opacity:.35;cursor:default;background:#fff;border-color:var(--vx-b);color:var(--vx-t)}',
       // Layout B: compact 3-column grid
       '.vxa--grid .vxa-grid{grid-template-columns:repeat(3,minmax(0,1fr))}',
       '@media (max-width:1180px){.vxa--grid .vxa-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}',
@@ -199,7 +204,7 @@
     var items = C.items.filter(function (it) { return it.line === line && it.sec === sec && visible(it); });
     if (!items.length) return '';
     var t = tx();
-    var arrows = sec === 'sol' ? '<div class="vxa-arrows"><button type="button" class="vxa-arrow" data-vx-scroll="-1" aria-label="prev">←</button><button type="button" class="vxa-arrow" data-vx-scroll="1" aria-label="next">→</button></div>' : '';
+    var arrows = sec === 'sol' ? '<div class="vxa-arrows"><button type="button" class="vxa-arrow" data-vx-scroll="-1" aria-label="prev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button><button type="button" class="vxa-arrow" data-vx-scroll="1" aria-label="next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button></div>' : '';
     var head = '<div class="vxa-hrow"><div><p class="vxa-h">' + (sec === 'sol' ? t.sol : t.comp) + '</p><p class="vxa-hsub">' + (sec === 'sol' ? t.solSub[line] : t.compSub) + '</p></div>' + arrows + '</div>';
     return sec === 'sol' ? head + '<div class="vxa-grid" role="list">' + items.map(card).join('') + '</div>'
                          : head + '<div class="vxa-list" role="list">' + items.map(row).join('') + '</div>';
@@ -212,6 +217,20 @@
     var layout = w.el.getAttribute('data-layout') || 'carousel';
     w.el.innerHTML = '<div class="vxa vxa--' + layout + '">' + tabs + '<div class="vxa-body"><div>' + section(active, 'sol') + section(active, 'comp') + '</div>' +
       '<aside class="vxa-cart arma-total-card" aria-live="polite">' + cartHtml() + '</aside></div></div>';
+    var g = w.el.querySelector('.vxa-grid');
+    var btns = w.el.querySelectorAll('.vxa-arrow');
+    if (g && btns.length === 2) {
+      var upd = function () {
+        var max = g.scrollWidth - g.clientWidth - 2;
+        btns[0].disabled = g.scrollLeft <= 2;
+        btns[1].disabled = g.scrollLeft >= max;
+      };
+      g.addEventListener('scroll', upd, { passive: true });
+      if (w._upd) window.removeEventListener('resize', w._upd);
+      w._upd = upd;
+      window.addEventListener('resize', upd);
+      upd();
+    }
   }
   function renderAll() {
     widgets.forEach(function (w) {
