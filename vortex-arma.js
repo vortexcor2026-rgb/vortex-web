@@ -25,9 +25,9 @@
       seePlan: 'Ver plan', note: 'Precios en pesos chilenos, IVA incluido si corresponde.', compSub: 'Para sumar a tu plan o resolver algo puntual.',
       solSub: { marketing: 'Lo que más nos piden las empresas que necesitan resultados ya.', rrhh: 'Para lo que no puede esperar en tu equipo.' } },
     en: { mkt: 'Marketing', rrhh: 'HR', sol: 'Solutions', comp: 'Add-ons', add: 'Add', added: 'Added', quote: 'Get a quote', from: 'from',
-      cart: 'Your plan', empty: 'Add services to see your summary.', total: 'Total', pay: 'Pay with Flow', rec: 'Recommended', urgent: 'Urgent',
+      cart: 'Your plan', empty: 'Add services to see your summary.', total: 'Total', pay: 'Request this plan', rec: 'Recommended', urgent: 'Urgent',
       save: function (p, price, diff) { return 'The ' + p + ' costs ' + price + ' and includes this and more. You save ' + diff + '.'; },
-      seePlan: 'See plan', note: 'Reference prices in USD.', compSub: 'To add to your plan or solve something specific.',
+      seePlan: 'See plan', note: 'Book a short call and we send you a secure PayPal link for your selection.', compSub: 'To add to your plan or solve something specific.',
       solSub: { marketing: 'What companies ask us most when they need results now.', rrhh: 'For what can’t wait in your team.' } }
   };
   function tx() { return TX[lang()]; }
@@ -248,6 +248,13 @@
   function pay() {
     var lines = cartLines();
     if (!lines.length) return;
+    if (lang() === 'en') {
+      // English site: no Flow (CLP). Book a call; we invoice the selection by PayPal.
+      var tot0 = totals();
+      var summary = lines.map(function (it) { return L(it.name) + (it.type === 'qty' ? ' x' + cart[it.id] : ''); }).join(', ') + ' | Total USD ' + tot0.usd.toLocaleString('en-US');
+      window.open(CALENDLY + '?a1=' + encodeURIComponent('Requested plan: ' + summary), '_blank', 'noopener');
+      return;
+    }
     var tot = totals();
     window._armaItems = lines.map(function (it) {
       return { id: it.id, qty: cart[it.id], addon: !!(addons[it.id] && it.addon), name: L(it.name), price: it.price };

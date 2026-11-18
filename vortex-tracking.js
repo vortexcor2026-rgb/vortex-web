@@ -25,7 +25,7 @@
   }
   var path = location.pathname.replace(/\/+$/, '/') || '/';
   var lang = (d.documentElement.lang || 'es').slice(0, 2);
-  var CURRENCY = 'CLP';
+  var CURRENCY = lang === 'en' ? 'USD' : 'CLP';
 
   function pageService() {
     if (/marketing-digital|digital-marketing/.test(path)) return 'marketing';
@@ -187,7 +187,7 @@
     }
 
     // 2. Checkout start: plan cards, RRHH items, "Arma tu plan"
-    if (el.matches('.plan-cta, .rrhh-item-btn, .arma-pay-btn') || /flow\.cl/.test(href)) {
+    if (el.matches('.plan-cta, .rrhh-item-btn, .arma-pay-btn') || /flow\.cl|paypal\.com\/ncp/.test(href)) {
       var items = el.matches('.arma-pay-btn') ? itemsFromArma() : [itemFromCard(el)].filter(Boolean);
       if (!items.length) return;
       var value = el.matches('.arma-pay-btn') ? (parsePrice(txt(d.querySelector('.arma-total-amount'))) || sum(items)) : sum(items);
