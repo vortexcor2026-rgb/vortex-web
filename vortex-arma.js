@@ -54,18 +54,18 @@
       '.vxa-hsub{font-size:.95rem;color:var(--vx-m);margin:0 0 1rem}',
       '.vxa-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin-bottom:2.25rem}',
       '.vxa,.vxa *{text-align:left!important}','.vxa .vxa-fine{text-align:center!important}',
-      '.vxa .arma-item.vxa-card{display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;border:1px solid var(--vx-b);border-radius:14px;padding:1.25rem 1.25rem 1.1rem;background:#fff;transition:border-color .2s,box-shadow .2s;position:relative;margin:0}',
+      '.vxa .arma-item.vxa-card{gap:0!important;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;border:1px solid var(--vx-b);border-radius:14px;padding:1.1rem 1.15rem 1rem;background:#fff;transition:border-color .2s,box-shadow .2s;position:relative;margin:0}',
       '.vxa .arma-item.vxa-card.sel{border-color:var(--vx-g);box-shadow:0 0 0 1px var(--vx-g)}',
-      '.vxa-q{font-size:.85rem;font-weight:600;color:var(--vx-g2);margin-bottom:.35rem}',
-      '.vxa .arma-item-name{display:block;font-size:1.1rem;font-weight:700;line-height:1.3;margin:0 0 .4rem;color:var(--vx-t)}',
-      '.vxa .arma-item-price{display:block;font-size:1.05rem;font-weight:700;color:var(--vx-t);margin-bottom:.6rem}',
+      '.vxa-q{font-size:.8rem;font-weight:600;color:var(--vx-g2);margin:0 0 .3rem}',
+      '.vxa .arma-item-name{display:block!important;font-size:1.02rem;font-weight:700;line-height:1.3;margin:0 0 .25rem!important;color:var(--vx-t)}',
+      '.vxa .arma-item-price{display:block;font-size:1rem;font-weight:700;color:var(--vx-t);margin:0 0 .5rem!important}',
       '.vxa-unit{font-size:.8rem;font-weight:400;color:var(--vx-m)}',
-      '.vxa .arma-item-desc{font-size:.9rem;color:var(--vx-m);line-height:1.5;margin:0 0 .6rem}',
-      '.vxa-inc{list-style:none;padding:0;margin:0 0 .75rem;font-size:.86rem;line-height:1.45}',
-      '.vxa-inc li{padding-left:1.1rem;position:relative;margin-bottom:.25rem}',
+      '.vxa .arma-item-desc{font-size:.85rem;color:var(--vx-m);line-height:1.45;margin:0 0 .5rem!important}',
+      '.vxa-inc{list-style:none;padding:0;margin:0 0 .6rem;font-size:.8rem;line-height:1.4}',
+      '.vxa-inc li{padding-left:1rem;position:relative;margin-bottom:.15rem}',
       '.vxa-inc li:before{content:"";position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:50%;background:var(--vx-g)}',
-      '.vxa-note{font-size:.8rem;color:var(--vx-g2);background:rgba(90,171,110,.08);border-radius:8px;padding:.5rem .65rem;margin:0 0 .75rem}',
-      '.vxa-badge{align-self:flex-start;margin-bottom:.6rem;font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.25rem .55rem;border-radius:999px;background:rgba(90,171,110,.12);color:var(--vx-g2)}',
+      '.vxa-note{font-size:.75rem;color:var(--vx-g2);background:rgba(90,171,110,.08);border-radius:8px;padding:.5rem .65rem;margin:0 0 .75rem}',
+      '.vxa-badge{align-self:flex-start;margin-bottom:.45rem;font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.25rem .55rem;border-radius:999px;background:rgba(90,171,110,.12);color:var(--vx-g2)}',
       '.vxa-badge.urgent{background:#1a1f18;color:#fff}',
       '.vxa-ctl{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:.75rem}',
       '.vxa-btn{border:1.5px solid var(--vx-g);background:#fff;color:var(--vx-g2);font:inherit;font-weight:700;font-size:.85rem;padding:.55rem 1.1rem;border-radius:999px;cursor:pointer;text-decoration:none;display:inline-block}',
@@ -94,7 +94,17 @@
       '.vxa .arma-pay-btn{width:100%;border:none;background:var(--vx-g);color:#fff;font:inherit;font-weight:700;font-size:1rem;padding:.9rem;border-radius:999px;cursor:pointer}',
       '.vxa .arma-pay-btn:disabled{opacity:.4;cursor:default}',
       '.vxa-fine{font-size:.75rem;color:var(--vx-m);text-align:center;margin:.6rem 0 0}',
-      '@media (max-width:960px){.vxa-body{grid-template-columns:1fr}.vxa-cart{position:static}}',
+      // Layout A: horizontal carousel
+      '.vxa--carousel .vxa-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:1rem;padding:2px 2px 1rem;scrollbar-width:thin}',
+      '.vxa--carousel .vxa-grid > .arma-item{flex:0 0 285px;scroll-snap-align:start}',
+      '.vxa-hrow{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem}',
+      '.vxa-arrows{display:none;gap:.4rem;margin-bottom:1rem}',
+      '.vxa--carousel .vxa-arrows{display:flex}',
+      '.vxa-arrow{width:38px;height:38px;border-radius:50%;border:1px solid var(--vx-b);background:#fff;cursor:pointer;font-size:1.1rem;color:var(--vx-t)}',
+      // Layout B: compact 3-column grid
+      '.vxa--grid .vxa-grid{grid-template-columns:repeat(3,minmax(0,1fr))}',
+      '@media (max-width:1180px){.vxa--grid .vxa-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}',
+      '@media (max-width:960px){.vxa-body{grid-template-columns:minmax(0,1fr)}.vxa-cart{position:static}.vxa,.vxa-body>div{min-width:0;max-width:100%}}','@media (max-width:640px){.vxa--carousel .vxa-grid > .arma-item{flex-basis:82%}}',
       '@media (max-width:640px){.vxa-grid{grid-template-columns:1fr}.vxa-tab{padding:.55rem 1rem}}'
     ].join('\n');
     document.head.appendChild(st);
@@ -186,7 +196,8 @@
     var items = C.items.filter(function (it) { return it.line === line && it.sec === sec && visible(it); });
     if (!items.length) return '';
     var t = tx();
-    var head = '<p class="vxa-h">' + (sec === 'sol' ? t.sol : t.comp) + '</p><p class="vxa-hsub">' + (sec === 'sol' ? t.solSub[line] : t.compSub) + '</p>';
+    var arrows = sec === 'sol' ? '<div class="vxa-arrows"><button type="button" class="vxa-arrow" data-vx-scroll="-1" aria-label="prev">←</button><button type="button" class="vxa-arrow" data-vx-scroll="1" aria-label="next">→</button></div>' : '';
+    var head = '<div class="vxa-hrow"><div><p class="vxa-h">' + (sec === 'sol' ? t.sol : t.comp) + '</p><p class="vxa-hsub">' + (sec === 'sol' ? t.solSub[line] : t.compSub) + '</p></div>' + arrows + '</div>';
     return sec === 'sol' ? head + '<div class="vxa-grid" role="list">' + items.map(card).join('') + '</div>'
                          : head + '<div class="vxa-list" role="list">' + items.map(row).join('') + '</div>';
   }
@@ -195,15 +206,24 @@
     var active = line === 'all' ? (w.tab || 'marketing') : line;
     var tabs = line === 'all' ? '<div class="vxa-tabs" role="tablist">' +
       ['marketing', 'rrhh'].map(function (k) { return '<button type="button" role="tab" class="vxa-tab tab-btn' + (k === active ? ' on' : '') + '" data-vx-tab="' + k + '">' + (k === 'marketing' ? t.mkt : t.rrhh) + '</button>'; }).join('') + '</div>' : '';
-    w.el.innerHTML = '<div class="vxa">' + tabs + '<div class="vxa-body"><div>' + section(active, 'sol') + section(active, 'comp') + '</div>' +
+    var layout = w.el.getAttribute('data-layout') || 'carousel';
+    w.el.innerHTML = '<div class="vxa vxa--' + layout + '">' + tabs + '<div class="vxa-body"><div>' + section(active, 'sol') + section(active, 'comp') + '</div>' +
       '<aside class="vxa-cart arma-total-card" aria-live="polite">' + cartHtml() + '</aside></div></div>';
   }
-  function renderAll() { widgets.forEach(render); }
+  function renderAll() {
+    widgets.forEach(function (w) {
+      var g = w.el.querySelector('.vxa-grid'), x = g ? g.scrollLeft : 0;
+      render(w);
+      var g2 = w.el.querySelector('.vxa-grid'); if (g2) g2.scrollLeft = x;
+    });
+  }
 
   // ---------- events ----------
   function onClick(e) {
     var w = widgets.find(function (x) { return x.el.contains(e.target); });
     if (!w) return;
+    var sc = e.target.closest('[data-vx-scroll]');
+    if (sc) { var g = w.el.querySelector('.vxa-grid'); if (g) g.scrollBy({ left: Number(sc.getAttribute('data-vx-scroll')) * 600, behavior: 'smooth' }); return; }
     var tab = e.target.closest('[data-vx-tab]');
     if (tab) { w.tab = tab.getAttribute('data-vx-tab'); render(w); return; }
     var b = e.target.closest('[data-vx-id]');
