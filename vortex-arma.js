@@ -9,7 +9,7 @@
   var C = window.VORTEX_CATALOG;
   if (!C) return;
   var CAR_TOKEN = 'i3d1a9b1b20dfcf2232829658b9f49f3fc336bfc';
-  var CALENDLY = 'https://calendly.com/vortexcor/consulta';
+  var CALENDLY = 'https://calendly.com/vortexcor2026/30min';
   var cart = {};   // id -> qty
   var addons = {}; // id -> bool
   var widgets = [];
@@ -141,7 +141,7 @@
   function card(it) {
     var t = tx(), q = cart[it.id] || 0;
     var inc = L(it.inc) && L(it.inc).length ? '<ul class="vxa-inc">' + L(it.inc).map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' : '';
-    return '<div class="arma-item vxa-card' + (q ? ' sel' : '') + '" role="listitem">' +
+    return '<div class="arma-item vxa-card' + (q ? ' sel' : '') + '" role="listitem" data-vx-card="' + it.id + '">' +
       (it.badge ? '<span class="vxa-badge ' + it.badge + '">' + (it.badge === 'urgent' ? t.urgent : t.rec) + '</span>' : '') +
       (L(it.q) ? '<div class="vxa-q">' + esc(L(it.q)) + '</div>' : '') +
       '<span class="arma-item-name">' + esc(L(it.name)) + '</span>' +
@@ -311,14 +311,77 @@
     paypalCheckout({ kind: 'plan', plan: a.getAttribute('data-vx-paypal-plan') }, a.getAttribute('href') || CALENDLY, a);
   });
 
+
+  // Home quick links: urgent questions that lead to each service page's catalog
+  var QUICK_DEST = {
+    marketing: { es: '/marketing-digital/', en: '/digital-marketing/' },
+    seleccion: { es: '/seleccion-de-talentos/', en: '/talent-selection/' },
+    personas: { es: '/gestion-de-personas/', en: '/people-management/' }
+  };
+  var QUICK_PAGE = { expres: 'seleccion', psicolab: 'seleccion', perfil1: 'seleccion', karin: 'personas', clima: 'personas' };
+  var QTX = { es: { mkt: 'Marketing', rrhh: 'Personas y RRHH', from: 'desde', all: 'Ver todos los servicios' },
+              en: { mkt: 'Marketing', rrhh: 'People and HR', from: 'from', all: 'See all services' } };
+  var quicks = [];
+  function quickCss() {
+    if (document.getElementById('vxq-css')) return;
+    var st = document.createElement('style'); st.id = 'vxq-css';
+    st.textContent = [
+      '.vxq{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:960px;margin:0 auto}',
+      '.vxq-col{border:1px solid var(--border-light,#e4e7e1);border-radius:14px;background:#fff;overflow:hidden}',
+      '.vxq-h{font-size:.6875rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent,#5aab6e);padding:1rem 1.25rem .5rem}',
+      '.vxq a.vxq-row{display:flex;align-items:center;gap:1rem;padding:.85rem 1.25rem;border-top:1px solid var(--border-light,#eef0ec);text-decoration:none;color:inherit;transition:background .15s}',
+      '.vxq a.vxq-row:hover{background:rgba(90,171,110,.06)}',
+      '.vxq-txt{flex:1;min-width:0}',
+      '.vxq-q{display:block;font-weight:600;font-size:.95rem;color:var(--text,#1a1f18);line-height:1.35}',
+      '.vxq-n{display:block;font-size:.8rem;color:var(--text-muted,#6b7268);margin-top:2px}',
+      '.vxq-p{font-size:.8rem;color:var(--text-muted,#6b7268);white-space:nowrap}',
+      '.vxq-arr{color:var(--accent,#5aab6e);font-weight:700}',
+      '.vxq a.vxq-all{display:block;padding:.8rem 1.25rem;border-top:1px solid var(--border-light,#eef0ec);font-size:.85rem;font-weight:600;color:var(--accent,#5aab6e);text-decoration:none}',
+      '.vxq a.vxq-all:hover{text-decoration:underline}',
+      '@media (max-width:760px){.vxq{grid-template-columns:1fr}.vxq-p{display:none}}',
+      '.vxa .vxa-card.vxa-flash{border-color:var(--vx-g);box-shadow:0 0 0 3px rgba(90,171,110,.35)}'
+    ].join('');
+    document.head.appendChild(st);
+  }
+  function quickRow(it) {
+    var lg = lang(), page = it.line === 'marketing' ? 'marketing' : (QUICK_PAGE[it.id] || 'seleccion');
+    var href = QUICK_DEST[page][lg] + '#item-' + it.id;
+    var pr = it.type === 'quote' ? (QTX[lg].from + ' ' + money(it.priceFrom || it.price, it.usd)) : money(it.price, it.usd);
+    return '<a class="vxq-row" href="' + href + '" data-vx-quick-item="' + it.id + '">' +
+      '<span class="vxq-txt"><span class="vxq-q">' + esc(L(it.q)) + '</span><span class="vxq-n">' + esc(L(it.name)) + '</span></span>' +
+      '<span class="vxq-p">' + pr + '</span><span class="vxq-arr" aria-hidden="true">→</span></a>';
+  }
+  function renderQuick(el) {
+    var lg = lang(), t = QTX[lg], ids = (el.getAttribute('data-ids') || '').split(',');
+    function col(line, title, dest) {
+      var its = ids.map(function (id) { return C.items.filter(function (x) { return x.id === id; })[0]; }).filter(function (it) { return it && it.line === line && visible(it); });
+      return '<div class="vxq-col"><div class="vxq-h">' + title + '</div>' + its.map(quickRow).join('') +
+        '<a class="vxq-all" href="' + dest + '#servicios-puntuales">' + t.all + ' →</a></div>';
+    }
+    el.innerHTML = '<div class="vxq">' + col('marketing', t.mkt, QUICK_DEST.marketing[lg]) + col('rrhh', t.rrhh, QUICK_DEST.seleccion[lg]) + '</div>';
+  }
+  function focusFromHash() {
+    var m = /^#item-([a-z0-9]+)$/.exec(location.hash || ''); if (!m) return;
+    var card = document.querySelector('[data-vx-card="' + m[1] + '"]'); if (!card) return;
+    var sec = document.getElementById('servicios-puntuales') || card;
+    setTimeout(function () {
+      sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      var g = card.closest('.vxa-grid'); if (g) g.scrollTo({ left: card.offsetLeft - g.offsetLeft, behavior: 'smooth' });
+      card.classList.add('vxa-flash'); setTimeout(function () { card.classList.remove('vxa-flash'); }, 2400);
+    }, 250);
+  }
   function init() {
     css();
+    document.querySelectorAll('[data-vx-quick]').forEach(function (el) { quicks.push(el); });
+    if (quicks.length) { quickCss(); quicks.forEach(renderQuick); }
     document.querySelectorAll('[data-vx-arma]').forEach(function (el) { widgets.push({ el: el, tab: null }); });
     if (!widgets.length) return;
+    quickCss();
     document.addEventListener('click', onClick);
     document.addEventListener('change', onChange);
     renderAll();
+    focusFromHash();
   }
-  window.VXArma = { render: renderAll, cart: function () { return { items: window._armaItems, cart: cart }; } };
+  window.VXArma = { render: function () { quicks.forEach(renderQuick); renderAll(); }, cart: function () { return { items: window._armaItems, cart: cart }; } };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
