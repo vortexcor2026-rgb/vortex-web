@@ -313,6 +313,30 @@ exports.handler = async (event) => {
     return { statusCode: 200, headers };
   }
 
+  // /return — Flow sends the buyer back here (POST with token). Static pages can't answer POST on Netlify,
+  // so we check the payment and redirect the browser (303 = GET) to the right page.
+  if (event.path.includes('/return')) {
+    const raw = event.isBase64Encoded ? Buffer.from(event.body || '', 'base64').toString('utf8') : (event.body || '');
+    const qs = event.queryStringParameters || {};
+    const flowToken = new URLSearchParams(raw).get('token') || qs.token;
+    let dest = qs.c ? '/pago-fallido' : '/?pago=ok';
+    if (!qs.c && flowToken && FLOW_API_KEY) {
+      try {
+        const params = { apiKey: FLOW_API_KEY, token: flowToken };
+        params.s = signParams(params);
+        const data = await new Promise((resolve, reject) => {
+          https.get(`${FLOW_API_URL}/payment/getStatus?${new URLSearchParams(params).toString()}`, (res) => {
+            let d = ''; res.on('data', c => d += c);
+            res.on('end', () => { try { resolve(JSON.parse(d)); } catch (e) { reject(e); } });
+          }).on('error', reject);
+        });
+        // Flow status: 1 pending, 2 paid, 3 rejected, 4 cancelled
+        if (data && (data.status === 3 || data.status === 4)) dest = '/pago-fallido';
+      } catch (e) { console.error('return status check error', e); }
+    }
+    return { statusCode: 303, headers: { Location: SITE_URL + dest, 'Cache-Control': 'no-store' }, body: '' };
+  }
+
   // GET /ping — health check
   if (event.httpMethod === 'GET' && !event.path.includes('status') && !event.path.includes('test-email')) {
     return { statusCode: 200, headers, body: JSON.stringify({ ok: true, apiKey: FLOW_API_KEY ? 'set' : 'MISSING', secretKey: FLOW_SECRET_KEY ? 'set' : 'MISSING' }) };
@@ -401,8 +425,8 @@ exports.handler = async (event) => {
       amount: finalAmount,
       email: email || '',
       urlConfirmation: `${SITE_URL}/.netlify/functions/create-payment/confirm`,
-      urlReturn: `${SITE_URL}/?pago=ok`,
-      urlCancel: `${SITE_URL}/pago-fallido`,
+      urlReturn: `${SITE_URL}/.netlify/functions/create-payment/return`,
+      urlCancel: `${SITE_URL}/.netlify/functions/create-payment/return?c=1`,
       currency: 'CLP',
       paymentMethod: 9,
       // Flow devuelve este campo en getStatus; así /confirm recupera plan, nombre y email
