@@ -1697,6 +1697,12 @@
     #dudas .dudas-actions { justify-content: center; }
     #dudas .dudas-actions a { padding: 12px 24px; font-size: 0.9375rem; }
     #faq { padding-top: 48px; }
+    /* Services menu: green so people notice there are service pages */
+    .nav-links .nav-dropdown > a { color: var(--accent); font-weight: 600; }
+    .nav-links .nav-dropdown > a::after { display: none; }
+    .nav-dropdown-menu { min-width: 230px; padding: 6px; }
+    .nav-dropdown-menu a { border-radius: 8px; }
+    .nav-dropdown-menu a::after { display: none !important; }
 </style>
 </head>
 <body>
@@ -1722,10 +1728,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <ul class="nav-links" role="list">
     <li><a href="#como" data-i18n="nav-como">Cómo funciona</a></li>
     <li class="nav-dropdown">
-      <a href="#servicios" data-i18n="nav-servicios">Servicios <svg class="nav-dropdown-arrow" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"/></svg></a>
+      <a href="#servicios"><span data-i18n="nav-servicios">Servicios</span> <svg class="nav-dropdown-arrow" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4"/></svg></a>
       <div class="nav-dropdown-menu">
         <a href="/marketing-digital/">Marketing Digital</a>
-        <a href="/seleccion-de-talentos/">Gestión de Talento</a>
+        <a href="/seleccion-de-talentos/">Selección de Talentos</a>
+        <a href="/gestion-de-personas/">Gestión de Personas</a>
         <a href="/diagnostico-apex/">Diagnóstico APEX</a>
       </div>
     </li>

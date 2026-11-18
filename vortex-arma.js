@@ -12,6 +12,7 @@
   var CALENDLY = 'https://calendly.com/vortexcor2026/30min';
   var cart = {};   // id -> qty
   var addons = {}; // id -> bool
+  var moreOpen = {}; // id -> details open
   var widgets = [];
 
   function lang() {
@@ -20,12 +21,12 @@
   }
   var TX = {
     es: { mkt: 'Marketing', rrhh: 'RRHH', sol: 'Soluciones', comp: 'Complementos', add: 'Agregar', added: 'Agregado', quote: 'Cotizar', from: 'desde',
-      cart: 'Tu plan', empty: 'Agrega servicios para ver el resumen.', total: 'Total', pay: 'Pagar con Flow', rec: 'Recomendado', urgent: 'Urgente',
+      incl: 'Ver qué incluye', cart: 'Tu plan', empty: 'Agrega servicios para ver el resumen.', total: 'Total', pay: 'Pagar con Flow', rec: 'Recomendado', urgent: 'Urgente',
       save: function (p, price, diff) { return 'Con el ' + p + ' pagas ' + price + ' y obtienes esto y más. Ahorras ' + diff + '.'; },
       seePlan: 'Ver plan', note: 'Precios en pesos chilenos, IVA incluido si corresponde.', compSub: 'Para sumar a tu plan o resolver algo puntual.',
       solSub: { marketing: 'Lo que más nos piden las empresas que necesitan resultados ya.', rrhh: 'Para lo que no puede esperar en tu equipo.' } },
     en: { mkt: 'Marketing', rrhh: 'HR', sol: 'Solutions', comp: 'Add-ons', add: 'Add', added: 'Added', quote: 'Get a quote', from: 'from',
-      cart: 'Your plan', empty: 'Add services to see your summary.', total: 'Total', pay: 'Pay with PayPal', rec: 'Recommended', urgent: 'Urgent',
+      incl: 'See what’s included', cart: 'Your plan', empty: 'Add services to see your summary.', total: 'Total', pay: 'Pay with PayPal', rec: 'Recommended', urgent: 'Urgent',
       save: function (p, price, diff) { return 'The ' + p + ' costs ' + price + ' and includes this and more. You save ' + diff + '.'; },
       seePlan: 'See plan', note: 'Secure payment in USD with PayPal or card.', compSub: 'To add to your plan or solve something specific.',
       solSub: { marketing: 'What companies ask us most when they need results now.', rrhh: 'For what can’t wait in your team.' } }
@@ -100,7 +101,7 @@
       '.vxa .arma-pay-btn:disabled{opacity:.4;cursor:default}',
       '.vxa-fine{font-size:.75rem;color:var(--vx-m);text-align:center;margin:.6rem 0 0}',
       // Layout A: horizontal carousel
-      '.vxa--carousel .vxa-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:1rem;padding:2px 2px 1rem;scrollbar-width:thin}',
+      '.vxa--carousel .vxa-grid{display:flex;align-items:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;gap:1rem;padding:4px 2px 1rem;scrollbar-width:thin}',
       '.vxa--carousel .vxa-grid > .arma-item{flex:0 0 285px;scroll-snap-align:start}',
       '.vxa-hrow{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem}',
       '.vxa-arrows{display:none;gap:.4rem;margin-bottom:1rem}',
@@ -115,6 +116,23 @@
       '.vxa--grid .vxa-grid{grid-template-columns:repeat(3,minmax(0,1fr))}',
       '@media (max-width:1180px){.vxa--grid .vxa-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}',
       '@media (max-width:960px){.vxa-body{grid-template-columns:minmax(0,1fr)}.vxa-cart{position:static}.vxa,.vxa-body>div{min-width:0;max-width:100%}}','@media (max-width:640px){.vxa--carousel .vxa-grid > .arma-item{flex-basis:82%}}',
+      '.vxa .arma-item.vxa-card{padding:1rem 1.1rem .9rem;transition:border-color .2s,box-shadow .2s,transform .2s}',
+      '.vxa .arma-item.vxa-card:hover{border-color:rgba(90,171,110,.45);box-shadow:0 10px 26px rgba(26,46,68,.07);transform:translateY(-2px)}',
+      '.vxa-top{display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem;min-height:1.1rem;margin-bottom:.35rem}',
+      '.vxa .vxa-top .vxa-q{margin:0;flex:1}',
+      '.vxa .vxa-top .vxa-badge{margin:0;flex-shrink:0;font-size:.62rem;padding:.2rem .5rem}',
+      '.vxa .vxa-card .arma-item-desc{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin:0 0 .6rem!important}',
+      '.vxa-more{margin:0 0 .75rem;font-size:.8rem}',
+      '.vxa-more summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:.3rem;font-weight:600;color:var(--vx-g2);user-select:none}',
+      '.vxa-more summary::-webkit-details-marker{display:none}',
+      '.vxa-more summary svg{width:14px;height:14px;transition:transform .2s}',
+      '.vxa-more[open] summary svg{transform:rotate(180deg)}',
+      '.vxa-more .vxa-inc{margin:.5rem 0 0}',
+      '.vxa-more .vxa-note{margin:.5rem 0 0}',
+      '.vxa--carousel .arma-item.vxa-card{min-height:268px}',
+      '.vxa-foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:.75rem;padding-top:.75rem;border-top:1px solid var(--vx-b)}',
+      '.vxa .vxa-foot .arma-item-price{margin:0!important;font-size:1.05rem;white-space:nowrap}',
+      '.vxa-empty{font-size:.85rem}',
       '@media (max-width:640px){.vxa-grid{grid-template-columns:1fr}.vxa-tab{padding:.55rem 1rem}}'
     ].join('\n');
     document.head.appendChild(st);
@@ -142,15 +160,15 @@
   }
   function card(it) {
     var t = tx(), q = cart[it.id] || 0;
-    var inc = L(it.inc) && L(it.inc).length ? '<ul class="vxa-inc">' + L(it.inc).map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' : '';
+    var incList = L(it.inc) && L(it.inc).length ? '<ul class="vxa-inc">' + L(it.inc).map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' : '';
+    var note = L(it.note) ? '<p class="vxa-note">' + esc(L(it.note)) + '</p>' : '';
+    var more = incList || note ? '<details class="vxa-more" data-vx-more="' + it.id + '"' + (moreOpen[it.id] ? ' open' : '') + '><summary>' + t.incl + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>' + incList + note + '</details>' : '';
     return '<div class="arma-item vxa-card' + (q ? ' sel' : '') + '" role="listitem" data-vx-card="' + it.id + '">' +
-      (it.badge ? '<span class="vxa-badge ' + it.badge + '">' + (it.badge === 'urgent' ? t.urgent : t.rec) + '</span>' : '') +
-      (L(it.q) ? '<div class="vxa-q">' + esc(L(it.q)) + '</div>' : '') +
+      '<div class="vxa-top">' + (L(it.q) ? '<div class="vxa-q">' + esc(L(it.q)) + '</div>' : '<div class="vxa-q"></div>') +
+      (it.badge ? '<span class="vxa-badge ' + it.badge + '">' + (it.badge === 'urgent' ? t.urgent : t.rec) + '</span>' : '') + '</div>' +
       '<span class="arma-item-name">' + esc(L(it.name)) + '</span>' +
-      '<span class="arma-item-price">' + priceHtml(it) + '</span>' +
-      '<p class="arma-item-desc">' + esc(L(it.desc)) + '</p>' + inc +
-      (L(it.note) ? '<p class="vxa-note">' + esc(L(it.note)) + '</p>' : '') +
-      '<div class="vxa-ctl">' + control(it) + '</div>' + addonHtml(it) + '</div>';
+      '<p class="arma-item-desc">' + esc(L(it.desc)) + '</p>' + more +
+      '<div class="vxa-foot"><span class="arma-item-price">' + priceHtml(it) + '</span>' + control(it) + '</div>' + addonHtml(it) + '</div>';
   }
   function row(it) {
     return '<div class="arma-item vxa-row" role="listitem"><div class="vxa-rb">' +
@@ -381,6 +399,7 @@
     quickCss();
     document.addEventListener('click', onClick);
     document.addEventListener('change', onChange);
+    document.addEventListener('toggle', function (e) { var d = e.target; if (d && d.getAttribute && d.getAttribute('data-vx-more')) moreOpen[d.getAttribute('data-vx-more')] = d.open; }, true);
     renderAll();
     focusFromHash();
   }
