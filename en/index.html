@@ -1283,6 +1283,13 @@
     .profile-card .profile-bio { flex: 1; }
     .profile-card .profile-divider { margin-top: auto; border: none; border-top: 1px solid var(--border-light); margin-bottom: 1.25rem; }
     .profile-card .profile-stat-row { margin-top: 0; }
+    /* Align bio / divider / stats / markets rows across both cards */
+    @supports (grid-template-rows: subgrid) {
+      .profile-card { display: grid; grid-row: span 5; grid-template-rows: subgrid; row-gap: 0; align-content: start; }
+      .profile-card .profile-divider { margin-top: 0; align-self: end; width: 100%; }
+      .profile-card .profile-stat-row { align-self: start; }
+      .profile-card .profile-markets { align-self: start; }
+    }
 
     .profile-header {
       margin-bottom: 1rem;
