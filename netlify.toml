@@ -7,6 +7,26 @@
   to = "/.netlify/functions/:splat"
   status = 200
 
+# Flow returns the buyer with a POST request. Static pages do not answer POST on their own,
+# so these rewrites serve the page for any method (they replace the old catch-all, which hid real 404s).
+[[redirects]]
+  from = "/"
+  to = "/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/pago-fallido"
+  to = "/pago-fallido/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/gracias"
+  to = "/gracias/index.html"
+  status = 200
+  force = true
+
 [[redirects]]
   from = "/marketing-digital"
   to = "/marketing-digital/index.html"
