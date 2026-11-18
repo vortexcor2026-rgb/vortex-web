@@ -70,10 +70,12 @@
       '.vxa-ctl{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:.75rem}',
       '.vxa-btn{border:1.5px solid var(--vx-g);background:#fff;color:var(--vx-g2);font:inherit;font-weight:700;font-size:.85rem;padding:.55rem 1.1rem;border-radius:999px;cursor:pointer;text-decoration:none;display:inline-block}',
       '.vxa-btn.on{background:var(--vx-g);color:#fff}',
-      '.vxa-step{display:inline-flex;align-items:center;border:1px solid var(--vx-b);border-radius:999px;overflow:hidden}',
-      '.vxa .arma-qty-btn{border:none;background:#fff;width:34px;height:34px;font-size:1.1rem;cursor:pointer;color:var(--vx-t)}',
-      '.vxa .arma-qty-btn:disabled{opacity:.35;cursor:default}',
-      '.vxa .arma-qty-val{min-width:28px;text-align:center;font-weight:700;font-size:.9rem}',
+      '.vxa .vxa-step{display:inline-flex;align-items:center;gap:2px;padding:3px;border:1px solid var(--vx-b);border-radius:999px;background:#fff}',
+      '.vxa .arma-qty-btn{flex:0 0 30px;width:30px;height:30px;padding:0;margin:0;border:none;border-radius:50%;background:transparent;cursor:pointer;color:var(--vx-t);display:inline-flex;align-items:center;justify-content:center;line-height:0;transition:background .15s}',
+      '.vxa .arma-qty-btn svg{width:14px;height:14px;display:block}',
+      '.vxa .arma-qty-btn:not(:disabled):hover{background:rgba(90,171,110,.12);color:var(--vx-g)}',
+      '.vxa .arma-qty-btn:disabled{opacity:.3;cursor:default}',
+      '.vxa .arma-qty-val{min-width:26px;text-align:center;font-weight:700;font-size:.9rem;line-height:30px;font-variant-numeric:tabular-nums}',
       '.vxa-list{border-top:1px solid var(--vx-b)}',
       '.vxa .arma-item.vxa-row{display:grid!important;grid-template-columns:minmax(0,1fr) 170px 112px;align-items:center;gap:1.25rem;padding:1rem 0;border-bottom:1px solid var(--vx-b);margin:0}',
       '.vxa .vxa-row .vxa-rp{margin:0!important;text-align:right!important;white-space:nowrap}',
@@ -125,9 +127,9 @@
     if (it.type === 'once') {
       return '<span class="arma-qty-val" style="display:none">' + q + '</span><button type="button" class="vxa-btn' + (q ? ' on' : '') + '" data-vx-id="' + it.id + '" data-vx-action="' + (q ? 'remove' : 'add') + '">' + (q ? t.added + ' ✓' : t.add) + '</button>';
     }
-    return '<div class="vxa-step"><button type="button" class="arma-qty-btn" data-vx-id="' + it.id + '" data-vx-action="remove" aria-label="-" ' + (q ? '' : 'disabled') + '>−</button>' +
+    return '<div class="vxa-step"><button type="button" class="arma-qty-btn" data-vx-id="' + it.id + '" data-vx-action="remove" aria-label="-" ' + (q ? '' : 'disabled') + '><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 12h12"/></svg></button>' +
       '<span class="arma-qty-val">' + (q || 0) + '</span>' +
-      '<button type="button" class="arma-qty-btn" data-vx-id="' + it.id + '" data-vx-action="add" aria-label="+" ' + (q >= (it.max || 20) ? 'disabled' : '') + '>+</button></div>';
+      '<button type="button" class="arma-qty-btn" data-vx-id="' + it.id + '" data-vx-action="add" aria-label="+" ' + (q >= (it.max || 20) ? 'disabled' : '') + '><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 6v12M6 12h12"/></svg></button></div>';
   }
   function priceHtml(it) {
     if (it.type === 'quote') return tx().from + ' ' + money(it.priceFrom, it.usdFrom);
