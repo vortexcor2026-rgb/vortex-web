@@ -808,6 +808,7 @@
       opacity: 0.85;
     }
     .plan-doubt:hover { opacity: 1; text-decoration: underline; }
+    .step-doubt { color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
 
     /* ── FEATURES ACCORDION en mobile ── */
     .plan-features-toggle {
@@ -1482,7 +1483,7 @@
       .nav-right { gap: 0.5rem; }
       .nav-cta { display: none; }
       /* Cards más compactas en mobile */
-      .plan-card { padding: 1rem; }
+      .plan-card { padding: 1rem; display: flex; flex-direction: column; grid-row: auto; grid-template-rows: none; }
       .plan-badge { margin-bottom: 0.2rem; }
       .plan-name { margin-bottom: 0; font-size: 1.1rem; }
       .plan-desc { margin-bottom: 0.25rem; margin-top: 0.1rem; font-size: 0.8rem; }
@@ -1725,7 +1726,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="step" role="listitem">
       <div class="step-num">01</div>
       <h3 data-i18n="step1-title">Elige tu plan</h3>
-      <p data-i18n="step1-desc">Revisa los paquetes y elige el que se ajusta a tu empresa.</p>
+      <p data-i18n="step1-desc" data-i18n-html="true">Revisa los paquetes y elige el que se ajusta a tu empresa. Si tienes dudas, <a href="https://calendly.com/vortexcor2026/30min" target="_blank" rel="noopener" class="step-doubt">contáctanos antes</a>.</p>
     </div>
     <div class="step" role="listitem">
       <div class="step-num">02</div>
@@ -1797,7 +1798,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <li data-i18n="mkt-p2-f4">Perfil de Google al día: respuesta a reseñas y publicaciones</li>
           <li data-i18n="mkt-p2-f5">Reporte mensual de métricas con análisis y ajustes</li>
           <li data-i18n="mkt-p2-f6">Reunión de revisión mensual con recomendaciones</li>
-          <li data-i18n="mkt-p2-f7">Presupuesto de avisos aparte. Plazo mínimo de 3 meses</li>
+          <li data-i18n="mkt-p2-f7">La inversión en avisos (lo que cobran Google y Meta) no está incluida, la pagas directo a cada plataforma. Plazo mínimo de 3 meses</li>
         </ul>
         <div class="plan-actions">
           <a href="#" onclick="payWithFlow('t3c9404b5d417e43e5ff7dc5cb7ae340069795be');return false;" class="plan-cta plan-cta-primary" data-i18n="btn-contratar">Contratar</a>
@@ -1819,7 +1820,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <li data-i18n="mkt-p3-f4">Pruebas A/B de anuncios</li>
           <li data-i18n="mkt-p3-f5">2 reuniones mensuales</li>
           <li data-i18n="mkt-p3-f6">Construcción de reporte de monitoreo de métricas</li>
-          <li data-i18n="mkt-p3-f7">Presupuesto de avisos aparte. Plazo mínimo de 3 meses</li>
+          <li data-i18n="mkt-p3-f7">La inversión en avisos (lo que cobran Google y Meta) no está incluida, la pagas directo a cada plataforma. Plazo mínimo de 3 meses</li>
         </ul>
         <div class="plan-actions">
           <a href="#" onclick="payWithFlow('v4fc43f48cb0fa1d5fd75929c8d5b8c86eb5848f');return false;" class="plan-cta plan-cta-secondary" data-i18n="btn-contratar">Contratar</a>
@@ -1909,7 +1910,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <article class="plan-card">
         <div class="plan-badge" style="visibility:hidden">·</div>
         <div class="plan-name" data-i18n="rrhh-p3-name">Desvinculación</div>
-        <p class="plan-desc" data-i18n="rrhh-p3-desc">Acompañamiento en procesos de salida. Protege a tu empresa, cuida a las personas y cierra bien el ciclo.</p>
+        <p class="plan-desc" data-i18n="rrhh-p3-desc">Acompañamos a la empresa y a la persona que se va, para que la salida sea cuidada y ordenada. No incluye asesoría legal.</p>
         <div class="plan-price"><span class="price-num" data-i18n="rrhh-p3-price">$290.000</span><span class="price-clp" data-i18n="price-currency">CLP</span> <span class="price-unit" data-i18n="rrhh-p3-unit">por proceso</span></div>
         <p class="price-currency-note" data-i18n="price-currency-note"></p>
         <ul class="plan-features">
@@ -2331,7 +2332,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script>
   const T = {
     es: {
-      'mkt-p1-f1': 'Diagnóstico de marca y posicionamiento', 'mkt-p1-f2': 'Identidad visual básica', 'mkt-p1-f3': 'Creación de página web', 'mkt-p1-f4': '1 campaña en Google Ads o Meta, con 30 días de optimización', 'mkt-p1-f5': 'Guía de contenido para 1 mes', 'mkt-p1-f6': 'Perfil de Google para tu empresa (Google y Maps)', 'mkt-p1-f7': 'Medición instalada: Google Analytics y conversiones', 'mkt-p1-f8': 'Listo en 4 semanas. Tu primer mes de Mantención con 50% de descuento', 'mkt-p2-f1': '8 publicaciones al mes: 6 piezas gráficas + 2 reels', 'mkt-p2-f2': 'Cada pieza adaptada en 2 formatos de plataforma', 'mkt-p2-f3': 'Gestión de pauta en 2 plataformas a elección (por ejemplo, Google Ads y Meta), hasta 5 campañas por plataforma', 'mkt-p2-f4': 'Perfil de Google al día: respuesta a reseñas y publicaciones', 'mkt-p2-f5': 'Reporte mensual de métricas con análisis y ajustes', 'mkt-p2-f6': 'Reunión de revisión mensual con recomendaciones', 'mkt-p2-f7': 'Presupuesto de avisos aparte. Plazo mínimo de 3 meses', 'mkt-p3-f1': 'Todo lo del plan Mantención, con pauta en hasta 3 plataformas', 'mkt-p3-f2': 'SEO (2 artículos de blog al mes y optimización del sitio) o CRM (1 campaña de email al mes y 1 automatización)', 'mkt-p3-f3': 'Estrategia de contenido trimestral con hoja de ruta', 'mkt-p3-f4': 'Pruebas A/B de anuncios', 'mkt-p3-f5': '2 reuniones mensuales', 'mkt-p3-f6': 'Construcción de reporte de monitoreo de métricas', 'mkt-p3-f7': 'Presupuesto de avisos aparte. Plazo mínimo de 3 meses', 'mkt-p4-f1': 'Diagnóstico inicial de madurez de marketing con APEX', 'mkt-p4-f2': 'Estrategia de crecimiento alineada a tus objetivos de negocio', 'mkt-p4-f3': 'Equipo dedicado con un responsable de cuenta', 'mkt-p4-f4': 'Gestión multicanal: pauta, contenido, SEO, CRM y medición', 'mkt-p4-f5': 'Reportes ejecutivos y reuniones de seguimiento con gerencia', 'plan-pyme': 'Pyme', 'mkt-p4-seg': 'Empresas', 'mkt-p4-name': 'Plan Empresas a la medida', 'mkt-p4-desc': 'Tu empresa ya está consolidada y necesita un marketing a la altura. Conversemos: analizamos tu situación, tus objetivos y tus recursos, y diseñamos un plan a la medida de tu negocio.', 'mkt-p4-price': 'Propuesta según alcance', 'mkt-p4-cta': 'Agendar una reunión', 'mkt-p4-apex': 'Conocer el Diagnóstico APEX →',
+      'mkt-p1-f1': 'Diagnóstico de marca y posicionamiento', 'mkt-p1-f2': 'Identidad visual básica', 'mkt-p1-f3': 'Creación de página web', 'mkt-p1-f4': '1 campaña en Google Ads o Meta, con 30 días de optimización', 'mkt-p1-f5': 'Guía de contenido para 1 mes', 'mkt-p1-f6': 'Perfil de Google para tu empresa (Google y Maps)', 'mkt-p1-f7': 'Medición instalada: Google Analytics y conversiones', 'mkt-p1-f8': 'Listo en 4 semanas. Tu primer mes de Mantención con 50% de descuento', 'mkt-p2-f1': '8 publicaciones al mes: 6 piezas gráficas + 2 reels', 'mkt-p2-f2': 'Cada pieza adaptada en 2 formatos de plataforma', 'mkt-p2-f3': 'Gestión de pauta en 2 plataformas a elección (por ejemplo, Google Ads y Meta), hasta 5 campañas por plataforma', 'mkt-p2-f4': 'Perfil de Google al día: respuesta a reseñas y publicaciones', 'mkt-p2-f5': 'Reporte mensual de métricas con análisis y ajustes', 'mkt-p2-f6': 'Reunión de revisión mensual con recomendaciones', 'mkt-p2-f7': 'La inversión en avisos (lo que cobran Google y Meta) no está incluida, la pagas directo a cada plataforma. Plazo mínimo de 3 meses', 'mkt-p3-f1': 'Todo lo del plan Mantención, con pauta en hasta 3 plataformas', 'mkt-p3-f2': 'SEO (2 artículos de blog al mes y optimización del sitio) o CRM (1 campaña de email al mes y 1 automatización)', 'mkt-p3-f3': 'Estrategia de contenido trimestral con hoja de ruta', 'mkt-p3-f4': 'Pruebas A/B de anuncios', 'mkt-p3-f5': '2 reuniones mensuales', 'mkt-p3-f6': 'Construcción de reporte de monitoreo de métricas', 'mkt-p3-f7': 'La inversión en avisos (lo que cobran Google y Meta) no está incluida, la pagas directo a cada plataforma. Plazo mínimo de 3 meses', 'mkt-p4-f1': 'Diagnóstico inicial de madurez de marketing con APEX', 'mkt-p4-f2': 'Estrategia de crecimiento alineada a tus objetivos de negocio', 'mkt-p4-f3': 'Equipo dedicado con un responsable de cuenta', 'mkt-p4-f4': 'Gestión multicanal: pauta, contenido, SEO, CRM y medición', 'mkt-p4-f5': 'Reportes ejecutivos y reuniones de seguimiento con gerencia', 'plan-pyme': 'Pyme', 'mkt-p4-seg': 'Empresas', 'mkt-p4-name': 'Plan Empresas a la medida', 'mkt-p4-desc': 'Tu empresa ya está consolidada y necesita un marketing a la altura. Conversemos: analizamos tu situación, tus objetivos y tus recursos, y diseñamos un plan a la medida de tu negocio.', 'mkt-p4-price': 'Propuesta según alcance', 'mkt-p4-cta': 'Agendar una reunión', 'mkt-p4-apex': 'Conocer el Diagnóstico APEX →',
       'logo-tag': 'Marketing y talento',
       'nav-como': 'Cómo funciona', 'nav-servicios': 'Servicios', 'nav-about': 'Equipo',
       'nav-faq': 'FAQ', 'nav-agenda': 'Agendar reunión',
@@ -2343,7 +2344,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       'stat1': 'clientes satisfechos', 'stat2': 'años de experiencia', 'stat3': 'áreas de servicio',
       'como-label': 'Proceso', 'como-h2': 'Cómo funciona nuestra consultoría de marketing digital y gestión de talento',
       'como-desc': 'Te acompañamos desde el primer contacto hasta la puesta en marcha, con soluciones claras, procesos simples y foco en lo que tu negocio necesita.',
-      'step1-title': 'Elige tu plan', 'step1-desc': 'Revisa los paquetes y elige el que se ajusta a tu empresa.',
+      'step1-title': 'Elige tu plan', 'step1-desc': 'Revisa los paquetes y elige el que se ajusta a tu empresa. Si tienes dudas, <a href="https://calendly.com/vortexcor2026/30min" target="_blank" rel="noopener" class="step-doubt">contáctanos antes</a>.',
       'step2-title': 'Inicia tu primera sesión', 'step2-desc': 'Una vez que eliges y pagas tu plan, recibes un correo con un link para agendar tu primera sesión de trabajo, donde arrancamos con las acciones.',
       'step3-title': 'Nos ponemos a trabajar', 'step3-desc': 'Analizamos, diseñamos y ejecutamos. Recibes avances claros, sin tecnicismos innecesarios.',
       'step4-title': 'Listos para arrancar', 'step4-desc': 'En una semana tienes todo lo que necesitas para empezar: estrategia, materiales y primeras acciones definidas.',
@@ -2368,7 +2369,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       'rrhh-p2-f3': 'Informe individual con recomendaciones', 'rrhh-p2-f4': 'Sesión de feedback (30 min)',
       'rrhh-p2-f5': 'Evaluación 360° disponible para equipos',
       'rrhh-p3-name': 'Desvinculación', 'rrhh-p3-price': '$290.000', 'rrhh-p3-unit': 'por proceso',
-      'rrhh-p3-desc': 'Acompañamiento en procesos de salida. Protege a tu empresa, cuida a las personas y cierra bien el ciclo.',
+      'rrhh-p3-desc': 'Acompañamos a la empresa y a la persona que se va, para que la salida sea cuidada y ordenada. No incluye asesoría legal.',
       'rrhh-p3-f1': 'Orientación en el proceso de desvinculación', 'rrhh-p3-f2': 'Entrevista de salida',
       'rrhh-p3-f3': 'Apoyo psicológico al trabajador', 'rrhh-p3-f4': 'Informe final para la empresa',
       'rrhh-p4-name': 'Perfiles de cargo', 'rrhh-p4-price': '$1.000', 'rrhh-p4-unit': 'pack × 3',
@@ -2466,7 +2467,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       'car-s2': 'candidatos evaluados',
     },
     en: {
-      'mkt-p1-f1': 'Brand and positioning diagnosis', 'mkt-p1-f2': 'Basic visual identity', 'mkt-p1-f3': 'Website build', 'mkt-p1-f4': '1 Google Ads or Meta campaign with 30 days of optimization', 'mkt-p1-f5': '1-month content guide', 'mkt-p1-f6': 'Google Business Profile (Search and Maps)', 'mkt-p1-f7': 'Measurement set up: Google Analytics and conversions', 'mkt-p1-f8': 'Ready in 4 weeks. 50% off your first month of Monthly Management', 'mkt-p2-f1': '8 posts a month: 6 graphics + 2 reels', 'mkt-p2-f2': 'Each piece adapted to 2 platform formats', 'mkt-p2-f3': 'Ad management on 2 platforms of your choice (for example, Google Ads and Meta), up to 5 campaigns per platform', 'mkt-p2-f4': 'Google Business Profile kept up to date: review replies and posts', 'mkt-p2-f5': 'Monthly metrics report with analysis and adjustments', 'mkt-p2-f6': 'Monthly review meeting with recommendations', 'mkt-p2-f7': 'Ad spend billed separately. 3-month minimum', 'mkt-p3-f1': 'Everything in Monthly Management, with ads on up to 3 platforms', 'mkt-p3-f2': 'SEO (2 blog articles a month and site optimization) or CRM (1 email campaign a month and 1 automation)', 'mkt-p3-f3': 'Quarterly content strategy with roadmap', 'mkt-p3-f4': 'A/B testing of ads', 'mkt-p3-f5': '2 meetings a month', 'mkt-p3-f6': 'Custom metrics monitoring report', 'mkt-p3-f7': 'Ad spend billed separately. 3-month minimum', 'mkt-p4-f1': 'Initial marketing maturity diagnosis with APEX', 'mkt-p4-f2': 'Growth strategy aligned with your business goals', 'mkt-p4-f3': 'Dedicated team with an account lead', 'mkt-p4-f4': 'Multichannel management: ads, content, SEO, CRM and measurement', 'mkt-p4-f5': 'Executive reports and follow-up meetings with leadership', 'plan-pyme': 'Small business', 'mkt-p4-seg': 'Enterprise', 'mkt-p4-name': 'Tailored Enterprise Plan', 'mkt-p4-desc': 'Your company is established and needs marketing to match. Let’s talk: we review your situation, goals and resources, and design a plan built around your business.', 'mkt-p4-price': 'Proposal based on scope', 'mkt-p4-cta': 'Book a meeting', 'mkt-p4-apex': 'Discover the APEX Diagnostic →',
+      'mkt-p1-f1': 'Brand and positioning diagnosis', 'mkt-p1-f2': 'Basic visual identity', 'mkt-p1-f3': 'Website build', 'mkt-p1-f4': '1 Google Ads or Meta campaign with 30 days of optimization', 'mkt-p1-f5': '1-month content guide', 'mkt-p1-f6': 'Google Business Profile (Search and Maps)', 'mkt-p1-f7': 'Measurement set up: Google Analytics and conversions', 'mkt-p1-f8': 'Ready in 4 weeks. 50% off your first month of Monthly Management', 'mkt-p2-f1': '8 posts a month: 6 graphics + 2 reels', 'mkt-p2-f2': 'Each piece adapted to 2 platform formats', 'mkt-p2-f3': 'Ad management on 2 platforms of your choice (for example, Google Ads and Meta), up to 5 campaigns per platform', 'mkt-p2-f4': 'Google Business Profile kept up to date: review replies and posts', 'mkt-p2-f5': 'Monthly metrics report with analysis and adjustments', 'mkt-p2-f6': 'Monthly review meeting with recommendations', 'mkt-p2-f7': 'Ad spend (what Google and Meta charge) is not included, you pay it directly to each platform. 3-month minimum', 'mkt-p3-f1': 'Everything in Monthly Management, with ads on up to 3 platforms', 'mkt-p3-f2': 'SEO (2 blog articles a month and site optimization) or CRM (1 email campaign a month and 1 automation)', 'mkt-p3-f3': 'Quarterly content strategy with roadmap', 'mkt-p3-f4': 'A/B testing of ads', 'mkt-p3-f5': '2 meetings a month', 'mkt-p3-f6': 'Custom metrics monitoring report', 'mkt-p3-f7': 'Ad spend (what Google and Meta charge) is not included, you pay it directly to each platform. 3-month minimum', 'mkt-p4-f1': 'Initial marketing maturity diagnosis with APEX', 'mkt-p4-f2': 'Growth strategy aligned with your business goals', 'mkt-p4-f3': 'Dedicated team with an account lead', 'mkt-p4-f4': 'Multichannel management: ads, content, SEO, CRM and measurement', 'mkt-p4-f5': 'Executive reports and follow-up meetings with leadership', 'plan-pyme': 'Small business', 'mkt-p4-seg': 'Enterprise', 'mkt-p4-name': 'Tailored Enterprise Plan', 'mkt-p4-desc': 'Your company is established and needs marketing to match. Let’s talk: we review your situation, goals and resources, and design a plan built around your business.', 'mkt-p4-price': 'Proposal based on scope', 'mkt-p4-cta': 'Book a meeting', 'mkt-p4-apex': 'Discover the APEX Diagnostic →',
       'logo-tag': 'Marketing & talent',
       'nav-como': 'How it works', 'nav-servicios': 'Services', 'nav-about': 'About us',
       'nav-faq': 'FAQ', 'nav-agenda': 'Book a meeting',
@@ -2478,7 +2479,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       'stat1': 'satisfied clients', 'stat2': 'years of experience', 'stat3': 'service areas',
       'como-label': 'Process', 'como-h2': 'How our marketing and HR consulting works',
       'como-desc': 'From first contact to concrete results, in under a week.',
-      'step1-title': 'Choose your plan', 'step1-desc': 'Browse the packages and find the one that fits your company.',
+      'step1-title': 'Choose your plan', 'step1-desc': 'Browse the packages and find the one that fits your company. Not sure yet? <a href="https://calendly.com/vortexcor2026/30min" target="_blank" rel="noopener" class="step-doubt">Talk to us first</a>.',
       'step2-title': 'Start your first session', 'step2-desc': 'Once you choose and pay for your plan, you receive an email with a link to schedule your first working session, where we kick off the actions.',
       'step3-title': 'We get to work', 'step3-desc': 'We analyze, design and execute. You receive clear updates, without unnecessary jargon.',
       'step4-title': 'Ready to launch', 'step4-desc': 'Within a week you have everything you need to get started: strategy, materials, and first actions defined.',
@@ -2625,7 +2626,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       'stat1': 'clientes satisfeitos', 'stat2': 'anos de experiência', 'stat3': 'áreas de serviço',
       'como-label': 'Processo', 'como-h2': 'Simples. Rápido. Sem complicações.',
       'como-desc': 'Do primeiro contato até você ter tudo o que precisa para começar, em menos de uma semana.',
-      'step1-title': 'Escolha seu plano', 'step1-desc': 'Veja os pacotes e escolha o que se adapta à sua empresa.',
+      'step1-title': 'Escolha seu plano', 'step1-desc': 'Veja os pacotes e escolha o que se adapta à sua empresa. Ficou com dúvidas? <a href="https://calendly.com/vortexcor2026/30min" target="_blank" rel="noopener" class="step-doubt">Fale conosco antes</a>.',
       'step2-title': 'Inicie sua primeira sessão', 'step2-desc': 'Depois de escolher e pagar seu plano, você recebe um e-mail com um link para agendar sua primeira sessão de trabalho, onde começamos com as ações.',
       'step3-title': 'Vamos trabalhar', 'step3-desc': 'Analisamos, desenhamos e executamos. Você recebe atualizações claras, sem jargões desnecessários.',
       'step4-title': 'Prontos para começar', 'step4-desc': 'Em uma semana você tem tudo o que precisa para começar: estratégia, materiais e primeiras ações definidas.',
@@ -2650,8 +2651,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       'rrhh-p2-f3': 'Relatório individual com recomendações', 'rrhh-p2-f4': 'Sessão de feedback (30 min)',
       'rrhh-p2-f5': 'Avaliação 360° disponível para equipes',
       'rrhh-p3-name': 'Desligamento', 'rrhh-p3-unit': 'por processo',
-      'rrhh-p3-desc': 'Suporte em processos de saída. Proteja sua empresa, cuide das pessoas e feche bem o ciclo.',
-      'rrhh-p3-f1': 'Assessoria no processo legal', 'rrhh-p3-f2': 'Entrevista de saída',
+      'rrhh-p3-desc': 'Acompanhamos a empresa e a pessoa que sai, para que o desligamento seja cuidadoso e organizado. Não inclui assessoria jurídica.',
+      'rrhh-p3-f1': 'Orientação no processo de desligamento', 'rrhh-p3-f2': 'Entrevista de saída',
       'rrhh-p3-f3': 'Suporte psicológico ao colaborador', 'rrhh-p3-f4': 'Relatório final para a empresa',
       'rrhh-p4-name': 'Perfis de Cargo', 'rrhh-p4-unit': 'pack × 3',
       'rrhh-p4-desc': 'Definição completa de 3 cargos simultâneos: objetivos, responsabilidades, competências e anúncio pronto para publicar.',
