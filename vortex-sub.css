@@ -57,3 +57,5 @@ section { padding: 64px 2rem; }
   .services-grid { grid-template-columns: 1fr; }
   .stats { gap: 1.5rem 2rem; padding: 28px 1.25rem; }
 }
+
+#servicios-puntuales { scroll-margin-top: 72px; }
