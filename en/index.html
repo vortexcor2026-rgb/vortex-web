@@ -1651,6 +1651,16 @@
     @media (max-width: 600px) { .plans-grid:not(.plans-grid-rrhh) > .plan-card:not(.plan-enterprise) { grid-row: auto; } .plans-grid:not(.plans-grid-rrhh) { grid-template-rows: none; } }
     .plan-price { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 0.4rem; row-gap: 0.15rem; }
     .plan-price .price-unit { white-space: nowrap; line-height: 1.2; }
+    /* Enterprise card: top-aligned columns, tidy checklist */
+    .plan-enterprise { align-items: start; grid-template-columns: 1.1fr 1.1fr auto; padding: 2rem 2.25rem; }
+    .plan-enterprise .plan-features li { line-height: 1.5; padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,.09); align-items: flex-start; }
+    .plan-enterprise .plan-features li:first-child { padding-top: 0; }
+    .plan-enterprise .plan-features li:last-child { border-bottom: none; padding-bottom: 0; }
+    .plan-enterprise .plan-features li::before { margin-top: 0; line-height: 1.5; width: 14px; }
+    .plan-enterprise .plan-actions { align-self: start; padding-top: 0; margin-top: 0; }
+    .plan-enterprise .plan-segment { margin-top: 0; }
+    @media (max-width: 960px) { .plan-enterprise { grid-template-columns: 1fr; padding: 1.5rem; } }
+    @media (max-width: 600px) { .plans-grid .plan-enterprise { gap: 1.25rem; padding: 1.25rem; } .plan-enterprise .plan-actions { width: 100%; } }
 </style>
 </head>
 <body>
