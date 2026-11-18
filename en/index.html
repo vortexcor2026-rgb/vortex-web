@@ -1697,6 +1697,15 @@
     .about-intro .about-story { font-size: 0.9375rem; line-height: 1.7; color: var(--text-muted); margin: 0 0 1rem; max-width: 520px; }
     .about-intro [data-i18n="about-p1"] { font-size: 1.0625rem; line-height: 1.6; color: var(--text); border-left: 3px solid var(--accent); padding-left: 1rem; }
     .about-intro [data-i18n="about-p1"] strong { font-weight: 600; color: var(--accent); }
+    /* "¿Tienes dudas?": centered compact card, flows into the FAQ */
+    #dudas { padding-top: 56px; padding-bottom: 24px; background: transparent; }
+    #dudas .dudas-inner { max-width: 820px; text-align: center; background: var(--bg3, #f1f4ef); border: 1px solid var(--border-light); border-radius: 18px; padding: 2.5rem 2rem; }
+    #dudas .section-eyebrow { display: flex; justify-content: center; margin-bottom: 0.75rem; }
+    #dudas h2 { margin-bottom: 0.75rem; }
+    #dudas .section-sub { margin: 0 auto 1.5rem; max-width: 520px; }
+    #dudas .dudas-actions { justify-content: center; }
+    #dudas .dudas-actions a { padding: 12px 24px; font-size: 0.9375rem; }
+    #faq { padding-top: 48px; }
 </style>
 </head>
 <body>
@@ -2356,7 +2365,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </p>
     <div class="dudas-actions">
       <a href="https://calendly.com/vortexcor2026/30-min-reunion-consulta-apex-clone-1" class="btn-white" target="_blank" rel="noopener" data-i18n="dudas-cta1">Book a Free Meeting</a>
-      <a href="https://calendly.com/vortexcor2026/30-min-reunion-consulta-apex-clone-1" class="btn-outline-white" target="_blank" rel="noopener" data-i18n="dudas-cta2">I have more questions first</a>
+      <a href="#faq" class="btn-outline-white" data-i18n="dudas-cta2">See the FAQ</a>
     </div>
   </div>
 </section>
@@ -2526,7 +2535,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       'profile2-bio': 'Organizational psychologist with experience in recruitment, performance assessment and organizational development. Specialized in processes that combine technical rigor with a human-centered approach, because well-built teams are the foundation of any strategy.',
       'dudas-label': 'Have Questions?', 'dudas-h2': "Let's talk before you decide",
       'dudas-desc': 'A free 30-minute meeting. No commitment. We will explain exactly how we can help you and what to expect from the process.',
-      'dudas-cta1': 'Book a Free Meeting', 'dudas-cta2': 'I have more questions first',
+      'dudas-cta1': 'Book a Free Meeting', 'dudas-cta2': 'See the FAQ',
       'faq-label': 'FAQ', 'faq-h2': 'Frequently asked questions about our consulting services',
       'faq-q1': 'Do you work with companies from any industry?',
       'faq-a1': 'Yes. Our methodology adapts to any industry. We have worked with retail, services, tech, hospitality and more. What matters is that you want to grow and have data to work with.',
@@ -2639,7 +2648,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       'profile2-bio': "Organizational psychologist with experience in recruitment, performance evaluation and organizational support across multiple industries. Specialized in processes that combine technical rigor with a human approach, because well-built teams are the foundation of any strategy.",
       'dudas-label': 'Have questions?', 'dudas-h2': "Let's talk before you decide",
       'dudas-desc': 'A free 30-minute meeting. No commitment. We will explain exactly how we can help you and what to expect from the process.',
-      'dudas-cta1': 'Book free meeting', 'dudas-cta2': 'I have more questions first',
+      'dudas-cta1': 'Book free meeting', 'dudas-cta2': 'See the FAQ',
       'faq-label': 'FAQ', 'faq-h2': 'Frequently asked questions about our consulting services',
       'faq-q1': 'Do you work with companies from any industry?',
       'faq-a1': "Yes. Our methodology adapts to any industry. We've worked with retail, services, tech, food and more. What matters is that you want to grow and have data to work with.",
@@ -2805,7 +2814,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       'profile2-bio': 'Psicóloga organizacional com experiência em seleção, avaliação de desempenho e suporte organizacional em empresas de diferentes setores. Especializada em processos que combinam rigor técnico com abordagem humana, porque equipes bem construídas são a base de qualquer estratégia.',
       'dudas-label': 'Tem dúvidas?', 'dudas-h2': 'Vamos conversar antes de decidir',
       'dudas-desc': 'Uma reunião gratuita de 30 minutos. Sem compromisso. Explicamos exatamente como podemos ajudar você e o que esperar do processo.',
-      'dudas-cta1': 'Agendar reunião gratuita', 'dudas-cta2': 'Tenho mais perguntas primeiro',
+      'dudas-cta1': 'Agendar reunião gratuita', 'dudas-cta2': 'Ver perguntas frequentes',
       'faq-label': 'FAQ', 'faq-h2': 'O que as pessoas mais nos perguntam',
       'faq-q1': 'Vocês trabalham com empresas de qualquer setor?',
       'faq-a1': 'Sim. Nossa metodologia se adapta a qualquer setor. Já trabalhamos com varejo, serviços, tecnologia, alimentação e mais. O que importa é que você queira crescer e tenha dados para trabalhar.',
