@@ -7,6 +7,8 @@ const FLOW_API_URL = 'https://www.flow.cl/api';
 const SITE_URL = 'https://vortexcor.com';
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const BUSINESS_EMAIL = 'vortexcor2026@gmail.com';
+// Single source of truth for Arma tu plan prices (shared with the website)
+const CATALOG = require('../../vortex-catalog.js');
 
 const ITEM_NAMES = {
   'idvisual': 'Identidad visual básica',
@@ -20,6 +22,13 @@ const ITEM_NAMES = {
   'analytics': 'Analytics y Reportes',
   'web': 'Diseño Web',
 };
+
+function itemLabel(raw) {
+  const id = (raw || '').replace(/\+en$/, '');
+  const it = CATALOG.items.find(x => x.id === id);
+  const base = it ? it.name.es : (ITEM_NAMES[id] || id.replace(/_/g, ' '));
+  return /\+en$/.test(raw || '') && it && it.addon ? base + ' + ' + it.addon.name.es : base;
+}
 
 const PLAN_NAMES = {
   'sf91127fd124de7e6421f45317cc66f302b6dc53': 'Pack Inicio',
@@ -337,7 +346,7 @@ exports.handler = async (event) => {
         const planToken = Object.keys(PLAN_NAMES).find(t => t === planSuffix || t.endsWith(planSuffix || '')) || Object.keys(PLAN_CODES).find(t => PLAN_CODES[t] === orderCode);
         const parsedItems = (extra.i || '').split('|').filter(Boolean).map(seg => {
           const [id, qty, price] = seg.split(':');
-          return { name: ITEM_NAMES[id] || (id || '').replace(/_/g, ' '), qty: Number(qty) || 1, price: Number(price) || 0 };
+          return { name: itemLabel(id), qty: Number(qty) || 1, price: Number(price) || 0 };
         });
 
         await sendResendEmail({
@@ -366,10 +375,18 @@ exports.handler = async (event) => {
       return { statusCode: 400, headers, body: JSON.stringify({ error: 'Token inválido' }) };
     }
 
-    // Para CAR (Arma tu Plan) el monto es variable y viene del frontend
-    const finalAmount = (token === 'i3d1a9b1b20dfcf2232829658b9f49f3fc336bfc' && bodyAmount)
-      ? bodyAmount
-      : PLAN_AMOUNTS[token];
+    // Para CAR (Arma tu Plan) el monto se calcula aquí desde el catálogo; nunca se confía en el monto del navegador
+    let finalAmount = PLAN_AMOUNTS[token];
+    let pricedItems = [];
+    if (token === 'i3d1a9b1b20dfcf2232829658b9f49f3fc336bfc') {
+      try {
+        const priced = CATALOG.priceCart(bodyItems, 'es');
+        finalAmount = priced.total;
+        pricedItems = priced.lines;
+      } catch (e) {
+        return { statusCode: 400, headers, body: JSON.stringify({ error: 'Selección inválida. Recarga la página e inténtalo de nuevo.' }) };
+      }
+    }
 
     if (!finalAmount || finalAmount <= 0) {
       return { statusCode: 400, headers, body: JSON.stringify({ error: 'Monto inválido' }) };
@@ -390,7 +407,7 @@ exports.handler = async (event) => {
       paymentMethod: 9,
       // Flow devuelve este campo en getStatus; así /confirm recupera plan, nombre y email
       // aunque corra en otra instancia de la función (la memoria global no se comparte)
-      optional: JSON.stringify({ p: token.slice(-8), n: (name || '').slice(0,15), e: (email || '').slice(0,25), i: (bodyItems || []).map(it => (it.id || it.name.slice(0,8).replace(/\s/g,'_')) + ':' + it.qty + ':' + it.price).join('|') }),
+      optional: JSON.stringify({ p: token.slice(-8), n: (name || '').slice(0,15), e: (email || '').slice(0,25), i: pricedItems.map(it => it.id + (it.addon ? '+en' : '') + ':' + it.qty + ':' + it.price).join('|') }),
     };
 
     try {
@@ -446,7 +463,7 @@ exports.handler = async (event) => {
         const planToken = Object.keys(PLAN_NAMES).find(t => t === planSuffix2 || t.endsWith(planSuffix2 || '')) || Object.keys(PLAN_CODES).find(t => PLAN_CODES[t] === orderCode);
         const parsedItems2 = (extra.i || '').split('|').filter(Boolean).map(seg => {
           const [id, qty, price] = seg.split(':');
-          return { name: ITEM_NAMES[id] || (id || '').replace(/_/g, ' '), qty: Number(qty) || 1, price: Number(price) || 0 };
+          return { name: itemLabel(id), qty: Number(qty) || 1, price: Number(price) || 0 };
         });
         await sendResendEmail({
           name: extra.name || extra.n || extra.nm || '',

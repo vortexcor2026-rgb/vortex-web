@@ -20,8 +20,8 @@
   };
   function txt(el) { return el ? (el.innerText || el.textContent || '').replace(/\s+/g, ' ').trim() : ''; }
   function parsePrice(s) {
-    var m = (s || '').match(/\$\s?([\d.]+)/);
-    return m ? parseInt(m[1].replace(/\./g, ''), 10) || 0 : 0;
+    var m = (s || '').match(/\$\s?([\d.,]+)/);
+    return m ? parseInt(m[1].replace(/[.,]/g, ''), 10) || 0 : 0;
   }
   var path = location.pathname.replace(/\/+$/, '/') || '/';
   var lang = (d.documentElement.lang || 'es').slice(0, 2);
@@ -200,12 +200,12 @@
     }
 
     // 3. "Arma tu plan" quantity changes
-    if (el.matches('.arma-qty-btn')) {
+    if (el.matches('.arma-qty-btn, [data-vx-action]')) {
       var it = el.closest('.arma-item');
       if (!it) return;
       var nm = txt(it.querySelector('.arma-item-name'));
       var pr = parsePrice(txt(it.querySelector('.arma-item-price')));
-      var add = /\+/.test(label);
+      var add = el.dataset.vxAction ? el.dataset.vxAction === 'add' : /\+/.test(label);
       return push(add ? 'add_to_cart' : 'remove_from_cart', p,
         { currency: CURRENCY, value: pr, items: [{ item_name: nm, item_category: serviceFromName(nm) || 'custom', item_list_name: 'arma_tu_plan', price: pr, quantity: 1 }] });
     }

@@ -708,6 +708,17 @@
       font-size: 0.775rem; color: var(--text-muted);
       line-height: 1.5; margin: 0.4rem 0 1rem;
     }
+
+    .plan-segment { display:inline-block; font-size:.7rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent-hi); margin-bottom:.35rem; }
+    .plan-enterprise { grid-row:auto; grid-template-rows:none; margin-top:1.5rem; display:grid; grid-template-columns:1.15fr 1fr auto; gap:2.5rem; align-items:center; background:#1a1f18; color:#fff; border-color:#1a1f18; }
+    .plan-enterprise .plan-name, .plan-enterprise .plan-features li { color:#fff; }
+    .plan-enterprise .plan-desc { color:rgba(255,255,255,.72); }
+    .plan-enterprise .plan-segment { color:#9bd8aa; }
+    .plan-enterprise-price { font-weight:700; color:#9bd8aa; margin-top:.5rem; }
+    .plan-enterprise .plan-features { margin:0; }
+    .plan-enterprise .plan-actions { min-width:220px; }
+    .plan-enterprise .plan-doubt { color:#9bd8aa; }
+    @media (max-width:960px){ .plan-enterprise { grid-template-columns:1fr; gap:1.25rem; } }
     .plans-grid-rrhh {
       align-items: stretch;
     }
@@ -1744,7 +1755,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="plans-grid">
       <article class="plan-card">
         <div class="plan-badge" style="visibility:hidden">·</div>
-        <div class="plan-name" data-i18n="mkt-p1-name">Pack Inicio</div>
+        <div class="plan-name-wrap"><div class="plan-segment" data-i18n="plan-pyme">Pyme</div>
+        <div class="plan-name" data-i18n="mkt-p1-name">Pack Inicio</div></div>
         <p class="plan-desc" data-i18n="mkt-p1-desc">Para empresas que parten desde cero o necesitan una base sólida de presencia digital.</p>
         <div class="plan-price"><span class="price-num" data-i18n="mkt-p1-price">$790.000</span><span class="price-clp" data-i18n="price-currency">CLP</span> <span class="price-unit" data-i18n="plan-once">pago único</span></div>
         <p class="price-currency-note" data-i18n="price-currency-note"></p>
@@ -1752,8 +1764,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <li data-i18n="mkt-p1-f1">Diagnóstico de marca y posicionamiento</li>
           <li data-i18n="mkt-p1-f2">Identidad visual básica</li>
           <li data-i18n="mkt-p1-f3">Creación de página web</li>
-          <li data-i18n="mkt-p1-f4">Creación de 2 plataformas para ads con 1 campaña cada una</li>
+          <li data-i18n="mkt-p1-f4">1 campaña en Google Ads o Meta, con 30 días de optimización</li>
           <li data-i18n="mkt-p1-f5">Guía de contenido para 1 mes</li>
+          <li data-i18n="mkt-p1-f6">Perfil de Google para tu empresa (Google y Maps)</li>
+          <li data-i18n="mkt-p1-f7">Medición instalada: Google Analytics y conversiones</li>
+          <li data-i18n="mkt-p1-f8">Listo en 4 semanas. Tu primer mes de Mantención con 50% de descuento</li>
         </ul>
         <div class="plan-actions">
           <a href="#" onclick="payWithFlow('sf91127fd124de7e6421f45317cc66f302b6dc53');return false;" class="plan-cta plan-cta-secondary" data-i18n="btn-contratar">Contratar</a>
@@ -1763,16 +1778,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <article class="plan-card featured">
         <div class="plan-badge" data-i18n="plan-popular">Más elegido</div>
-        <div class="plan-name" data-i18n="mkt-p2-name">Mantención Mensual</div>
+        <div class="plan-name-wrap"><div class="plan-segment" data-i18n="plan-pyme">Pyme</div>
+        <div class="plan-name" data-i18n="mkt-p2-name">Mantención Mensual</div></div>
         <p class="plan-desc" data-i18n="mkt-p2-desc">Para empresas que ya tienen presencia y necesitan consistencia y crecimiento mes a mes.</p>
         <div class="plan-price"><span class="price-num" data-i18n="mkt-p2-price">$390.000</span><span class="price-clp" data-i18n="price-currency">CLP</span> <span class="price-unit" data-i18n="plan-mes">/mes</span></div>
         <p class="price-currency-note" data-i18n="price-currency-note"></p>
         <ul class="plan-features">
-          <li data-i18n="mkt-p2-f1">8 publicaciones al mes: 4 banners + 4 videos</li>
+          <li data-i18n="mkt-p2-f1">8 publicaciones al mes: 6 piezas gráficas + 2 reels</li>
           <li data-i18n="mkt-p2-f2">Cada pieza adaptada en 2 formatos de plataforma</li>
-          <li data-i18n="mkt-p2-f3">Reporte mensual de métricas con análisis y ajustes</li>
-          <li data-i18n="mkt-p2-f4">Reunión de revisión mensual con recomendaciones</li>
-          <li data-i18n="mkt-p2-f5">Gestión de 2 plataformas</li>
+          <li data-i18n="mkt-p2-f3">Gestión de pauta en 2 plataformas a elección (por ejemplo, Google Ads y Meta), hasta 5 campañas por plataforma</li>
+          <li data-i18n="mkt-p2-f4">Perfil de Google al día: respuesta a reseñas y publicaciones</li>
+          <li data-i18n="mkt-p2-f5">Reporte mensual de métricas con análisis y ajustes</li>
+          <li data-i18n="mkt-p2-f6">Reunión de revisión mensual con recomendaciones</li>
+          <li data-i18n="mkt-p2-f7">Presupuesto de avisos aparte. Plazo mínimo de 3 meses</li>
         </ul>
         <div class="plan-actions">
           <a href="#" onclick="payWithFlow('t3c9404b5d417e43e5ff7dc5cb7ae340069795be');return false;" class="plan-cta plan-cta-primary" data-i18n="btn-contratar">Contratar</a>
@@ -1782,17 +1800,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <article class="plan-card">
         <div class="plan-badge" style="visibility:hidden">·</div>
-        <div class="plan-name" data-i18n="mkt-p3-name">Plan Pro</div>
+        <div class="plan-name-wrap"><div class="plan-segment" data-i18n="plan-pyme">Pyme</div>
+        <div class="plan-name" data-i18n="mkt-p3-name">Plan Pro</div></div>
         <p class="plan-desc" data-i18n="mkt-p3-desc">Para empresas que quieren escalar: más canales, más contenido, estrategia de crecimiento.</p>
         <div class="plan-price"><span class="price-num" data-i18n="mkt-p3-price">$590.000</span><span class="price-clp" data-i18n="price-currency">CLP</span> <span class="price-unit" data-i18n="plan-mes">/mes</span></div>
         <p class="price-currency-note" data-i18n="price-currency-note"></p>
         <ul class="plan-features">
-          <li data-i18n="mkt-p3-f1">Todo lo del plan Mantención, con gestión de 3 plataformas</li>
-          <li data-i18n="mkt-p3-f2">Canal adicional: CRM o SEO</li>
+          <li data-i18n="mkt-p3-f1">Todo lo del plan Mantención, con pauta en hasta 3 plataformas</li>
+          <li data-i18n="mkt-p3-f2">SEO (2 artículos de blog al mes y optimización del sitio) o CRM (1 campaña de email al mes y 1 automatización)</li>
           <li data-i18n="mkt-p3-f3">Estrategia de contenido trimestral con hoja de ruta</li>
-          <li data-i18n="mkt-p3-f4">Gestión integral de pauta digital (Google Ads o Meta)</li>
+          <li data-i18n="mkt-p3-f4">Pruebas A/B de anuncios</li>
           <li data-i18n="mkt-p3-f5">2 reuniones mensuales</li>
           <li data-i18n="mkt-p3-f6">Construcción de reporte de monitoreo de métricas</li>
+          <li data-i18n="mkt-p3-f7">Presupuesto de avisos aparte. Plazo mínimo de 3 meses</li>
         </ul>
         <div class="plan-actions">
           <a href="#" onclick="payWithFlow('v4fc43f48cb0fa1d5fd75929c8d5b8c86eb5848f');return false;" class="plan-cta plan-cta-secondary" data-i18n="btn-contratar">Contratar</a>
@@ -1800,6 +1820,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </article>
     </div>
+    <article class="plan-card plan-enterprise">
+      <div class="plan-enterprise-intro">
+        <div class="plan-segment" data-i18n="mkt-p4-seg">Empresas</div>
+        <div class="plan-name" data-i18n="mkt-p4-name">Plan Empresas a la medida</div>
+        <p class="plan-desc" data-i18n="mkt-p4-desc">Tu empresa ya está consolidada y necesita un marketing a la altura. Conversemos: analizamos tu situación, tus objetivos y tus recursos, y diseñamos un plan a la medida de tu negocio.</p>
+        <div class="plan-enterprise-price" data-i18n="mkt-p4-price">Propuesta según alcance</div>
+      </div>
+      <ul class="plan-features">
+          <li data-i18n="mkt-p4-f1">Diagnóstico inicial de madurez de marketing con APEX</li>
+          <li data-i18n="mkt-p4-f2">Estrategia de crecimiento alineada a tus objetivos de negocio</li>
+          <li data-i18n="mkt-p4-f3">Equipo dedicado con un responsable de cuenta</li>
+          <li data-i18n="mkt-p4-f4">Gestión multicanal: pauta, contenido, SEO, CRM y medición</li>
+          <li data-i18n="mkt-p4-f5">Reportes ejecutivos y reuniones de seguimiento con gerencia</li>
+      </ul>
+      <div class="plan-actions">
+        <a href="https://calendly.com/vortexcor2026/30-min-reunion-consulta-marketing-clone-1" class="plan-cta plan-cta-primary" target="_blank" rel="noopener" data-i18n="mkt-p4-cta">Agendar una reunión</a>
+        <a href="/diagnostico-apex/" class="plan-doubt" data-i18n="mkt-p4-apex">Conocer el Diagnóstico APEX →</a>
+      </div>
+    </article>
     <div style="margin-top:1.5rem;">
       <a href="/marketing-digital/" style="font-size:0.9rem;color:var(--accent);font-weight:600;text-decoration:none;" data-i18n="tab-ver-mas-mkt">Conocer más →</a>
     </div>
@@ -1994,28 +2033,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="arma-intro-row">
       <div class="section-eyebrow" data-i18n="arma-label">Arma tu plan</div>
       <h2 id="arma-title" data-i18n="arma-h2">Planes de marketing digital y gestión de talento para empresas</h2>
-      <p class="section-sub arma-intro" data-i18n="arma-desc">Selecciona los servicios que quieres contratar. El total se calcula en tiempo real y puedes pagar de inmediato con Flow.</p>
+      <p class="section-sub arma-intro" data-i18n="arma-desc">Resuelve lo urgente sin contratar un plan completo. Elige lo que necesitas, revisa el total y paga en línea con Flow.</p>
     </div>
 
-    <div class="arma-body">
-      <div class="arma-services" id="arma-services-list" role="group" aria-label="Servicios disponibles">
-        <!-- items injected by JS -->
-      </div>
-
-      <div class="arma-total-card" role="complementary" aria-label="Resumen de tu plan">
-        <div class="arma-total-title" data-i18n="arma-summary-title">Tu plan</div>
-        <div class="arma-selected-list" id="arma-selected-list">
-          <div class="arma-selected-empty" id="arma-empty-msg" data-i18n="arma-empty">Selecciona servicios para ver el resumen</div>
-        </div>
-        <div class="arma-total-row">
-          <span class="arma-total-label" data-i18n="arma-total">Total</span>
-          <span class="arma-total-amount" id="arma-total-amount">$0</span>
-        </div>
-        <button class="arma-pay-btn" id="arma-pay-btn" disabled onclick="armaPayNow()" data-i18n="arma-pay">Pagar con Flow</button>
-        <p class="price-currency-note" data-i18n="price-currency-note" style="text-align:center;margin-bottom:0.3rem;"></p>
-        <p class="arma-note" data-i18n="arma-note">Pago seguro vía Flow · Recibirás confirmación por email</p>
-      </div>
-    </div>
+    <div data-vx-arma data-line="all"></div>
   </div>
 </section>
 
@@ -2303,6 +2324,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script>
   const T = {
     es: {
+      'mkt-p1-f1': 'Diagnóstico de marca y posicionamiento', 'mkt-p1-f2': 'Identidad visual básica', 'mkt-p1-f3': 'Creación de página web', 'mkt-p1-f4': '1 campaña en Google Ads o Meta, con 30 días de optimización', 'mkt-p1-f5': 'Guía de contenido para 1 mes', 'mkt-p1-f6': 'Perfil de Google para tu empresa (Google y Maps)', 'mkt-p1-f7': 'Medición instalada: Google Analytics y conversiones', 'mkt-p1-f8': 'Listo en 4 semanas. Tu primer mes de Mantención con 50% de descuento', 'mkt-p2-f1': '8 publicaciones al mes: 6 piezas gráficas + 2 reels', 'mkt-p2-f2': 'Cada pieza adaptada en 2 formatos de plataforma', 'mkt-p2-f3': 'Gestión de pauta en 2 plataformas a elección (por ejemplo, Google Ads y Meta), hasta 5 campañas por plataforma', 'mkt-p2-f4': 'Perfil de Google al día: respuesta a reseñas y publicaciones', 'mkt-p2-f5': 'Reporte mensual de métricas con análisis y ajustes', 'mkt-p2-f6': 'Reunión de revisión mensual con recomendaciones', 'mkt-p2-f7': 'Presupuesto de avisos aparte. Plazo mínimo de 3 meses', 'mkt-p3-f1': 'Todo lo del plan Mantención, con pauta en hasta 3 plataformas', 'mkt-p3-f2': 'SEO (2 artículos de blog al mes y optimización del sitio) o CRM (1 campaña de email al mes y 1 automatización)', 'mkt-p3-f3': 'Estrategia de contenido trimestral con hoja de ruta', 'mkt-p3-f4': 'Pruebas A/B de anuncios', 'mkt-p3-f5': '2 reuniones mensuales', 'mkt-p3-f6': 'Construcción de reporte de monitoreo de métricas', 'mkt-p3-f7': 'Presupuesto de avisos aparte. Plazo mínimo de 3 meses', 'mkt-p4-f1': 'Diagnóstico inicial de madurez de marketing con APEX', 'mkt-p4-f2': 'Estrategia de crecimiento alineada a tus objetivos de negocio', 'mkt-p4-f3': 'Equipo dedicado con un responsable de cuenta', 'mkt-p4-f4': 'Gestión multicanal: pauta, contenido, SEO, CRM y medición', 'mkt-p4-f5': 'Reportes ejecutivos y reuniones de seguimiento con gerencia', 'plan-pyme': 'Pyme', 'mkt-p4-seg': 'Empresas', 'mkt-p4-name': 'Plan Empresas a la medida', 'mkt-p4-desc': 'Tu empresa ya está consolidada y necesita un marketing a la altura. Conversemos: analizamos tu situación, tus objetivos y tus recursos, y diseñamos un plan a la medida de tu negocio.', 'mkt-p4-price': 'Propuesta según alcance', 'mkt-p4-cta': 'Agendar una reunión', 'mkt-p4-apex': 'Conocer el Diagnóstico APEX →',
       'logo-tag': 'Marketing y talento',
       'nav-como': 'Cómo funciona', 'nav-servicios': 'Servicios', 'nav-about': 'Equipo',
       'nav-faq': 'FAQ', 'nav-agenda': 'Agendar reunión',
@@ -2323,24 +2345,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       'tab-mkt': 'Marketing', 'tab-rrhh': 'RRHH',
       'mkt-p1-name': 'Pack Inicio', 'mkt-p1-price': '$790.000', 'plan-once': 'pago único',
       'mkt-p1-desc': 'Para empresas que parten desde cero o necesitan una base sólida de presencia digital.',
-      'mkt-p1-f1': 'Diagnóstico de marca y posicionamiento', 'mkt-p1-f2': 'Identidad visual básica',
-      'mkt-p1-f3': 'Creación de página web', 'mkt-p1-f4': 'Creación de 2 plataformas para ads con 1 campaña cada una',
-      'mkt-p1-f5': 'Guía de contenido para 1 mes',
       'mkt-p2-name': 'Mantención Mensual', 'mkt-p2-price': '$1.000', 'plan-popular': 'Más elegido', 'plan-mes': '/mes',
       'mkt-p2-desc': 'Para empresas que ya tienen presencia y necesitan consistencia y crecimiento mes a mes.',
-      'mkt-p2-f1': '8 publicaciones al mes: 4 banners + 4 videos',
-      'mkt-p2-f2': 'Cada pieza adaptada en 2 formatos de plataforma',
-      'mkt-p2-f3': 'Reporte mensual de métricas con análisis y ajustes',
-      'mkt-p2-f4': 'Reunión de revisión mensual con recomendaciones',
-      'mkt-p2-f5': 'Gestión de 2 plataformas',
       'mkt-p3-name': 'Plan Pro', 'mkt-p3-price': '$590.000',
       'mkt-p3-desc': 'Para empresas que quieren escalar: más canales, más contenido, estrategia de crecimiento.',
-      'mkt-p3-f1': 'Todo lo del plan Mantención, con gestión de 3 plataformas',
-      'mkt-p3-f2': 'Canal adicional: CRM o SEO',
-      'mkt-p3-f3': 'Estrategia de contenido trimestral con hoja de ruta',
-      'mkt-p3-f4': 'Gestión integral de pauta digital (Google Ads o Meta)',
-      'mkt-p3-f5': '2 reuniones mensuales',
-      'mkt-p3-f6': 'Construcción de reporte de monitoreo de métricas',
       'btn-contratar': 'Contratar', 'plan-hire': 'Contratar', 'plan-doubt': 'Tengo dudas con el plan →', 'rrhh-popular': 'Más solicitado',
       'rrhh-p1-name': 'Contratación', 'rrhh-p1-price': '$490.000', 'rrhh-p1-unit': 'por proceso',
       'rrhh-p1-desc': 'Proceso de selección completo, desde la publicación del cargo hasta la presentación de los candidatos finalistas.',
@@ -2422,7 +2430,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       'nav-arma': 'Arma tu plan',
       'arma-label': 'Arma tu plan',
       'arma-h2': 'Planes de marketing digital y gestión de talento para empresas',
-      'arma-desc': 'Selecciona los servicios que quieres contratar. El total se calcula en tiempo real y puedes pagar de inmediato con Flow.',
+      'arma-desc': 'Resuelve lo urgente sin contratar un plan completo. Elige lo que necesitas, revisa el total y paga en línea con Flow.',
       'arma-summary-title': 'Tu plan',
       'arma-empty': 'Selecciona servicios para ver el resumen',
       'arma-total': 'Total',
@@ -2451,6 +2459,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       'car-s2': 'candidatos evaluados',
     },
     en: {
+      'mkt-p1-f1': 'Brand and positioning diagnosis', 'mkt-p1-f2': 'Basic visual identity', 'mkt-p1-f3': 'Website build', 'mkt-p1-f4': '1 Google Ads or Meta campaign with 30 days of optimization', 'mkt-p1-f5': '1-month content guide', 'mkt-p1-f6': 'Google Business Profile (Search and Maps)', 'mkt-p1-f7': 'Measurement set up: Google Analytics and conversions', 'mkt-p1-f8': 'Ready in 4 weeks. 50% off your first month of Monthly Management', 'mkt-p2-f1': '8 posts a month: 6 graphics + 2 reels', 'mkt-p2-f2': 'Each piece adapted to 2 platform formats', 'mkt-p2-f3': 'Ad management on 2 platforms of your choice (for example, Google Ads and Meta), up to 5 campaigns per platform', 'mkt-p2-f4': 'Google Business Profile kept up to date: review replies and posts', 'mkt-p2-f5': 'Monthly metrics report with analysis and adjustments', 'mkt-p2-f6': 'Monthly review meeting with recommendations', 'mkt-p2-f7': 'Ad spend billed separately. 3-month minimum', 'mkt-p3-f1': 'Everything in Monthly Management, with ads on up to 3 platforms', 'mkt-p3-f2': 'SEO (2 blog articles a month and site optimization) or CRM (1 email campaign a month and 1 automation)', 'mkt-p3-f3': 'Quarterly content strategy with roadmap', 'mkt-p3-f4': 'A/B testing of ads', 'mkt-p3-f5': '2 meetings a month', 'mkt-p3-f6': 'Custom metrics monitoring report', 'mkt-p3-f7': 'Ad spend billed separately. 3-month minimum', 'mkt-p4-f1': 'Initial marketing maturity diagnosis with APEX', 'mkt-p4-f2': 'Growth strategy aligned with your business goals', 'mkt-p4-f3': 'Dedicated team with an account lead', 'mkt-p4-f4': 'Multichannel management: ads, content, SEO, CRM and measurement', 'mkt-p4-f5': 'Executive reports and follow-up meetings with leadership', 'plan-pyme': 'Small business', 'mkt-p4-seg': 'Enterprise', 'mkt-p4-name': 'Tailored Enterprise Plan', 'mkt-p4-desc': 'Your company is established and needs marketing to match. Let’s talk: we review your situation, goals and resources, and design a plan built around your business.', 'mkt-p4-price': 'Proposal based on scope', 'mkt-p4-cta': 'Book a meeting', 'mkt-p4-apex': 'Discover the APEX Diagnostic →',
       'logo-tag': 'Marketing & talent',
       'nav-como': 'How it works', 'nav-servicios': 'Services', 'nav-about': 'About us',
       'nav-faq': 'FAQ', 'nav-agenda': 'Book a meeting',
@@ -2471,24 +2480,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       'tab-mkt': 'Marketing SMB', 'tab-rrhh': 'HR SMB',
       'mkt-p1-name': 'Starter Marketing Package', 'mkt-p1-price': '$990', 'plan-once': 'one-time payment',
       'mkt-p1-desc': 'For companies starting from scratch or needing a solid digital presence foundation.',
-      'mkt-p1-f1': 'Brand & positioning diagnosis', 'mkt-p1-f2': 'Basic visual identity',
-      'mkt-p1-f3': 'Website creation', 'mkt-p1-f4': 'Creation of 2 ad platforms with 1 campaign each',
-      'mkt-p1-f5': '1-month content guide',
       'mkt-p2-name': 'Monthly Marketing Management', 'mkt-p2-price': '$1,200', 'plan-popular': 'Most popular', 'plan-mes': '/month',
       'mkt-p2-desc': 'For companies that already have a presence and need consistency and month-over-month growth.',
-      'mkt-p2-f1': '8 posts per month: 4 banners + 4 videos',
-      'mkt-p2-f2': 'Each piece adapted in 2 platform formats',
-      'mkt-p2-f3': 'Monthly metrics report with analysis and adjustments',
-      'mkt-p2-f4': 'Monthly review meeting with recommendations',
-      'mkt-p2-f5': 'Management of 2 platforms',
       'mkt-p3-name': 'Growth Marketing Package', 'mkt-p3-price': '$1,800',
       'mkt-p3-desc': 'For companies that want to scale: more channels, more content, growth strategy.',
-      'mkt-p3-f1': 'Everything in Maintenance, with management of 3 platforms',
-      'mkt-p3-f2': 'Additional channel: CRM or SEO',
-      'mkt-p3-f3': 'Quarterly content strategy with roadmap',
-      'mkt-p3-f4': 'Full-cycle paid media management (Google Ads or Meta)',
-      'mkt-p3-f5': '2 monthly meetings',
-      'mkt-p3-f6': 'Custom metrics monitoring report',
       'btn-contratar': 'Get started',
       'apex-tab-desc': 'APEX is our marketing maturity diagnostic for mid-size and large companies. Not a form, a deep analysis with our own methodology and executive deliverables.',
       'apex-f1': '5-dimension marketing diagnosis', 'apex-f2': 'Channel map and current KPIs',
@@ -2548,7 +2543,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       'nav-arma': 'Build your plan',
       'arma-label': 'Build your plan',
       'arma-h2': 'Marketing and HR consulting plans and pricing',
-      'arma-desc': 'Select the services you want to hire. Your total updates in real time and you can pay immediately with Flow.',
+      'arma-desc': 'Solve what is urgent without a full plan. Pick what you need, check the total and pay online with Flow.',
       'arma-summary-title': 'Your plan',
       'arma-empty': 'Select services to see your summary',
       'arma-total': 'Total',
@@ -2632,24 +2627,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       'tab-mkt': 'Marketing PME', 'tab-rrhh': 'RH PME',
       'mkt-p1-name': 'Pacote Inicial', 'plan-once': 'pagamento único',
       'mkt-p1-desc': 'Para empresas que estão começando do zero ou precisam de uma base sólida de presença digital.',
-      'mkt-p1-f1': 'Diagnóstico de marca e posicionamento', 'mkt-p1-f2': 'Identidade visual básica',
-      'mkt-p1-f3': 'Criação de site', 'mkt-p1-f4': 'Criação de 2 plataformas de ads com 1 campanha cada',
-      'mkt-p1-f5': 'Guia de conteúdo para 1 mês',
       'mkt-p2-name': 'Manutenção Mensal', 'plan-popular': 'Mais popular', 'plan-mes': '/mês',
       'mkt-p2-desc': 'Para empresas que já têm presença e precisam de consistência e crescimento mês a mês.',
-      'mkt-p2-f1': '8 posts por mês: 4 banners + 4 vídeos',
-      'mkt-p2-f2': 'Cada peça adaptada em 2 formatos de plataforma',
-      'mkt-p2-f3': 'Relatório mensal de métricas com análise e ajustes',
-      'mkt-p2-f4': 'Reunião mensal de revisão com recomendações',
-      'mkt-p2-f5': 'Gestão de 2 plataformas',
       'mkt-p3-name': 'Plano Pro',
       'mkt-p3-desc': 'Para empresas que querem escalar: mais canais, mais conteúdo, estratégia de crescimento.',
-      'mkt-p3-f1': 'Tudo do Manutenção, com gestão de 3 plataformas',
-      'mkt-p3-f2': 'Canal adicional: CRM ou SEO',
-      'mkt-p3-f3': 'Estratégia de conteúdo trimestral com roadmap',
-      'mkt-p3-f4': 'Gestão completa de mídia paga (Google Ads ou Meta)',
-      'mkt-p3-f5': '2 reuniões mensais',
-      'mkt-p3-f6': 'Relatório de monitoramento de métricas personalizado',
       'btn-contratar': 'Começar', 'plan-hire': 'Contratar', 'plan-doubt': 'Tenho dúvidas com o plano →', 'rrhh-popular': 'Mais solicitado',
       'rrhh-p1-name': 'Contratação', 'rrhh-p1-unit': 'por processo',
       'rrhh-p1-desc': 'Processo completo de seleção, desde a publicação da vaga até a apresentação dos candidatos finalistas.',
@@ -2981,7 +2962,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     { key: 'RRHH Suelto',  keyEn: 'HR',         keyPt: 'RH',         labelEs: 'RRHH · Servicios',       labelEn: 'HR · Services',          labelPt: 'RH · Serviços' },
   ];
 
-  function renderArmaServices() {
+  function renderArmaServices() { if (window.VXArma) VXArma.render(); return; }
+  function _oldRenderArmaServices() {
     const list = document.getElementById('arma-services-list');
     let html = '';
 
@@ -3050,7 +3032,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     renderArmaSummary();
   }
 
-  function renderArmaSummary() {
+  function renderArmaSummary() { return; }
+  function _oldRenderArmaSummary() {
     const listEl  = document.getElementById('arma-selected-list');
     const totalEl = document.getElementById('arma-total-amount');
     const payBtn  = document.getElementById('arma-pay-btn');
@@ -3275,6 +3258,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </form>
   </div>
 </div>
+<script src="/vortex-catalog.js" defer></script>
+<script src="/vortex-arma.js" defer></script>
 <script src="/vortex-tracking.js" defer></script>
 </body>
 </html>

@@ -301,6 +301,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
+<section id="servicios-puntuales">
+  <div class="section-inner">
+    <div class="section-eyebrow">One-off services</div>
+    <h2>HR services ready to hire</h2>
+    <p class="section-sub">Pick what your team needs today and pay online. If your case is more complex, let’s talk.</p>
+    <div data-vx-arma data-line="rrhh"></div>
+  </div>
+</section>
+
 <section class="related-services">
   <h2>Other VORTEX services</h2>
   <div class="related-grid">
@@ -384,7 +393,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       try {
         const res = await fetch('/.netlify/functions/create-payment', {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ token, name, email })
+          body: JSON.stringify({ token, name, email, ...(window._armaItems && token === 'i3d1a9b1b20dfcf2232829658b9f49f3fc336bfc' ? { items: window._armaItems } : {}) })
         });
         const data = await res.json();
         modal.style.display = 'none';
@@ -428,6 +437,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </div>
 
+<script src="/vortex-catalog.js" defer></script>
+<script src="/vortex-arma.js" defer></script>
 <script src="/vortex-tracking.js" defer></script>
 </body>
 </html>

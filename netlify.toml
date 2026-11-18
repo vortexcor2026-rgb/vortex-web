@@ -73,3 +73,6 @@
   for = "/*.png"
   [headers.values]
     Cache-Control = "public, max-age=604800"
+
+[functions]
+  included_files = ["vortex-catalog.js"]

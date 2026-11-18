@@ -42,20 +42,20 @@
         {
           "@type": "Offer",
           "name": "Pack Inicio",
-          "description": "Diagnóstico de marca, identidad visual básica, sitio web, dos plataformas de pauta con una campaña cada una y guía de contenido para un mes.",
+          "description": "Diagnóstico de marca, identidad visual básica, sitio web, una campaña con 30 días de optimización, perfil de Google, medición instalada y guía de contenido para un mes.",
           "price": "790000",
           "priceCurrency": "CLP"
         },
         {
           "@type": "Offer",
           "name": "Mantención Mensual",
-          "description": "Ocho publicaciones al mes, dos plataformas, reporte mensual de métricas y reunión mensual de revisión.",
+          "description": "Ocho publicaciones al mes (6 piezas gráficas y 2 reels), gestión de pauta en 2 plataformas, perfil de Google al día, reporte mensual y reunión mensual de revisión.",
           "priceSpecification": { "@type": "UnitPriceSpecification", "price": "390000", "priceCurrency": "CLP", "unitCode": "MON" }
         },
         {
           "@type": "Offer",
           "name": "Plan Pro",
-          "description": "Tres plataformas, canal adicional de CRM o SEO, estrategia de contenido trimestral, gestión completa de pauta y dos reuniones al mes.",
+          "description": "Todo lo del plan Mantención con pauta en hasta 3 plataformas, SEO o CRM, estrategia de contenido trimestral, pruebas A/B de anuncios y dos reuniones al mes.",
           "priceSpecification": { "@type": "UnitPriceSpecification", "price": "590000", "priceCurrency": "CLP", "unitCode": "MON" }
         }
       ]
@@ -141,6 +141,15 @@
 
     .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
     .plan-card { border-radius: var(--radius); padding: 2rem; border: 1.5px solid var(--border); position: relative; }
+    .plan-segment { display:inline-block; font-size:.7rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent-hi, #3d8c52); margin-bottom:.35rem; }
+    .plan-enterprise { margin-top:1.5rem; display:grid; grid-template-columns:1.15fr 1fr auto; gap:2.5rem; align-items:center; background:#1a1f18; color:#fff; border-color:#1a1f18; }
+    .plan-enterprise .plan-name, .plan-enterprise .plan-features li { color:#fff; }
+    .plan-enterprise .plan-desc { color:rgba(255,255,255,.72); }
+    .plan-enterprise .plan-segment, .plan-enterprise .plan-enterprise-price, .plan-enterprise .plan-doubt { color:#9bd8aa; }
+    .plan-enterprise-price { font-weight:700; margin-top:.5rem; }
+    .plan-enterprise .plan-features { margin:0; }
+    .plan-enterprise .plan-actions { min-width:220px; flex-direction:column; }
+    @media (max-width:960px){ .plan-enterprise { grid-template-columns:1fr; gap:1.25rem; } }
     .plan-card.featured { border-color: var(--accent); background: var(--accent-dim); }
     .plan-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #fff; font-size: 0.72rem; font-weight: 700; padding: 3px 14px; border-radius: 20px; white-space: nowrap; letter-spacing: 0.05em; }
     .plan-name { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
@@ -293,6 +302,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="section-sub">Sin contratos anuales. Sin letra chica. Pagas por lo que necesitas.</p>
     <div class="plans-grid">
       <div class="plan-card">
+        <div class="plan-segment">Pyme</div>
         <div class="plan-name">Pack Inicio</div>
         <div class="plan-desc">Para empresas que parten desde cero o necesitan una base sólida de presencia digital.</div>
         <div class="plan-price">$790.000 <span>pago único</span></div>
@@ -301,41 +311,75 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <li>Diagnóstico de marca y posicionamiento</li>
           <li>Identidad visual básica</li>
           <li>Creación de página web</li>
-          <li>Creación de 1 plataforma para ads con 1 campaña</li>
+          <li>1 campaña en Google Ads o Meta, con 30 días de optimización</li>
           <li>Guía de contenido para 1 mes</li>
+          <li>Perfil de Google para tu empresa (Google y Maps)</li>
+          <li>Medición instalada: Google Analytics y conversiones</li>
+          <li>Listo en 4 semanas. Tu primer mes de Mantención con 50% de descuento</li>
         </ul>
         <div class="plan-actions"><a href="#" onclick="payWithFlow('sf91127fd124de7e6421f45317cc66f302b6dc53');return false;" class="plan-cta plan-cta-secondary">Contratar</a><a href="https://calendly.com/vortexcor2026/30min" class="plan-doubt" target="_blank" rel="noopener">Tengo dudas con el plan →</a></div>
       </div>
       <div class="plan-card featured">
         <div class="plan-badge">MÁS ELEGIDO</div>
+        <div class="plan-segment">Pyme</div>
         <div class="plan-name">Mantención Mensual</div>
         <div class="plan-desc">Para empresas que ya tienen presencia y necesitan consistencia y crecimiento mes a mes.</div>
         <div class="plan-price">$390.000 <span>/mes</span></div>
         <p style="font-size:0.75rem;color:var(--text-muted);margin:-0.75rem 0 1rem;">Precio en pesos chilenos</p>
         <ul class="plan-features">
-          <li>8 publicaciones al mes: 4 banners + 4 videos</li>
-          <li>Cada pieza adaptada en 2 formatos</li>
-          <li>Reporte mensual de métricas</li>
-          <li>Reunión de revisión mensual</li>
-          <li>Gestión de 2 plataformas</li>
+          <li>8 publicaciones al mes: 6 piezas gráficas + 2 reels</li>
+          <li>Cada pieza adaptada en 2 formatos de plataforma</li>
+          <li>Gestión de pauta en 2 plataformas a elección (por ejemplo, Google Ads y Meta), hasta 5 campañas por plataforma</li>
+          <li>Perfil de Google al día: respuesta a reseñas y publicaciones</li>
+          <li>Reporte mensual de métricas con análisis y ajustes</li>
+          <li>Reunión de revisión mensual con recomendaciones</li>
+          <li>Presupuesto de avisos aparte. Plazo mínimo de 3 meses</li>
         </ul>
         <div class="plan-actions"><a href="#" onclick="payWithFlow('t3c9404b5d417e43e5ff7dc5cb7ae340069795be');return false;" class="plan-cta plan-cta-primary">Contratar</a><a href="https://calendly.com/vortexcor2026/30min" class="plan-doubt" target="_blank" rel="noopener">Tengo dudas con el plan →</a></div>
       </div>
       <div class="plan-card">
+        <div class="plan-segment">Pyme</div>
         <div class="plan-name">Plan Pro</div>
         <div class="plan-desc">Para empresas con objetivos ambiciosos que necesitan presencia completa y gestión integral.</div>
         <div class="plan-price">$590.000 <span>/mes</span></div>
         <p style="font-size:0.75rem;color:var(--text-muted);margin:-0.75rem 0 1rem;">Precio en pesos chilenos</p>
         <ul class="plan-features">
-          <li>Todo lo del plan Mantención</li>
-          <li>Gestión de campañas de ads</li>
-          <li>SEO básico y optimización web</li>
-          <li>Email marketing mensual</li>
-          <li>Estrategia de contenido trimestral</li>
+          <li>Todo lo del plan Mantención, con pauta en hasta 3 plataformas</li>
+          <li>SEO (2 artículos de blog al mes y optimización del sitio) o CRM (1 campaña de email al mes y 1 automatización)</li>
+          <li>Estrategia de contenido trimestral con hoja de ruta</li>
+          <li>Pruebas A/B de anuncios</li>
+          <li>2 reuniones mensuales</li>
+          <li>Construcción de reporte de monitoreo de métricas</li>
+          <li>Presupuesto de avisos aparte. Plazo mínimo de 3 meses</li>
         </ul>
         <div class="plan-actions"><a href="#" onclick="payWithFlow('v4fc43f48cb0fa1d5fd75929c8d5b8c86eb5848f');return false;" class="plan-cta plan-cta-secondary">Contratar</a><a href="https://calendly.com/vortexcor2026/30min" class="plan-doubt" target="_blank" rel="noopener">Tengo dudas con el plan →</a></div>
       </div>
     </div>
+    <div class="plan-card plan-enterprise">
+      <div>
+        <div class="plan-segment">Empresas</div>
+        <div class="plan-name">Plan Empresas a la medida</div>
+        <div class="plan-desc">Tu empresa ya está consolidada y necesita un marketing a la altura. Conversemos: analizamos tu situación, tus objetivos y tus recursos, y diseñamos un plan a la medida de tu negocio.</div>
+        <div class="plan-enterprise-price">Propuesta según alcance</div>
+      </div>
+      <ul class="plan-features">
+          <li>Diagnóstico inicial de madurez de marketing con APEX</li>
+          <li>Estrategia de crecimiento alineada a tus objetivos de negocio</li>
+          <li>Equipo dedicado con un responsable de cuenta</li>
+          <li>Gestión multicanal: pauta, contenido, SEO, CRM y medición</li>
+          <li>Reportes ejecutivos y reuniones de seguimiento con gerencia</li>
+      </ul>
+      <div class="plan-actions"><a href="https://calendly.com/vortexcor2026/30min" class="plan-cta plan-cta-primary" target="_blank" rel="noopener">Agendar una reunión</a><a href="/diagnostico-apex/" class="plan-doubt">Conocer el Diagnóstico APEX →</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="servicios-puntuales">
+  <div class="section-inner">
+    <div class="section-eyebrow">Servicios puntuales</div>
+    <h2>¿Necesitas algo puntual? Resuélvelo hoy</h2>
+    <p class="section-sub">Si todavía no necesitas un plan mensual, elige solo lo que te urge y paga en línea.</p>
+    <div data-vx-arma data-line="marketing"></div>
   </div>
 </section>
 
@@ -409,7 +453,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       try {
         const res = await fetch('/.netlify/functions/create-payment', {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ token, name, email })
+          body: JSON.stringify({ token, name, email, ...(window._armaItems && token === 'i3d1a9b1b20dfcf2232829658b9f49f3fc336bfc' ? { items: window._armaItems } : {}) })
         });
         const data = await res.json();
         modal.style.display = 'none';
@@ -453,6 +497,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </div>
 
+<script src="/vortex-catalog.js" defer></script>
+<script src="/vortex-arma.js" defer></script>
 <script src="/vortex-tracking.js" defer></script>
 </body>
 </html>
