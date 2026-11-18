@@ -59,3 +59,41 @@ section { padding: 64px 2rem; }
 }
 
 #servicios-puntuales { scroll-margin-top: 72px; }
+
+/* Plan cards: collapsible feature list */
+.plan-card:not(.plan-enterprise) { display: flex; flex-direction: column; }
+.plan-card:not(.plan-enterprise) .plan-features { display: none; margin-top: 0.25rem; }
+.plan-card:not(.plan-enterprise) .plan-features.vx-open { display: flex; }
+.plan-card .plan-cta, .plan-card .plan-actions { margin-top: auto; }
+.vx-feat-toggle { display: flex; align-items: center; justify-content: space-between; width: 100%; margin: 0 0 1rem; padding: 10px 14px; background: none; border: 1px solid var(--border-light); border-radius: 8px; font: inherit; font-size: 0.8125rem; font-weight: 600; color: var(--text-muted); cursor: pointer; transition: border-color .2s, color .2s; }
+.vx-feat-toggle svg { width: 16px; height: 16px; transition: transform .25s; }
+.vx-feat-toggle:hover, .vx-feat-toggle[aria-expanded="true"] { border-color: var(--accent); color: var(--accent); }
+.vx-feat-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+.plan-card { padding: 1.75rem; }
+.plan-price { margin: 0.75rem 0 1rem; }
+.plan-price span { font-size: 0.875rem; }
+
+/* Enterprise card: intro + actions left, checklist right (same as home) */
+.plan-card.plan-enterprise { padding: 2rem 2.25rem; }
+.plan-enterprise .plan-features { gap: 0; }
+.plan-enterprise .plan-features li { padding: 9px 0 9px 1.5rem; line-height: 1.5; border-bottom: 1px solid rgba(255,255,255,.09); font-size: 0.9rem; }
+.plan-enterprise .plan-features li::before { top: 9px; }
+.plan-enterprise .plan-features li:first-child { padding-top: 0; }
+.plan-enterprise .plan-features li:first-child::before { top: 0; }
+.plan-enterprise .plan-features li:last-child { border-bottom: none; padding-bottom: 0; }
+.plan-enterprise .plan-enterprise-price { margin-top: 0.75rem; }
+.plan-enterprise .plan-actions { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
+.plan-enterprise .plan-actions .plan-cta { display: inline-block; padding: 12px 24px; }
+.plan-enterprise .plan-actions .plan-doubt { text-decoration: none; font-size: 0.875rem; font-weight: 500; }
+.plan-enterprise .plan-actions .plan-doubt:hover { text-decoration: underline; }
+@media (min-width: 961px) {
+  .plan-card.plan-enterprise { grid-template-columns: 1fr 1fr; grid-template-areas: "intro list" "actions list"; column-gap: 3.5rem; row-gap: 1.5rem; align-items: start; }
+  .plan-enterprise > div:first-child { grid-area: intro; }
+  .plan-enterprise > .plan-features { grid-area: list; padding-left: 3.5rem; border-left: 1px solid rgba(255,255,255,.1); }
+  .plan-enterprise > .plan-actions { grid-area: actions; flex-direction: row; min-width: 0; align-self: end; }
+}
+@media (max-width: 960px) { .plan-card.plan-enterprise { padding: 1.5rem; } }
+
+/* "Tengo dudas" links under plan buttons */
+.plan-card:not(.plan-enterprise) .plan-doubt, .pack-card .plan-doubt { display: block; text-align: center; margin-top: 0.75rem; font-size: 0.85rem; font-weight: 500; color: var(--accent); text-decoration: none; }
+.plan-card .plan-doubt:hover, .pack-card .plan-doubt:hover { text-decoration: underline; }
