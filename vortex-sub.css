@@ -157,3 +157,5 @@ section { padding: 64px 2rem; }
   .stat-num { font-size: 1.5rem; }
   .stat-label { font-size: 0.75rem; }
 }
+
+@media (max-width: 640px) { .hero h1 br { display: none; } .hero .eyebrow { font-size: 0.68rem; letter-spacing: 0.1em; } }
