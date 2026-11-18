@@ -1632,6 +1632,25 @@
     #arma .arma-intro-row .section-eyebrow { display: flex; justify-content: center; }
     #arma .arma-intro-row .section-sub { margin-left: auto; margin-right: auto; }
     #arma h2::after { content: ''; display: block; width: 48px; height: 3px; border-radius: 2px; background: var(--accent); margin: 1rem auto 0; }
+    /* Features accordion on all screen sizes */
+    .plan-features-toggle {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; background: none; border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm); padding: 10px 14px; margin: 0 0 1rem;
+      font-size: 0.8125rem; font-weight: 600; color: var(--text-muted);
+      cursor: pointer; transition: border-color 0.2s, color 0.2s; font-family: inherit;
+    }
+    .plan-features-toggle:hover, .plan-features-toggle.open { border-color: var(--accent); color: var(--accent); }
+    .plan-features-toggle .toggle-arrow { font-size: 0.7rem; transition: transform 0.25s; }
+    .plan-features-toggle.open .toggle-arrow { transform: rotate(180deg); }
+    .plan-card .plan-features { display: none; }
+    .plan-card .plan-features.visible { display: block; }
+    .plan-enterprise .plan-features { display: block; }
+    .plans-grid:not(.plans-grid-rrhh) { grid-template-rows: repeat(7, auto); }
+    .plans-grid:not(.plans-grid-rrhh) > .plan-card:not(.plan-enterprise) { grid-row: span 7; }
+    @media (max-width: 600px) { .plans-grid:not(.plans-grid-rrhh) > .plan-card:not(.plan-enterprise) { grid-row: auto; } .plans-grid:not(.plans-grid-rrhh) { grid-template-rows: none; } }
+    .plan-price { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 0.4rem; row-gap: 0.15rem; }
+    .plan-price .price-unit { white-space: nowrap; line-height: 1.2; }
 </style>
 </head>
 <body>
@@ -1802,8 +1821,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="plan-badge" style="visibility:hidden">·</div>
         <div class="plan-name-wrap"><div class="plan-segment" data-i18n="plan-pyme">Small business</div>
         <div class="plan-name" data-i18n="mkt-p1-name">Starter Marketing Package</div></div>
-        <p class="plan-desc" data-i18n="mkt-p1-desc">For companies starting from scratch or needing a solid digital presence foundation.</p>
-        <div class="plan-price"><span class="price-num" data-i18n="mkt-p1-price">$1,500</span><span class="price-clp" data-i18n="price-currency" style="font-size:0.75rem;font-weight:500;margin-left:4px;color:var(--text-muted)">USD</span> <span class="price-unit" data-i18n="plan-once">one-time payment</span></div>
+        <p class="plan-desc" data-i18n="mkt-p1-desc">For small businesses starting from scratch or needing a solid digital presence foundation.</p>
+        <div class="plan-price"><span class="price-num" data-i18n="mkt-p1-price">$1,500</span><span class="price-clp" data-i18n="price-currency" style="font-size:0.75rem;font-weight:500;margin-left:4px;color:var(--text-muted)">USD</span> <span class="price-unit" data-i18n="plan-once">one payment</span></div>
         <p class="price-currency-note" data-i18n="price-currency-note"></p>
         <ul class="plan-features">
           <li data-i18n="mkt-p1-f1">Brand and positioning diagnosis</li>
@@ -1825,8 +1844,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="plan-badge" data-i18n="plan-popular">Most popular</div>
         <div class="plan-name-wrap"><div class="plan-segment" data-i18n="plan-pyme">Small business</div>
         <div class="plan-name" data-i18n="mkt-p2-name">Monthly Marketing Management</div></div>
-        <p class="plan-desc" data-i18n="mkt-p2-desc">For companies that already have a presence and need consistency and month-over-month growth.</p>
-        <div class="plan-price"><span class="price-num" data-i18n="mkt-p2-price">$1,200</span><span class="price-clp" data-i18n="price-currency" style="font-size:0.75rem;font-weight:500;margin-left:4px;color:var(--text-muted)">USD</span> <span class="price-unit" data-i18n="plan-month">/month</span></div>
+        <p class="plan-desc" data-i18n="mkt-p2-desc">For small businesses that already have a presence and need consistency and month-over-month growth.</p>
+        <div class="plan-price"><span class="price-num" data-i18n="mkt-p2-price">$1,200</span><span class="price-clp" data-i18n="price-currency" style="font-size:0.75rem;font-weight:500;margin-left:4px;color:var(--text-muted)">USD</span> <span class="price-unit" data-i18n="plan-month">monthly</span></div>
         <p class="price-currency-note" data-i18n="price-currency-note"></p>
         <ul class="plan-features">
           <li data-i18n="mkt-p2-f1">8 posts a month: 6 graphics + 2 reels</li>
@@ -1847,8 +1866,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="plan-badge" style="visibility:hidden">·</div>
         <div class="plan-name-wrap"><div class="plan-segment" data-i18n="plan-pyme">Small business</div>
         <div class="plan-name" data-i18n="mkt-p3-name">Growth Marketing Package</div></div>
-        <p class="plan-desc" data-i18n="mkt-p3-desc">For companies that want to scale: more channels, more content, growth strategy.</p>
-        <div class="plan-price"><span class="price-num" data-i18n="mkt-p3-price">$1,800</span><span class="price-clp" data-i18n="price-currency" style="font-size:0.75rem;font-weight:500;margin-left:4px;color:var(--text-muted)">USD</span> <span class="price-unit" data-i18n="plan-month">/month</span></div>
+        <p class="plan-desc" data-i18n="mkt-p3-desc">For small businesses that want to scale: more channels, more content, growth strategy.</p>
+        <div class="plan-price"><span class="price-num" data-i18n="mkt-p3-price">$1,800</span><span class="price-clp" data-i18n="price-currency" style="font-size:0.75rem;font-weight:500;margin-left:4px;color:var(--text-muted)">USD</span> <span class="price-unit" data-i18n="plan-month">monthly</span></div>
         <p class="price-currency-note" data-i18n="price-currency-note"></p>
         <ul class="plan-features">
           <li data-i18n="mkt-p3-f1">Everything in Monthly Management, with ads on up to 3 platforms</li>
@@ -2392,12 +2411,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       'serv-label': 'Services', 'serv-h2': 'Digital marketing and talent management services',
       'serv-desc': 'Marketing, people, or a full diagnostic. Each service is designed to deliver measurable results.',
       'tab-mkt': 'Marketing', 'tab-rrhh': 'RRHH',
-      'mkt-p1-name': 'Starter Marketing Package', 'mkt-p1-price': '$790.000', 'plan-once': 'one-time payment',
-      'mkt-p1-desc': 'For companies starting from scratch or needing a solid digital presence foundation.',
-      'mkt-p2-name': 'Monthly Marketing Management', 'mkt-p2-price': '$1.000', 'plan-popular': 'Most popular', 'plan-month': '/month',
-      'mkt-p2-desc': 'For companies that already have a presence and need consistency and month-over-month growth.',
+      'mkt-p1-name': 'Starter Marketing Package', 'mkt-p1-price': '$790.000', 'plan-once': 'one payment',
+      'mkt-p1-desc': 'For small businesses starting from scratch or needing a solid digital presence foundation.',
+      'mkt-p2-name': 'Monthly Marketing Management', 'mkt-p2-price': '$390.000', 'plan-popular': 'Most popular', 'plan-month': 'monthly',
+      'mkt-p2-desc': 'For small businesses that already have a presence and need consistency and month-over-month growth.',
       'mkt-p3-name': 'Growth Marketing Package', 'mkt-p3-price': '$590.000',
-      'mkt-p3-desc': 'For companies that want to scale: more channels, more content, growth strategy.',
+      'mkt-p3-desc': 'For small businesses that want to scale: more channels, more content, growth strategy.',
       'btn-contratar': 'Hire', 'plan-hire': 'Hire', 'plan-doubt': 'I have questions about this plan →', 'rrhh-popular': 'Most requested',
       'rrhh-p1-name': 'Recruitment', 'rrhh-p1-price': '$490', 'rrhh-p1-unit': 'per process',
       'rrhh-p1-desc': 'Complete selection process, from job posting to finalist candidate presentation.',
@@ -2524,12 +2543,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       'serv-label': 'Services', 'serv-h2': 'Choose your area',
       'serv-desc': 'Marketing, people, or a full diagnostic. Each service is designed to deliver measurable results.',
       'tab-mkt': 'Marketing SMB', 'tab-rrhh': 'HR SMB',
-      'mkt-p1-name': 'Starter Marketing Package', 'mkt-p1-price': '$1,500', 'plan-once': 'one-time payment',
-      'mkt-p1-desc': 'For companies starting from scratch or needing a solid digital presence foundation.',
-      'mkt-p2-name': 'Monthly Marketing Management', 'mkt-p2-price': '$1,200', 'plan-popular': 'Most popular', 'plan-month': '/month',
-      'mkt-p2-desc': 'For companies that already have a presence and need consistency and month-over-month growth.',
+      'mkt-p1-name': 'Starter Marketing Package', 'mkt-p1-price': '$1,500', 'plan-once': 'one payment',
+      'mkt-p1-desc': 'For small businesses starting from scratch or needing a solid digital presence foundation.',
+      'mkt-p2-name': 'Monthly Marketing Management', 'mkt-p2-price': '$1,200', 'plan-popular': 'Most popular', 'plan-month': 'monthly',
+      'mkt-p2-desc': 'For small businesses that already have a presence and need consistency and month-over-month growth.',
       'mkt-p3-name': 'Growth Marketing Package', 'mkt-p3-price': '$1,800',
-      'mkt-p3-desc': 'For companies that want to scale: more channels, more content, growth strategy.',
+      'mkt-p3-desc': 'For small businesses that want to scale: more channels, more content, growth strategy.',
       'btn-contratar': 'Get started',
       'apex-tab-desc': 'APEX is our marketing maturity diagnostic for mid-size and large companies. Not a form, a deep analysis with our own methodology and executive deliverables.',
       'apex-f1': '5-dimension marketing diagnosis', 'apex-f2': 'Channel map and current KPIs',
@@ -3228,8 +3247,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   // ── Features accordion en mobile ──
   function initFeaturesToggle() {
-    if (window.innerWidth > 600) return;
-    document.querySelectorAll('.plan-card').forEach(card => {
+    document.querySelectorAll('.plan-card:not(.plan-enterprise)').forEach(card => {
       const ul = card.querySelector('.plan-features');
       if (!ul || card.querySelector('.plan-features-toggle')) return;
       const toggleLabel = { es: 'Ver qué incluye', en: 'See what\'s included', pt: 'Ver o que inclui' };
@@ -3238,25 +3256,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       btn.setAttribute('aria-expanded', 'false');
       btn.innerHTML = `<span>${toggleLabel[LANG] || toggleLabel.es}</span><span class="toggle-arrow">▼</span>`;
       btn.addEventListener('click', () => {
-        const open = btn.classList.toggle('open');
-        btn.setAttribute('aria-expanded', open);
-        ul.classList.toggle('visible', open);
-        btn.querySelector('span').textContent = open
-          ? ({ es: 'Ocultar', en: 'Hide', pt: 'Ocultar' }[LANG] || 'Ocultar')
-          : (toggleLabel[LANG] || toggleLabel.es);
+        const open = !btn.classList.contains('open');
+        // On desktop the cards share rows, so open or close the whole row together
+        const grid = card.parentNode;
+        const cards = window.innerWidth > 600 && grid && grid.classList.contains('plans-grid') ? grid.querySelectorAll('.plan-card') : [card];
+        cards.forEach(c => {
+          const b2 = c.querySelector('.plan-features-toggle'), u2 = c.querySelector('.plan-features');
+          if (!b2 || !u2) return;
+          b2.classList.toggle('open', open); b2.setAttribute('aria-expanded', open);
+          u2.classList.toggle('visible', open);
+          b2.querySelector('span').textContent = open
+            ? ({ es: 'Ocultar', en: 'Hide', pt: 'Ocultar' }[LANG] || 'Ocultar')
+            : (toggleLabel[LANG] || toggleLabel.es);
+        });
       });
       ul.parentNode.insertBefore(btn, ul);
     });
   }
   initFeaturesToggle();
-  window.addEventListener('resize', () => {
-    if (window.innerWidth > 600) {
-      document.querySelectorAll('.plan-features').forEach(ul => ul.classList.remove('visible'));
-      document.querySelectorAll('.plan-features-toggle').forEach(b => b.remove());
-    } else {
-      initFeaturesToggle();
-    }
-  });
+
 </script>
 
 <!-- ── Pre-checkout modal ── -->
