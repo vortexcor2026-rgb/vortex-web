@@ -1675,6 +1675,15 @@
     .hero-logo-large { width: 280px; height: 280px; opacity: 0.8; }
     .hero-logo-wordmark-below { font-size: 13px; margin-top: 14px; }
     @media (max-width: 600px) { #hero { padding-top: 48px; padding-bottom: 48px; } #hero h1 { font-size: clamp(1.75rem, 8vw, 2.25rem); } }
+    /* Enterprise card v2: intro + actions on the left, checklist on the right */
+    @media (min-width: 961px) {
+      .plan-card.plan-enterprise { grid-template-columns: 1fr 1fr; grid-template-areas: "intro list" "actions list"; column-gap: 3.5rem; row-gap: 1.5rem; align-items: start; }
+      .plan-enterprise .plan-enterprise-intro { grid-area: intro; }
+      .plan-enterprise .plan-features { grid-area: list; padding-left: 3.5rem; border-left: 1px solid rgba(255,255,255,.1); }
+      .plan-enterprise .plan-actions { grid-area: actions; display: flex; flex-direction: row; align-items: center; gap: 1.25rem; min-width: 0; align-self: end; }
+      .plan-enterprise .plan-actions .plan-cta { padding: 12px 24px; width: auto; display: inline-block; }
+      .plan-enterprise .plan-actions .plan-doubt { margin-top: 0; }
+    }
 </style>
 </head>
 <body>
