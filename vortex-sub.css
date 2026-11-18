@@ -97,3 +97,49 @@ section { padding: 64px 2rem; }
 /* "Tengo dudas" links under plan buttons */
 .plan-card:not(.plan-enterprise) .plan-doubt, .pack-card .plan-doubt { display: block; text-align: center; margin-top: 0.75rem; font-size: 0.85rem; font-weight: 500; color: var(--accent); text-decoration: none; }
 .plan-card .plan-doubt:hover, .pack-card .plan-doubt:hover { text-decoration: underline; }
+
+/* Pack cards (HR pages): same compact, collapsible treatment as plans */
+.pack-card { display: flex; flex-direction: column; padding: 1.75rem; position: relative; }
+.pack-card .pack-features { display: none; margin-top: 0.25rem; }
+.pack-card .pack-features.vx-open { display: block; }
+.pack-card .plan-actions { margin-top: auto; }
+.pack-card .pack-title { margin-bottom: 0.5rem; }
+.pack-card .pack-desc { margin-bottom: 0.75rem; }
+.pack-card .pack-price { margin: 0.5rem 0 1rem; }
+.pack-card .pack-price span { font-size: 0.875rem; }
+.pack-card .price-clp { display: none; }
+
+/* Closing call to action: contained card instead of a full-width block */
+.cta-section { background: transparent; padding: 24px 2rem 64px; }
+.cta-section > * { max-width: var(--max); margin-left: auto; margin-right: auto; }
+.cta-section { position: relative; }
+.cta-section::before { content: ''; position: absolute; inset: 24px max(2rem, calc((100% - var(--max)) / 2)) 64px; background: var(--accent); border-radius: 18px; z-index: 0; }
+.cta-section > * { position: relative; z-index: 1; }
+.cta-section h2 { font-weight: 600; letter-spacing: -0.02em; font-size: clamp(1.5rem, 2.6vw, 2rem); padding-top: 48px; margin-bottom: 0.75rem; }
+.cta-section p { font-size: 1rem; margin-bottom: 1.5rem; max-width: 520px; }
+.cta-section .btn-white { padding: 12px 24px; margin-bottom: 48px; }
+@media (max-width: 600px) { .cta-section { padding: 16px 1.25rem 44px; } .cta-section::before { inset: 16px 1.25rem 44px; } .cta-section h2 { padding-top: 36px; padding-left: 1.25rem; padding-right: 1.25rem; } .cta-section p { padding: 0 1.25rem; } .cta-section .btn-white { margin-bottom: 36px; } }
+
+/* Animated hero background */
+.hero { position: relative; overflow: hidden; }
+.hero > .vx-hero-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,.35) 0%, #000 70%); mask-image: radial-gradient(ellipse at center, rgba(0,0,0,.35) 0%, #000 70%); }
+.hero > .hero-inner { position: relative; z-index: 1; }
+
+/* Pack card base styles (shared, the Selección page had none) */
+.packs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
+.pack-card { border-radius: var(--radius); border: 1.5px solid var(--border); background: #fff; }
+.pack-card.featured { border-color: var(--accent); background: var(--accent-dim); }
+.pack-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #fff; font-size: 0.72rem; font-weight: 700; padding: 3px 14px; border-radius: 20px; white-space: nowrap; letter-spacing: 0.05em; }
+.pack-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 700; }
+.pack-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+.pack-price { font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem; font-weight: 800; color: var(--accent); }
+.pack-price span { color: var(--text-muted); font-weight: 400; }
+.pack-card .pack-features { list-style: none; flex-direction: column; gap: 8px; margin-bottom: 1.25rem; }
+.pack-card .pack-features.vx-open { display: flex; }
+.pack-features li { font-size: 0.9rem; padding-left: 1.25rem; position: relative; }
+.pack-features li::before { content: '✓'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+.pack-cta { display: block; text-align: center; background: var(--accent); color: #fff; padding: 12px; border-radius: 8px; font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: background .15s; }
+.pack-cta:hover { background: var(--accent-hi); }
+.pack-cta-secondary { background: transparent; color: var(--accent); border: 1.5px solid var(--accent); }
+.pack-cta-secondary:hover { background: var(--accent); color: #fff; }
+@media (max-width: 900px) { .packs-grid { grid-template-columns: 1fr !important; max-width: 520px !important; margin-left: auto; margin-right: auto; } }
