@@ -151,7 +151,15 @@
       { id: 'salida', line: 'rrhh', sec: 'comp', type: 'qty', max: 10, price: 60000, usd: 130,
         unit: { es: 'entrevista', en: 'interview' },
         name: { es: 'Entrevista de salida', en: 'Exit interview' },
-        desc: { es: 'Conversamos con quien se va y te entregamos aprendizajes concretos para retener a tu equipo.', en: 'We talk to the leaving employee and share concrete lessons to retain your team.' } }
+        desc: { es: 'Conversamos con quien se va y te entregamos aprendizajes concretos para retener a tu equipo.', en: 'We talk to the leaving employee and share concrete lessons to retain your team.' } },
+      { id: 'rhreunion30', line: 'rrhh', sec: 'comp', type: 'qty', max: 12, price: 50000, usd: 110,
+        unit: { es: 'reunión', en: 'meeting' },
+        name: { es: 'Reunión de asesoría (30 min)', en: 'Advisory meeting (30 min)' },
+        desc: { es: 'Videollamada para resolver dudas de tu equipo o de un proceso y decidir próximos pasos.', en: 'Video call to work through a people or hiring question and agree next steps.' } },
+      { id: 'rhreunion60', line: 'rrhh', sec: 'comp', type: 'qty', max: 12, price: 90000, usd: 200,
+        unit: { es: 'reunión', en: 'meeting' },
+        name: { es: 'Reunión de asesoría (60 min)', en: 'Advisory meeting (60 min)' },
+        desc: { es: 'Videollamada para resolver dudas de tu equipo o de un proceso y decidir próximos pasos.', en: 'Video call to work through a people or hiring question and agree next steps.' } }
     ]
   };
 
