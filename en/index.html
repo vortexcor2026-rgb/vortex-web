@@ -1684,6 +1684,19 @@
       .plan-enterprise .plan-actions .plan-cta { padding: 12px 24px; width: auto; display: inline-block; }
       .plan-enterprise .plan-actions .plan-doubt { margin-top: 0; }
     }
+    /* About intro: two columns, the founding question as a quote */
+    @media (min-width: 901px) {
+      .about-intro { display: grid; grid-template-columns: 1fr 1fr; grid-template-areas: "eye eye" "h2 p2" "q p3"; column-gap: 4rem; row-gap: 1.25rem; align-items: start; margin-bottom: 2.5rem; }
+      .about-intro > .section-eyebrow { grid-area: eye; margin-bottom: 0; }
+      .about-intro > h2 { grid-area: h2; margin: 0; }
+      .about-intro > [data-i18n="about-p1"] { grid-area: q; }
+      .about-intro > [data-i18n="about-p2"] { grid-area: p2; }
+      .about-intro > [data-i18n="about-p3"] { grid-area: p3; }
+    }
+    .about-intro > h2 { font-size: clamp(1.6rem, 2.6vw, 2.125rem); line-height: 1.15; }
+    .about-intro .about-story { font-size: 0.9375rem; line-height: 1.7; color: var(--text-muted); margin: 0 0 1rem; max-width: 520px; }
+    .about-intro [data-i18n="about-p1"] { font-size: 1.0625rem; line-height: 1.6; color: var(--text); border-left: 3px solid var(--accent); padding-left: 1rem; }
+    .about-intro [data-i18n="about-p1"] strong { font-weight: 600; color: var(--accent); }
 </style>
 </head>
 <body>
