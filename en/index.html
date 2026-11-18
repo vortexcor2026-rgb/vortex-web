@@ -1661,6 +1661,20 @@
     .plan-enterprise .plan-segment { margin-top: 0; }
     @media (max-width: 960px) { .plan-enterprise { grid-template-columns: 1fr; padding: 1.5rem; } }
     @media (max-width: 600px) { .plan-card.plan-enterprise { gap: 1.25rem; padding: 1.25rem; } .plan-enterprise .plan-actions { width: 100%; } }
+
+    /* Hero polish */
+    #hero { padding-top: 88px; padding-bottom: 80px; }
+    @media (min-width: 901px) { .hero-inner { grid-template-columns: 1.2fr 0.8fr; gap: 3rem; } .hero-visual { display: flex; justify-content: center; } }
+    .hero-eyebrow { margin-bottom: 1.25rem; letter-spacing: 0.16em; }
+    #hero h1 { font-weight: 600; font-size: clamp(2rem, 3.5vw, 2.875rem); line-height: 1.12; letter-spacing: -0.03em; margin-bottom: 1.25rem; max-width: 640px; }
+    #hero h1 em { color: var(--accent); font-style: normal; }
+    .hero-claim { font-size: 1.125rem; font-weight: 500; color: var(--text); margin-bottom: 0.5rem; max-width: 520px; }
+    .hero-desc { font-size: 1rem; line-height: 1.7; max-width: 500px; margin-bottom: 2rem; }
+    .hero-actions .btn-primary, .hero-actions .btn-ghost { padding: 12px 24px; font-size: 0.9375rem; }
+    .hero-social { margin-top: 1.75rem; }
+    .hero-logo-large { width: 280px; height: 280px; opacity: 0.8; }
+    .hero-logo-wordmark-below { font-size: 13px; margin-top: 14px; }
+    @media (max-width: 600px) { #hero { padding-top: 48px; padding-bottom: 48px; } #hero h1 { font-size: clamp(1.75rem, 8vw, 2.25rem); } }
 </style>
 </head>
 <body>
@@ -1713,8 +1727,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section id="hero" aria-labelledby="hero-title"><!-- open -->
   <div class="hero-inner">
     <div>
-      <div class="hero-eyebrow" data-i18n="hero-eyebrow" data-i18n-html="true"><span style="color:var(--accent);font-weight:800;letter-spacing:0.1em;">VORTEX</span> &nbsp;Marketing &amp; People Consultancy</div>
-      <h1 id="hero-title" data-i18n="hero-h1">Digital Marketing and Talent Acquisition Consulting for Growing Businesses</h1>
+      <div class="hero-eyebrow" data-i18n="hero-eyebrow" data-i18n-html="true">Marketing &amp; People Consultancy</div>
+      <h1 id="hero-title" data-i18n="hero-h1" data-i18n-html="true"><em>Digital Marketing</em> and <em>Talent Acquisition</em> Consulting for Growing Businesses</h1>
       <p class="hero-claim" data-i18n="hero-claim">Your business deserves a strategy that actually works</p>
       <p class="hero-desc" data-i18n="hero-desc">
         Over a decade of experience working with multinational companies, startups and growing businesses. All that expertise, now directly available to you.
@@ -2406,8 +2420,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       'logo-tag': 'Marketing y talento',
       'nav-como': 'How it works', 'nav-servicios': 'Services', 'nav-about': 'About us',
       'nav-faq': 'FAQ', 'nav-agenda': 'Book a free call',
-      'hero-eyebrow': '<span style="color:var(--accent);font-weight:800;letter-spacing:0.1em;">VORTEX</span> &nbsp;Marketing &amp; People Consultancy',
-      'hero-h1': 'Digital Marketing and Talent Acquisition Consulting for Growing Businesses',
+      'hero-eyebrow': 'Marketing &amp; People Consultancy',
+      'hero-h1': '<em>Digital Marketing</em> and <em>Talent Acquisition</em> Consulting for Growing Businesses',
       'hero-claim': 'Your business deserves a strategy that actually works',
       'hero-desc': 'Bilingual consultants with 10+ years at multinationals. Hispanic market specialists. Working in your time zone, at a fraction of US agency costs.',
       'hero-cta1': 'Ver planes', 'hero-cta2': 'Conversar primero',
@@ -2538,8 +2552,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       'logo-tag': 'Marketing & talent',
       'nav-como': 'How it works', 'nav-servicios': 'Services', 'nav-about': 'About us',
       'nav-faq': 'FAQ', 'nav-agenda': 'Book a free call',
-      'hero-eyebrow': '<span style="color:var(--accent);font-weight:800;letter-spacing:0.1em;">VORTEX</span> &nbsp;Marketing & people consultancy',
-      'hero-h1': 'Marketing and people management consulting',
+      'hero-eyebrow': 'Marketing & people consultancy',
+      'hero-h1': '<em>Marketing</em> and <em>people management</em> consulting',
       'hero-claim': 'Your business deserves a strategy that actually works',
       'hero-desc': 'Over a decade working with multinationals, startups and SMBs. All that experience, now directly available to you.',
       'hero-cta1': 'See plans', 'hero-cta2': "Let's talk first",
@@ -2685,8 +2699,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       'logo-tag': 'Marketing e talento',
       'nav-como': 'Como funciona', 'nav-servicios': 'Serviços', 'nav-about': 'Sobre nós',
       'nav-faq': 'FAQ', 'nav-agenda': 'Agendar reunião',
-      'hero-eyebrow': '<span style="color:var(--accent);font-weight:800;letter-spacing:0.1em;">VORTEX</span> &nbsp;Consultoria de marketing e pessoas',
-      'hero-h1': 'Consultoria de marketing digital e gestão de pessoas para empresas no Chile',
+      'hero-eyebrow': 'Consultoria de marketing e pessoas',
+      'hero-h1': 'Consultoria de <em>marketing digital</em> e <em>gestão de pessoas</em> para empresas no Chile',
       'hero-claim': 'Sua empresa merece uma estratégia que funciona',
       'hero-desc': 'Mais de uma década trabalhando com multinacionais, startups e PMEs. Toda essa experiência, agora disponível diretamente para você.',
       'hero-cta1': 'Ver planos', 'hero-cta2': 'Conversar primeiro',
