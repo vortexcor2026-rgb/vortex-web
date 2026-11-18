@@ -143,3 +143,17 @@ section { padding: 64px 2rem; }
 .pack-cta-secondary { background: transparent; color: var(--accent); border: 1.5px solid var(--accent); }
 .pack-cta-secondary:hover { background: var(--accent); color: #fff; }
 @media (max-width: 900px) { .packs-grid { grid-template-columns: 1fr !important; max-width: 520px !important; margin-left: auto; margin-right: auto; } }
+
+/* Stats strip: four small cards on desktop, 2x2 on mobile */
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; max-width: var(--max); margin: 0 auto; padding: 32px 2rem; border-bottom: none; }
+.stat { background: #fff; border: 1px solid var(--border-light); border-radius: 14px; padding: 1.1rem 1rem; text-align: center; transition: border-color .25s, transform .25s; }
+.stat:hover { border-color: rgba(90,171,110,.45); transform: translateY(-2px); }
+.stat-num { font-size: 1.75rem; line-height: 1.1; }
+.stat-label { font-size: 0.8125rem; line-height: 1.35; margin-top: 0.35rem; }
+.stat-label::first-letter { text-transform: uppercase; }
+@media (max-width: 640px) {
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; padding: 24px 1.25rem; }
+  .stat { padding: 0.9rem 0.75rem; }
+  .stat-num { font-size: 1.5rem; }
+  .stat-label { font-size: 0.75rem; }
+}
