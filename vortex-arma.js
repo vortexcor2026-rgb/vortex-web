@@ -75,11 +75,14 @@
       '.vxa .arma-qty-btn:disabled{opacity:.35;cursor:default}',
       '.vxa .arma-qty-val{min-width:28px;text-align:center;font-weight:700;font-size:.9rem}',
       '.vxa-list{border-top:1px solid var(--vx-b)}',
-      '.vxa .arma-item.vxa-row{display:flex;align-items:center;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--vx-b);margin:0}',
+      '.vxa .arma-item.vxa-row{display:grid!important;grid-template-columns:minmax(0,1fr) 170px 112px;align-items:center;gap:1.25rem;padding:1rem 0;border-bottom:1px solid var(--vx-b);margin:0}',
+      '.vxa .vxa-row .vxa-rp{margin:0!important;text-align:right!important;white-space:nowrap}',
+      '.vxa .vxa-rc{display:flex;justify-content:flex-end}',
+      '@media (max-width:640px){.vxa .arma-item.vxa-row{grid-template-columns:minmax(0,1fr) auto;row-gap:.5rem}.vxa .vxa-row .vxa-rp{grid-column:1;grid-row:2;text-align:left!important}.vxa .vxa-rc{grid-column:2;grid-row:1 / span 2}}',
       '.vxa-row .vxa-rb{flex:1;min-width:0}',
       '.vxa-row .arma-item-name{font-size:1rem;margin-bottom:.15rem}',
       '.vxa-row .arma-item-desc{margin:0;font-size:.85rem}',
-      '.vxa-row .arma-item-price{margin:0 0 .15rem;font-size:.95rem}',
+      '.vxa-row .arma-item-price{font-size:.95rem}',
       '.vxa-addon{margin-top:.5rem;font-size:.82rem;display:flex;gap:.45rem;align-items:center;cursor:pointer}',
       '.vxa-addon input{accent-color:var(--vx-g)}',
       '.vxa-cart{position:sticky;top:96px;border:1px solid var(--vx-b);border-radius:16px;padding:1.4rem;background:#fff;box-shadow:0 10px 30px rgba(0,0,0,.05)}',
@@ -146,7 +149,7 @@
     return '<div class="arma-item vxa-row" role="listitem"><div class="vxa-rb">' +
       '<span class="arma-item-name">' + esc(L(it.name)) + '</span>' +
       '<p class="arma-item-desc">' + esc(L(it.desc)) + '</p>' + addonHtml(it) + '</div>' +
-      '<div style="text-align:right"><span class="arma-item-price">' + priceHtml(it) + '</span>' + control(it) + '</div></div>';
+      '<span class="arma-item-price vxa-rp">' + priceHtml(it) + '</span><div class="vxa-rc">' + control(it) + '</div></div>';
   }
   function cartLines() {
     return C.items.filter(function (it) { return cart[it.id] > 0 && visible(it); });
