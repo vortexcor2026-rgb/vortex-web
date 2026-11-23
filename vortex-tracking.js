@@ -186,6 +186,14 @@
       }));
     }
 
+    // 1b. WhatsApp contact
+    if (/wa\.me\/|api\.whatsapp\.com|whatsapp:\/\//.test(href)) {
+      return push('generate_lead', Object.assign(p, {
+        lead_type: 'whatsapp_click', cta_text: label,
+        service_line: serviceOf(el), cta_style: 'whatsapp'
+      }));
+    }
+
     // 2. Checkout start: plan cards, RRHH items, "Arma tu plan"
     if (el.matches('.plan-cta, .rrhh-item-btn, .arma-pay-btn') || /flow\.cl|paypal\.com\/ncp/.test(href)) {
       var items = el.matches('.arma-pay-btn') ? itemsFromArma() : [itemFromCard(el)].filter(Boolean);

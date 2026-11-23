@@ -159,3 +159,6 @@ section { padding: 64px 2rem; }
 }
 
 @media (max-width: 640px) { .hero h1 br { display: none; } .hero .eyebrow { font-size: 0.68rem; letter-spacing: 0.1em; } }
+
+.nav-cta { white-space: nowrap; }
+@media (max-width: 400px) { .nav-cta { padding: 8px 12px; font-size: 0.8125rem; } }
